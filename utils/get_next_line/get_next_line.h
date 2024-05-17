@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:47:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/16 20:40:20 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/17 17:12:44 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_substr_custom(char *s, size_t start, size_t end, int free_data);
 char	*ft_strchr_custom(char *str, char c);
 size_t	ft_strlen_custom(char *s);
 int		line_len(char *str);
-void	*free_array(char *str);
+void	*free_array_custom(char *str);
 
 #endif

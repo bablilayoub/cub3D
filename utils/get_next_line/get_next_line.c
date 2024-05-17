@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:47:23 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/16 20:41:28 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/17 17:12:58 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	line_len(char *str)
 	return (i);
 }
 
-void	*free_array(char *str)
+void	*free_array_custom(char *str)
 {
 	if (str)
 		free(str);
@@ -58,7 +58,7 @@ char	*read_data(int fd, char *data)
 	{
 		reading = read(fd, temp, BUFFER_SIZE);
 		if (reading == -1)
-			return (temp = free_array(temp));
+			return (temp = free_array_custom(temp));
 		if (reading == 0)
 			break ;
 		temp[reading] = '\0';
@@ -77,15 +77,15 @@ char	*get_next_line(int fd)
 		return (NULL);
 	temp = read_data(fd, data);
 	if (!temp)
-		return (data = free_array(data));
+		return (data = free_array_custom(data));
 	data = temp;
 	if (line_len(data) == 0)
-		return (data = free_array(data));
+		return (data = free_array_custom(data));
 	line = ft_substr_custom(data, 0, line_len(data), 0);
 	if (!line)
-		return (data = free_array(data));
+		return (data = free_array_custom(data));
 	data = ft_substr_custom(data, line_len(data), ft_strlen_custom(data) - line_len(data), 1);
 	if (!data)
-		return (data = free_array(data));
+		return (data = free_array_custom(data));
 	return (line);
 }

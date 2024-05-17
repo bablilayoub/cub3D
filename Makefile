@@ -10,14 +10,14 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 # LIBRARIES
 LIBFT = ./utils/libft/libft.a
+GNL = ./utils/get_next_line/get_next_line.c ./utils/get_next_line/get_next_line_utils.c
 
 # GENERAL
 MAIN = main.c
 
 # UTILS
 UTILS_HEADER = ./utils/utils.h
-UTILS = ./utils/errors.c
-GNL = ./utils/get_next_line/get_next_line.c ./utils/get_next_line/get_next_line_utils.c
+UTILS = ./utils/errors.c ./utils/free.c ./utils/tools.c
 
 # PARSING
 PARSING_HEADER = ./parsing/parsing.h

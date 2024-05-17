@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 18:48:31 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/17 18:57:58 by abablil          ###   ########.fr       */
+/*   Created: 2024/05/17 17:08:27 by abablil           #+#    #+#             */
+/*   Updated: 2024/05/17 17:10:39 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes.h"
-#include "libft/libft.h"
+#include "utils.h"
+#include "../cube3D.h"
 
-// Errors
-void	exit_game(char *message, int status_code, int is_error);
+void	free_array(char **str)
+{
+	int	i;
 
-// Free
-void	free_array(char **str);
-
-// Tools
-int		array_len(char **str);
+	if (!str)
+		return ;
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+}

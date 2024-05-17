@@ -17,6 +17,7 @@ MAIN = main.c
 # UTILS
 UTILS_HEADER = ./utils/utils.h
 UTILS = ./utils/errors.c
+GNL = ./utils/get_next_line/get_next_line.c ./utils/get_next_line/get_next_line_utils.c
 
 # PARSING
 PARSING_HEADER = ./parsing/parsing.h
@@ -29,12 +30,13 @@ PARSING_SRCS = $(addprefix parsing/, $(PARSING))
 PARSING_OBJS = $(PARSING_SRCS:.c=.o)
 MAIN_OBJS = $(MAIN:.c=.o)
 UTILS_OBJS = $(UTILS:.c=.o)
+GNL_OBJS = $(GNL:.c=.o)
 
-# HEADERS
+# HEADER
 HEADERS = $(HEADER) $(PARSING_HEADER) $(UTILS_HEADER)
  
-$(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS)
-	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(LIBFT) -o $(NAME)
+$(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
+	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) -o $(NAME)
 	@echo "cube3D is ready"
 
 prepare_libft:
@@ -49,7 +51,7 @@ all: $(NAME)
 
 clean:
 	@cd ./utils/libft && make clean
-	@rm -f $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS)
+	@rm -f $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
 	@echo "cube3D is clean"
 
 fclean: clean

@@ -1,1 +1,8 @@
-/.vscode
+.vscode
+a.out
+cube3D
+**/*.o
+**/*.a
+**/.DS_Store
+leaks.sh
+.tmp

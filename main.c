@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/17 15:20:25 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/17 15:34:52 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	read_map_file(int fd, t_data *data)
 		temp = get_next_line(fd);
 	}
 	data->map_file = result;
-	printf("%s\n", data->map_file);
 }
 
 void	look_for_map_file(char *map_path, t_data *data)

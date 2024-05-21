@@ -6,7 +6,7 @@ NAME = cube3D
 # HEADERS
 HEADER = cube3D.h
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 # LIBRARIES
 LIBFT = ./utils/libft/libft.a

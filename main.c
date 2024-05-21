@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/18 18:58:38 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/21 19:22:46 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,119 @@ int	is_valid_item(char *line, t_data *data)
 	return (1);
 }
 
+int	valid_map_item(char *line, int i)
+{
+	char	**valid_map_items;
+	int		k;
+
+	k = 0;
+	valid_map_items = ft_split(VALID_MAP_ITEMS, ':');
+	if (!valid_map_items)
+		return (0);
+	while (valid_map_items[k])
+	{
+		if (line[i] == valid_map_items[k][0] || line[i] == ' ' || line[i] == '\t' || line[i] == '\n')
+		{
+			free_array(valid_map_items);
+			return (1);
+		}
+		k++;
+	}
+	free_array(valid_map_items);
+	return (0);
+}
+
+int	is_valid_border_line(char *line)
+{
+    size_t	k;
+    size_t	len;
+	
+	k = 0;
+	len = ft_strlen(line);
+    while (line[k] == ' ' || line[k] == '\t')
+        k++;
+    if (line[k] != '1' || line[len - 1] != '1')
+        return (0);
+    while (line[k] == ' ' || line[k] == '\t' || line[k] == '1')
+        k++;
+    return (k == len);
+}
+
+int	is_valid_middle_line(char *line, char *prev_line, char  *next_line)
+{
+	size_t	len;
+	size_t	k;
+	
+	(1) && (k = 0, len = ft_strlen(line));
+    while (line[k] && (line[k] == ' ' || line[k] == '\t'))
+        k++;
+    if (line[k] && (line[k] != '1' || line[len - 1] != '1'))
+        return (0);
+	while (line[k] && line[k] != ' ' && line[k] != '\t')
+	 	k++;
+	while (line[k++])
+	{
+		if (line[k] == ' ' || line[k] == '\t')
+		{
+			if (line[k + 1] && line[k + 1] != ' ' && line[k + 1] != '1')
+				return (0);
+			if (line[k - 1] && line[k - 1] != ' ' && line[k - 1] != '1')
+				return (0);
+			if (prev_line && prev_line[k] != ' ' && prev_line[k] != '1')
+				return (0);
+			if (next_line && next_line[k] != ' ' && next_line[k] != '1')
+				return (0);
+		}
+	}
+	return (1);
+}
+
+void	check_walls(char **map_lines, int i)
+{
+    int	arrlen;
+
+	arrlen = array_len(map_lines) - 1;
+    if (!is_valid_border_line(map_lines[i]))
+        exit_game("Invalid first line of the map.", 1, 1);
+	while (map_lines[i] && map_lines[++i])
+	{
+		if (!is_valid_middle_line(map_lines[i], map_lines[i - 1], map_lines[i + 1]))
+			exit_game("Invalid middle line of the map.", 1, 1);
+	}
+    if (!is_valid_border_line(map_lines[arrlen]))
+        exit_game("Invalid last line of the map.", 1, 1);
+} 
+
+void	validate_map(char **map_lines, int i)
+{
+	char	**valid_map_items;
+	size_t	k;
+	int		default_i;
+
+	k = 0;
+	default_i = i;
+	valid_map_items = ft_split(VALID_MAP_ITEMS, ':');
+	if (!valid_map_items)
+		exit_game("Failed to allocate valid_map_items.", 1, 1);
+	while (map_lines[i])
+	{
+		k = 0;
+		while (valid_map_item(map_lines[i], k))
+			k++;
+		if (k != ft_strlen(map_lines[i]))
+			exit_game("Invalid map items.", 1, 1);
+		i++;
+	}
+	check_walls(map_lines, default_i);
+}
+
 void	get_textures(t_data *data)
 {
 	char	**map_lines;
 	int		valid_lines;
 	int		i;
 
-	i = -1;
-	valid_lines = 0;
+	(1) && (i = -1, valid_lines = 0);
 	map_lines = ft_split(data->map_file, '\n');
 	if (!map_lines)
 	{
@@ -157,10 +262,7 @@ void	get_textures(t_data *data)
 	while (map_lines[++i])
 	{
 		if (valid_lines == 6)
-		{
-			free_array(map_lines);
 			break ;
-		}
 		if (ft_strlen(map_lines[i]) != 1 && map_lines[i][0] != '\n')
 			valid_lines++;
 		if (!is_valid_item(map_lines[i], data))
@@ -170,6 +272,7 @@ void	get_textures(t_data *data)
 			exit_game("Invalid map items.", 1, 1);
 		}
 	}
+	validate_map(map_lines, i);
 }
 
 void	check_textures(t_data *data)
@@ -199,7 +302,6 @@ void	look_for_map_file(char *map_path, t_data *data)
 	if (!data->map_file)
 		exit_game("Failed to allocate map_file.", 1, 1);
 	read_map_file(fd, data);
-	// printf("%s", data->map_file);
 	get_textures(data);
 	check_textures(data);
 }
@@ -246,5 +348,5 @@ int	main(int total, char **args)
 	}
 	ft_memset(&data, 0, sizeof(t_data));
 	validate_input(args[1], &data);
-	free_data(&data);
+	// free_data(&data);
 }

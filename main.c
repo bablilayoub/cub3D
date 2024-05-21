@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/21 23:35:11 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/21 23:56:40 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ int	check_from_the_start(char *line, char *to_comp)
 		spaces_count--;
 	while (to_comp[spaces_count] && to_comp[spaces_count] == ' ')
 		spaces_count--;
-	if (spaces_count == -1)
+	if (spaces_count < 0)
 		return (1);
 	return (0);
 }
@@ -277,6 +277,32 @@ void	check_walls(char **map_lines, int i)
 		exit_game("Invalid last line of the map.", 1, 1);
 }
 
+void	check_player(char **map_lines, int i)
+{
+	int	count_players;
+	int	k;
+
+	count_players = 0;
+	while (map_lines[i])
+	{
+		k = -1;
+		while (map_lines[i][++k])
+		{
+			if (map_lines[i][k] == 'N'
+				|| map_lines[i][k] == 'S'
+				|| map_lines[i][k] == 'E'
+				|| map_lines[i][k] == 'W')
+			count_players++;
+		}
+		i++;
+	}
+	if (count_players != 1)
+	{
+		free_array(map_lines);
+		exit_game("Map must have 1 player", 1, 1);
+	}
+}
+
 void	validate_map(char **map_lines, int i)
 {
 	char	**valid_map_items;
@@ -301,6 +327,7 @@ void	validate_map(char **map_lines, int i)
 		i++;
 	}
 	check_walls(map_lines, default_i);
+	check_player(map_lines, default_i);
 	free_array(valid_map_items);
 	free_array(map_lines);
 }

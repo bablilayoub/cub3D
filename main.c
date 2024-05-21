@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/21 19:22:46 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/21 19:29:36 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	is_valid_middle_line(char *line, char *prev_line, char  *next_line)
         return (0);
 	while (line[k] && line[k] != ' ' && line[k] != '\t')
 	 	k++;
-	while (line[k++])
+	while (line[k])
 	{
 		if (line[k] == ' ' || line[k] == '\t')
 		{
@@ -203,6 +203,7 @@ int	is_valid_middle_line(char *line, char *prev_line, char  *next_line)
 			if (next_line && next_line[k] != ' ' && next_line[k] != '1')
 				return (0);
 		}
+		k++;
 	}
 	return (1);
 }

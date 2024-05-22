@@ -1,10 +1,10 @@
 # Created Ayoub Bablil
 
 # NAME
-NAME = cube3D
+NAME = cub3D
 
 # HEADERS
-HEADER = cube3D.h
+HEADER = cub3D.h
 
 CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
@@ -37,11 +37,11 @@ HEADERS = $(HEADER) $(PARSING_HEADER) $(UTILS_HEADER)
  
 $(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
 	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) -o $(NAME)
-	@echo "cube3D is ready"
+	@echo "cub3D is ready"
 
 prepare_libft:
 	@cd ./utils/libft && make
-	@echo "cube3D is ready"
+	@echo "cub3D is ready"
 
 %.o: %.c $(HEADER)
 	@echo "compiling $<"
@@ -52,12 +52,12 @@ all: $(NAME)
 clean:
 	@cd ./utils/libft && make clean
 	@rm -f $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
-	@echo "cube3D is clean"
+	@echo "cub3D is clean"
 
 fclean: clean
 	@rm -f $(NAME)
 	@cd ./utils/libft && make fclean
-	@echo "cube3D is fully clean"
+	@echo "cub3D is fully clean"
 
 re: fclean all
 

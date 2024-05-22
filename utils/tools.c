@@ -6,12 +6,12 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/17 18:29:08 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/22 16:12:29 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../cube3D.h"
+#include "../cub3D.h"
 
 int	array_len(char **str)
 {

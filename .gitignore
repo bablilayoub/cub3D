@@ -1,6 +1,6 @@
 .vscode
 a.out
-cube3D
+cub3D
 **/*.o
 **/*.a
 **/.DS_Store

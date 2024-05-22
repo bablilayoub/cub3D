@@ -6,11 +6,11 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/21 23:56:40 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/22 20:21:34 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "cub3D.h"
 
 void	read_map_file(int fd, t_data *data)
 {
@@ -21,7 +21,7 @@ void	read_map_file(int fd, t_data *data)
 	{
 		free(data->map_file);
 		close(fd);
-		exit_game("Map can't be empty.", 1, 1);
+		exit_game("Map can't be empty.", data);
 	}
 	while (temp)
 	{
@@ -29,12 +29,12 @@ void	read_map_file(int fd, t_data *data)
 		data->map_file = ft_strjoin(data->map_file, temp);
 		if (!data->map_file)
 		{
-			free(data->temp);
 			free(temp);
 			close(fd);
-			exit_game("Failed to allocate result.", 1, 1);
+			exit_game("Failed to allocate result.", data);
 		}
 		free(data->temp);
+		data->temp = NULL;
 		free(temp);
 		temp = get_next_line(fd);
 	}
@@ -251,33 +251,33 @@ int	is_line_closed(char *line, char *to_comp, int flag)
 	return (1);
 }
 
-void	check_walls(char **map_lines, int i)
+void	check_walls(t_data *data, char **map_lines, int i)
 {
 	int	arrlen;
 	int	default_i;
 
 	default_i = i;
 	if (!map_lines || !map_lines[i])
-		exit_game("Invalid map.", 1, 1);
+		exit_game("Invalid map.", data);
 	arrlen = array_len(map_lines) - 1;
 	if (!is_valid_border_line(map_lines[i]))
-		exit_game("Invalid first line of the map.", 1, 1);
+		exit_game("Invalid first line of the map.", data);
 	while (map_lines[i])
 	{
 		if (!is_valid_middle_line(map_lines[i], ft_strlen(map_lines[i]),
 				map_lines[i - 1], map_lines[i + 1]))
-			exit_game("Invalid middle line of the map.", 1, 1);
+			exit_game("Invalid middle line of the map.", data);
 		if (!is_line_closed(map_lines[i], map_lines[i - 1], (default_i != i)))
-			exit_game("Map not closed.", 1, 1);
-		if (!is_line_closed(map_lines[i], map_lines[i + 1], 0))
-			exit_game("Map not closed.", 1, 1);
+			exit_game("Map not closed.", data);
+		if (!is_line_closed(map_lines[i], map_lines[i + 1], 1))
+			exit_game("Map not closed.", data);
 		i++;
 	}
 	if (!is_valid_border_line(map_lines[arrlen]))
-		exit_game("Invalid last line of the map.", 1, 1);
+		exit_game("Invalid last line of the map.", data);
 }
 
-void	check_player(char **map_lines, int i)
+void	check_player(t_data *data, char **map_lines, int i)
 {
 	int	count_players;
 	int	k;
@@ -299,11 +299,11 @@ void	check_player(char **map_lines, int i)
 	if (count_players != 1)
 	{
 		free_array(map_lines);
-		exit_game("Map must have 1 player", 1, 1);
+		exit_game("Map must have 1 player", data);
 	}
 }
 
-void	validate_map(char **map_lines, int i)
+void	validate_map(t_data *data, char **map_lines, int i)
 {
 	char	**valid_map_items;
 	size_t	k;
@@ -313,7 +313,7 @@ void	validate_map(char **map_lines, int i)
 	default_i = i;
 	valid_map_items = ft_split(VALID_MAP_ITEMS, ':');
 	if (!valid_map_items)
-		exit_game("Failed to allocate valid_map_items.", 1, 1);
+		exit_game("Failed to allocate valid_map_items.", data);
 	while (map_lines[i])
 	{
 		k = 0;
@@ -322,12 +322,12 @@ void	validate_map(char **map_lines, int i)
 		if (k != ft_strlen(map_lines[i]))
 		{
 			free_array(valid_map_items);
-			exit_game("Invalid map items.", 1, 1);
+			exit_game("Invalid map items.", data);
 		}
 		i++;
 	}
-	check_walls(map_lines, default_i);
-	check_player(map_lines, default_i);
+	check_walls(data, map_lines, default_i);
+	check_player(data, map_lines, default_i);
 	free_array(valid_map_items);
 	free_array(map_lines);
 }
@@ -343,7 +343,7 @@ void	get_textures(t_data *data)
 	if (!map_lines)
 	{
 		free(data->map_file);
-		exit_game("Failed to allocate map_lines.", 1, 1);
+		exit_game("Failed to allocate map_lines.", data);
 	}
 	while (map_lines[++i])
 	{
@@ -355,26 +355,26 @@ void	get_textures(t_data *data)
 		{
 			free_array(map_lines);
 			free(data->map_file);
-			exit_game("Invalid map items.", 1, 1);
+			exit_game("Invalid map items.", data);
 		}
 	}
-	validate_map(map_lines, i);
+	validate_map(data, map_lines, i);
 }
 
 void	check_textures(t_data *data)
 {
 	if (!data->north_texture)
-		exit_game("North texture is missing.", 1, 1);
+		exit_game("North texture is missing.", data);
 	if (!data->south_texture)
-		exit_game("South texture is missing.", 1, 1);
+		exit_game("South texture is missing.", data);
 	if (!data->west_texture)
-		exit_game("West texture is missing.", 1, 1);
+		exit_game("West texture is missing.", data);
 	if (!data->east_texture)
-		exit_game("Eeast texture is missing.", 1, 1);
+		exit_game("Eeast texture is missing.", data);
 	if (!data->floor_color)
-		exit_game("Floor color is missing.", 1, 1);
+		exit_game("Floor color is missing.", data);
 	if (!data->ceiling_color)
-		exit_game("Ceiling color is missing.", 1, 1);
+		exit_game("Ceiling color is missing.", data);
 }
 
 int	convert_tabs_to_spaces(t_data *data)
@@ -385,7 +385,7 @@ int	convert_tabs_to_spaces(t_data *data)
 	int		k;
 	
 	(1) && (i = -1, k = 0);
-	length  = ft_strlen(data->map_file) * 4 + 1;
+	length  = ft_strlen(data->map_file) * 2 + 1;
 	new_map = (char *)malloc(sizeof(char) * length);
 	if (!new_map)
 		return (0);
@@ -406,52 +406,67 @@ int	convert_tabs_to_spaces(t_data *data)
 	return (1);
 }
 
+void	check_map(t_data *data)
+{
+	int	i;
+	int	line_len;
+	int	k;
+	
+	i = -1;
+	k = 0;
+	line_len = 0;
+	while (data->map_file[++i])
+	{
+		while (data->map_file[i] != '\n')
+			i++;
+		k = i;
+		while (data->map_file[k] == '1' || data->map_file[k] == ' ')
+			k++;
+		if (data->map_file[k] == '\n')
+		{
+			printf("Here %c\n", data->map_file[k + 1]);
+		}
+	}
+		// if (data->map_file[i] == '\n' && data->map_file[i + 1] == '\n')
+		// 	printf("Heweeeeeee\n");
+}
+
 void	look_for_map_file(char *map_path, t_data *data)
 {
 	int	fd;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		exit_game("Couldn't find a map with this path.", 1, 1);
+		exit_game("Couldn't find a map with this path.", data);
 	data->map_file = ft_strdup("");
 	if (!data->map_file)
-		exit_game("Failed to allocate map_file.", 1, 1);
+		exit_game("Failed to allocate map_file.", data);
 	read_map_file(fd, data);
 	if (!data->map_file)
 		return ;
 	if (!convert_tabs_to_spaces(data))
 	{
 		free(data->map_file);
-		exit_game("Failed to allocate new_map.", 1, 1);
+		exit_game("Failed to allocate new_map.", data);
 	}
 	get_textures(data);
 	check_textures(data);
+	check_map(data);
 }
 
 void	validate_input(char *map_path, t_data *data)
 {
 	if (!ft_strlen(map_path))
-		exit_game("Map name can't be empty.", 1, 1);
+		exit_game("Map name can't be empty.", data);
 	if (ft_strncmp(map_path + (ft_strlen(map_path) - 4), ".cub", 4))
-		exit_game("Invalid map extension.", 1, 1);
+		exit_game("Invalid map extension.", data);
 	look_for_map_file(map_path, data);
 	// printf("%s\n", data->map_file);
 }
 
 void	f(void)
 {
-	system("leaks cube3D");
-}
-
-void	free_data(t_data *data)
-{
-	free(data->map_file);
-	free(data->north_texture);
-	free(data->south_texture);
-	free(data->west_texture);
-	free(data->east_texture);
-	free(data->floor_color);
-	free(data->ceiling_color);
+	system("leaks cub3D");
 }
 
 int	main(int total, char **args)
@@ -461,7 +476,7 @@ int	main(int total, char **args)
 	// atexit(f);
 	if (total != 2)
 	{
-		printf("\033[30m\033[102m Usage \033[0m : ./cube3D [map path]\n");
+		printf("\033[30m\033[102m Usage \033[0m : ./cub3D [map path]\n");
 		return (1);
 	}
 	ft_memset(&data, 0, sizeof(t_data));

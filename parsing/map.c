@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:20:51 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:28:38 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/23 21:57:27 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	is_empty_map(t_data *data)
 	i = 0;
 	while (data->map[i])
 	{
-		if (ft_strchr("01NSEW", data->map[i][0]))
+		if (ft_strchr("01NSEW ", data->map[i][0]))
 			return ;
 		i++;
 	}

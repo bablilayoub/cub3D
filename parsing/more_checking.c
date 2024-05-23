@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:36 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:44:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/23 22:05:17 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_first_six_lines(t_data *data)
 			&& ft_strncmp(lines[i], "C ", 2))
 		{
 			free_array(lines);
-			exit_game("Texture or color key is missing.", data, -1);
+			exit_game("Invalid map configuration.", data, -1);
 		}
 		i++;
 	}

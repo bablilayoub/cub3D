@@ -12,7 +12,3 @@
 
 #include "includes.h"
 #include "utils/utils.h"
-
-#define VALID_ITEMS "NO:SO:WE:EA:F:C"
-#define VALID_MAP_ITEMS "1:0:N:S:E:W"
-

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/22 16:12:29 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/23 15:24:18 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,20 @@ int	array_len(char **str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+int	is_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

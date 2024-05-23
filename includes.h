@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/22 16:13:20 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/22 23:25:09 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_data
 {
 	char	*temp;
 	char	*map_file;
+	char	**map;
+	size_t	biggest_line;
 	char	*north_texture;
 	char	*south_texture;
 	char	*west_texture;

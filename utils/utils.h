@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:48:31 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/22 16:15:44 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/23 15:24:26 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "get_next_line/get_next_line.h"
 
 // Errors
-void	exit_game(char *message, t_data *data);
+void	exit_game(char *message, t_data *data, int fd);
 
 // Free
 void	free_array(char **str);
@@ -26,5 +26,6 @@ void	free_data(t_data *data);
 
 // Tools
 int		array_len(char **str);
+int		is_number(char *str);
 
 #endif

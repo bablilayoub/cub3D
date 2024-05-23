@@ -21,7 +21,7 @@ UTILS = ./utils/errors.c ./utils/free.c ./utils/tools.c
 
 # PARSING
 PARSING_HEADER = ./parsing/parsing.h
-PARSING = parsing.c $(addprefix validating/, $(VALIDATING))
+PARSING = parsing.c checking.c coverting.c map.c more_checking.c print.c reading.c textures.c
 
 # SOURCES
 PARSING_SRCS = $(addprefix parsing/, $(PARSING))

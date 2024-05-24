@@ -17,7 +17,7 @@ MAIN = main.c
 
 # UTILS
 UTILS_HEADER = ./utils/utils.h
-UTILS = ./utils/errors.c ./utils/free.c ./utils/tools.c
+UTILS = errors.c free.c tools.c
 
 # PARSING
 PARSING_HEADER = ./parsing/parsing.h
@@ -25,11 +25,12 @@ PARSING = parsing.c checking.c coverting.c map.c more_checking.c print.c reading
 
 # SOURCES
 PARSING_SRCS = $(addprefix parsing/, $(PARSING))
+UTILS_SRCS =  $(addprefix utils/, $(UTILS))
 
 # OBJECTS
 PARSING_OBJS = $(PARSING_SRCS:.c=.o)
 MAIN_OBJS = $(MAIN:.c=.o)
-UTILS_OBJS = $(UTILS:.c=.o)
+UTILS_OBJS = $(UTILS_SRCS:.c=.o)
 GNL_OBJS = $(GNL:.c=.o)
 
 # HEADER

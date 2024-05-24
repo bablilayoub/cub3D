@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:22:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:23:55 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:36:28 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	read_map_file(int fd, t_data *data)
 
 	temp = get_next_line(fd);
 	if (!temp)
-		exit_game("Map can't be empty.", data, fd);
+		exit_game("Map file can't be empty.", data, fd);
 	while (temp)
 	{
 		if (ft_strlen(temp) > data->biggest_line)

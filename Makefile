@@ -7,6 +7,7 @@ NAME = cub3D
 HEADER = cub3D.h
 
 CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+LINKS =	-lmlx -framework OpenGL -framework AppKit
 
 # LIBRARIES
 LIBFT = ./utils/libft/libft.a
@@ -37,7 +38,7 @@ GNL_OBJS = $(GNL:.c=.o)
 HEADERS = $(HEADER) $(PARSING_HEADER) $(UTILS_HEADER)
  
 $(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
-	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) -o $(NAME)
+	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) $(LINKS) -o $(NAME)
 	@echo "cub3D is ready"
 
 prepare_libft:
@@ -46,7 +47,7 @@ prepare_libft:
 
 %.o: %.c $(HEADER)
 	@echo "compiling $<"
-	@cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -Imlx -c -c $< -o $@
 
 all: $(NAME)
 

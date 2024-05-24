@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:18:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:32:49 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:51:18 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void	parsing(char *map_path, t_data *data)
 	is_empty_map(data);
 	check_map(data);
 	polish_map(data);
+	// print_textures(data);
+	// print_colors(data);
+	// print_map(data->map);
 }

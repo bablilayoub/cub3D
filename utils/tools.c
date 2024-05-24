@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 15:24:18 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:21:13 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,32 @@ int	is_number(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '-')
-		i++;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != ' ')
 			return (0);
 		i++;
 	}
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (ft_strlen(str) == (size_t)i)
+		return (0);
 	return (1);
+}
+
+int	count_commas(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
 }

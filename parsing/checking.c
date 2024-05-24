@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:04 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:26:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/24 18:33:39 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	check_rgb(char *color, t_data *data)
 
 void	check_colors_format(t_data *data)
 {
-	if (!ft_strchr(data->floor_color, ','))
+	if (!ft_strchr(data->floor_color, ',') || count_commas(data->floor_color) != 2)
 		exit_game("Invalid floor color format.", data, -1);
-	if (!ft_strchr(data->ceiling_color, ','))
+	if (!ft_strchr(data->ceiling_color, ',') || count_commas(data->ceiling_color) != 2)
 		exit_game("Invalid ceiling color format.", data, -1);
 	check_rgb(data->floor_color, data);
 	check_rgb(data->ceiling_color, data);
@@ -85,8 +85,16 @@ void	check_textures(t_data *data)
 void	check_invalid_chars(t_data *data)
 {
 	int	i;
-	
+
 	i = data->start_point;
+	while (data->map_file[i] && data->map_file[i] == '\n')
+		i++;
+	while (data->map_file[i] && data->map_file[i] != '\n')
+	{
+		if (!ft_strchr(" 1", data->map_file[i]))
+			exit_game("Invalid map border.", data, -1);
+		i++;
+	}
 	while (data->map_file[i])
 	{
 		if (!ft_strchr(" 01NSEW\n", data->map_file[i]))

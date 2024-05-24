@@ -6,7 +6,7 @@ NAME = cub3D
 # HEADERS
 HEADER = cub3D.h
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LINKS =	-lmlx -framework OpenGL -framework AppKit
 
 # LIBRARIES

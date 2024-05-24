@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/24 18:45:39 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/24 23:41:18 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,19 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <mlx.h>
+
+#define KEY_W 13
+#define KEY_S 1
+#define KEY_A 0
+#define KEY_D 2
+#define KEY_LEFT 123
+#define KEY_RIGHT 124
+#define KEY_ESC 53
+
 typedef struct s_data
 {
+	void	*mlx;
+	void	*win;
 	char	*temp;
 	char	*map_file;
 	char	**map;

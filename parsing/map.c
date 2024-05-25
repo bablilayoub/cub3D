@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:20:51 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/24 19:57:07 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/25 10:44:24 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ void	check_map(t_data *data)
 int	check_if_map_closed(t_data *data, char *line, int i)
 {
 	int	j;
+	int	len;
 	
 	j = 0;
+	len = array_len(data->map);
 	while (line[j])
 	{
 		if (line[j] == '0' || line[j] == 'N' || line[j] == 'S'
@@ -93,6 +95,8 @@ int	check_if_map_closed(t_data *data, char *line, int i)
 			if (line[j + 1] && line[j + 1] == ' ')
 				return (-1);
 			if (data->map[i - 2] && data->map[i - 2][j] == ' ')
+				return (-1);
+			if (data->map[i + 2] && j > (int)ft_strlen(data->map[i + 2]))
 				return (-1);
 			if (data->map[i + 2] && data->map[i + 2][j] == ' ')
 				return (-1);

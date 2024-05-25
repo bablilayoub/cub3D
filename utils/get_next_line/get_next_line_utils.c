@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:47:25 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/16 20:42:03 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/17 17:13:11 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ char	*ft_strjoin_custom(char *str1, char *str2)
 	if (!str1)
 		str1 = ft_strdup_custom("");
 	if (str1 == NULL || str2 == NULL)
-		return (str1 = free_array(str1));
+		return (str1 = free_array_custom(str1));
 	total_length = ft_strlen_custom(str1) + ft_strlen_custom(str2) + 1;
 	result = (char *)malloc(sizeof(char) * total_length);
 	if (!result)
-		return (str1 = free_array(str1));
+		return (str1 = free_array_custom(str1));
 	ft_strlcpy_custom(result, str1, total_length);
 	ft_strlcpy_custom(result + ft_strlen_custom(str1), str2, total_length);
 	if (str1)

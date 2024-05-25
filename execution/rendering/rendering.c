@@ -1,0 +1,123 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rendering.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
+/*   Updated: 2024/05/25 18:32:17 by alaalalm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../execution.h"
+
+
+void draw_map_sqaures(t_exec *data, int x, int y, int color)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < TILE_SIZE)
+	{
+		j = -1;
+		while (++j < TILE_SIZE)
+			*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + j) * (data->bits_per_pixel / 8)) ) = color;
+	}
+}
+
+void render_map(t_exec *data)
+{
+	int i;
+	int j;
+	int tileX;
+	int tileY;
+
+	data->img = mlx_new_image(data->mlx, MAP_W * TILE_SIZE, MAP_H * TILE_SIZE);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	i = -1;
+	while (++i < MAP_H)
+	{
+		j = -1;
+		while (++j < MAP_W)
+		{
+			tileX = j * TILE_SIZE;
+			tileY = i * TILE_SIZE;
+			if (data->Map[i][j] == '1')
+				draw_map_sqaures(data, tileX, tileY, 0x00FFFFFF);
+			else
+				draw_map_sqaures(data, tileX, tileY, 0x00000000);
+		}
+	}
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+}
+
+void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+    int err = dx - dy;
+
+    while (1)
+    {
+        mlx_pixel_put(mlx, win, x0, y0, color);
+
+        if (x0 == x1 && y0 == y1)
+            break;
+
+        int e2 = err * 2;
+
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x0 += sx;
+        }
+
+        if (e2 < dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+void render_player(t_exec *data, int color)
+{
+	int x;
+	int y;
+	int line_start_x;
+	int line_start_y;
+	int line_end_x;
+	int line_end_y;
+
+	y = -1;
+	while (++y < 4)
+	{
+		x = -1;
+		while (++x < 4)
+			mlx_pixel_put(data->mlx, data->mlx_win, data->player.posX * TILE_SIZE + x, data->player.posY * TILE_SIZE + y, color);
+		line_start_x = data->player.posX * TILE_SIZE + 2; // Center of the 8x8 square
+    	line_start_y = data->player.posY * TILE_SIZE + 2; // Center of the 8x8 square
+    	line_end_x = line_start_x + cos(data->player.rotation_angle) * 30;
+    	line_end_y = line_start_y + sin(data->player.rotation_angle) * 30;
+    	line(data->mlx, data->mlx_win, line_start_x, line_start_y, line_end_x, line_end_y, 0x00FF0000);
+	}
+}
+
+int	draw(void *param) 
+{
+	t_exec	*data;
+	double	newPlayerX;
+	double	newPlayerY;
+
+	newPlayerX = 0;
+	newPlayerY = 0;
+	data = (t_exec *)param;
+	mlx_clear_window(data->mlx, data->mlx_win);
+	render_map(data);
+	Update_Player_Pos(data, newPlayerX, newPlayerY);
+	render_player(data, 0x00FF0000);
+	return (0);
+}

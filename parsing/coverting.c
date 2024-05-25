@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:23:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:23:33 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/25 11:56:48 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	convert_tabs(t_data *data)
 	int		j;
 	
 	(1) && (i = -1, j = 0);
-	new_map = ft_calloc(ft_strlen(data->map_file) * 2 + 1, sizeof(char));
+	new_map = ft_calloc(ft_strlen(data->map_file) * 2 + 1, sizeof(char *));
 	if (!new_map)
 		exit_game("Failed to allocate temp_map.", data, -1);
 	while (data->map_file[++i])
@@ -57,6 +57,7 @@ void	convert_tabs(t_data *data)
 		else
 			new_map[j++] = data->map_file[i];
 	}
+	new_map[j] = '\0';
 	free(data->map_file);
 	data->map_file = new_map;
 }

@@ -6,11 +6,93 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/17 15:38:46 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/25 19:14:36 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
+#ifndef INCLUDES_H
+#define INCLUDES_H
 
+# include <string.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <math.h>
+# include <mlx.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <limits.h>
+# include <errno.h>
+# include <sys/types.h>
+
+# define GAME_NAME "Cub3D"
+# define TILE_SIZE 32
+# define FOV 60
+# define ROTATION_SPEED 0.045
+# define PLAYER_SPEED 3
+# define PI 3.1415926535
+
+
+# define ESCP	53
+
+# define KEY_A	0
+# define KEY_S	1
+# define KEY_D	2
+# define KEY_W	13
+
+# define KEY_LEFT	123
+# define KEY_RIGHT	124
+# define KEY_DOWN	125
+# define KEY_UP		126
+
+typedef struct s_player
+{
+	int		turn_direction;
+	int		walk_direction;
+	int		movement;
+	double	posX;
+	double	posY;
+	double	rotation_angle;
+	double	move_speed;
+	double	rotation_speed;
+	double	radius;
+}	t_player;
+
+typedef struct s_ray
+{
+	double	ray_angle;
+	double	wall_hit_x;
+	double	wall_hit_y;
+	double	distance;
+	int		was_hit_vertical;
+	int		is_ray_facing_down;
+	int		is_ray_facing_up;
+	int		is_ray_facing_right;
+	int		is_ray_facing_left;
+	int		wall_hit_content;
+}	t_ray;
+
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	char	*temp;
+	char	*map_file;
+	char 	*addr;
+	void	*img;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	char	**map;
+	int		start_point;
+	size_t	biggest_line;
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+	char	*floor_color;
+	char	*ceiling_color;
+	t_player	*player;
+}	t_data;
+
+#endif

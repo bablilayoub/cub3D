@@ -6,14 +6,14 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/25 18:32:17 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/25 19:45:20 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
 
 
-void draw_map_sqaures(t_exec *data, int x, int y, int color)
+void draw_map_sqaures(t_data *data, int x, int y, int color)
 {
 	int i;
 	int j;
@@ -27,30 +27,30 @@ void draw_map_sqaures(t_exec *data, int x, int y, int color)
 	}
 }
 
-void render_map(t_exec *data)
+void render_map(t_data *data)
 {
 	int i;
 	int j;
 	int tileX;
 	int tileY;
 
-	data->img = mlx_new_image(data->mlx, MAP_W * TILE_SIZE, MAP_H * TILE_SIZE);
+	data->img = mlx_new_image(data->mlx, ft_strlen(data->map[0]) * TILE_SIZE, array_len(data->map) * TILE_SIZE);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	i = -1;
-	while (++i < MAP_H)
+	while (++i < array_len(data->map))
 	{
 		j = -1;
-		while (++j < MAP_W)
+		while (++j < (int)ft_strlen(data->map[i]))
 		{
 			tileX = j * TILE_SIZE;
 			tileY = i * TILE_SIZE;
-			if (data->Map[i][j] == '1')
+			if (data->map[i][j] == '1')
 				draw_map_sqaures(data, tileX, tileY, 0x00FFFFFF);
 			else
 				draw_map_sqaures(data, tileX, tileY, 0x00000000);
 		}
 	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 }
 
 void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
@@ -83,7 +83,7 @@ void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
         }
     }
 }
-void render_player(t_exec *data, int color)
+void render_player(t_data *data, int color)
 {
 	int x;
 	int y;
@@ -97,27 +97,28 @@ void render_player(t_exec *data, int color)
 	{
 		x = -1;
 		while (++x < 4)
-			mlx_pixel_put(data->mlx, data->mlx_win, data->player.posX * TILE_SIZE + x, data->player.posY * TILE_SIZE + y, color);
-		line_start_x = data->player.posX * TILE_SIZE + 2; // Center of the 8x8 square
-    	line_start_y = data->player.posY * TILE_SIZE + 2; // Center of the 8x8 square
-    	line_end_x = line_start_x + cos(data->player.rotation_angle) * 30;
-    	line_end_y = line_start_y + sin(data->player.rotation_angle) * 30;
-    	line(data->mlx, data->mlx_win, line_start_x, line_start_y, line_end_x, line_end_y, 0x00FF0000);
+			mlx_pixel_put(data->mlx, data->win, data->player->posX * TILE_SIZE + x, data->player->posY * TILE_SIZE + y, color);
+		line_start_x = data->player->posX * TILE_SIZE + 2; // Center of the 8x8 square
+    	line_start_y = data->player->posY * TILE_SIZE + 2; // Center of the 8x8 square
+    	line_end_x = line_start_x + cos(data->player->rotation_angle) * 30;
+    	line_end_y = line_start_y + sin(data->player->rotation_angle) * 30;
+    	line(data->mlx, data->win, line_start_x, line_start_y, line_end_x, line_end_y, 0x00FF0000);
 	}
 }
 
 int	draw(void *param) 
 {
-	t_exec	*data;
+	t_data	*data;
 	double	newPlayerX;
 	double	newPlayerY;
 
 	newPlayerX = 0;
 	newPlayerY = 0;
-	data = (t_exec *)param;
-	mlx_clear_window(data->mlx, data->mlx_win);
+	data = (t_data *)param;
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
 	render_map(data);
-	Update_Player_Pos(data, newPlayerX, newPlayerY);
+	update_player_pos(data, newPlayerX, newPlayerY);
 	render_player(data, 0x00FF0000);
 	return (0);
 }

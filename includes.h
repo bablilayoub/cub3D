@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:33:39 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:54:01 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define GAME_NAME "Cub3D"
 # define TILE_SIZE 32
 # define FOV 60
+# define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 0.045
 # define PLAYER_SPEED 3
-# define PI 3.1415926535
 
 # define ESCP	53
 
@@ -59,16 +59,15 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	ray_angle;
-	double	wall_hit_x;
-	double	wall_hit_y;
-	double	distance;
-	int		was_hit_vertical;
-	int		is_ray_facing_down;
-	int		is_ray_facing_up;
-	int		is_ray_facing_right;
-	int		is_ray_facing_left;
-	int		wall_hit_content;
+	double			ray_angle;
+	double			wallHitX;
+	double			wallHitY;
+	int 			wasHitVertical;
+	double			distance;
+	int				isRayFacingDown;
+	int				isRayFacingUp;
+	int				isRayFacingRight;
+	int				isRayFacingLeft;
 }	t_ray;
 
 typedef struct s_data
@@ -95,6 +94,7 @@ typedef struct s_data
 	char		*east_texture;
 	char		*floor_color;
 	char		*ceiling_color;
+	t_ray		*rays;
 	t_player	*player;
 }	t_data;
 

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/25 15:34:39 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:17:08 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef struct s_data
 	char	*map_file;
 	char	**map;
 	int		start_point;
+	int		map_height;
+	int		map_width;
+	int		player_x;
+	int		player_y;
 	size_t	biggest_line;
 	char	*north_texture;
 	char	*south_texture;

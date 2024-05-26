@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:20:51 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/25 11:54:19 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:37:28 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	is_empty_map(t_data *data)
 			return ;
 		i++;
 	}
-	exit_game("Map can't be empty.", data, -1);
+	exit_game("Map can't be empty.", data, -1, 1);
 }
 
 void	check_map(t_data *data)
@@ -67,13 +67,13 @@ void	check_map(t_data *data)
 		if (i == 0 || i == map_len)
 			check_border(data->map[i], data);
 		if (data->map[i][0] == '\n')
-			exit_game("Invalid line in map.", data, -1);
+			exit_game("Invalid line in map.", data, -1, 1);
 		if (check_line(data->map[i]) == -1)
-			exit_game("Invalid border in map.", data, -1);
+			exit_game("Invalid border in map.", data, -1, 1);
 		if (check_if_map_closed(data, data->map[i], i))
-			exit_game("Map is not closed.", data, -1);
+			exit_game("Map is not closed.", data, -1, 1);
 		if (check_player(data) == -1)
-			exit_game("Number of players is invalid.", data, -1);
+			exit_game("Number of players is invalid.", data, -1, 1);
 		i++;
 	}
 }
@@ -109,10 +109,28 @@ int	check_if_map_closed(t_data *data, char *line, int i)
 void	polish_map(t_data *data)
 {
 	char	**new_map;
-
+	int		i;
+	int		j;
+	
+	(1) && (i = -1, j = -1);
 	new_map = ft_split(data->map_file + map_start(data), '\n');
 	if (!new_map)
-		exit_game("Failed to split map file.", data, -1);
+		exit_game("Failed to split map file.", data, -1, 1);
 	free_array(data->map);
 	data->map = new_map;
+	while (data->map[++i])
+	{
+		while (data->map[i][++j])
+		{
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
+			{
+				data->player_x = j;
+				data->player_y = i;
+			}
+		}
+		j = -1;
+	}
+	data->map_height = array_len(data->map);
+	data->map_width = ft_strlen(data->map[0]);
 }

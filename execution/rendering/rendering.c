@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/25 22:59:56 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:54:18 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void render_map(t_data *data)
 	int tileX;
 	int tileY;
 
-	data->img = mlx_new_image(data->mlx, ft_strlen(data->map[0]) * TILE_SIZE, array_len(data->map) * TILE_SIZE);
+	data->img = mlx_new_image(data->mlx, data->map_width * TILE_SIZE, data->map_height * TILE_SIZE);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	i = -1;
-	while (++i < array_len(data->map))
+	while (++i < data->map_height)
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(data->map[i]))
+		while (++j < data->map_width)
 		{
 			tileX = j * TILE_SIZE;
 			tileY = i * TILE_SIZE;

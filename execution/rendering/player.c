@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 10:41:40 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:53:03 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	initialize_player(t_data *data)
 {
-	data->player->posX = ft_strlen(data->map[1]) - 1;
-	data->player->posY = 2;
+	data->player->posX = data->player_x;
+	data->player->posY = data->player_y;
 	data->player->radius = 3;
 	data->player->turn_direction = 0;
 	data->player->walk_direction = 0;
@@ -28,7 +28,7 @@ void	initialize_player(t_data *data)
 int key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCP)
-		exit_game("Exit game", data, -1);
+		exit_game("Exit game", data, -1, 0);
 	else if (keycode == KEY_W)
 		data->player->walk_direction = 1;
 	else if (keycode == KEY_S)

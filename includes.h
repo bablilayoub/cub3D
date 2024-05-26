@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:40:40 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:54:01 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,25 +72,29 @@ typedef struct s_ray
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	char	*temp;
-	char	*map_file;
-	char 	*addr;
-	void	*img;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	char	**map;
-	int		start_point;
-	size_t	biggest_line;
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	char	*floor_color;
-	char	*ceiling_color;
-	t_ray	*ray;
+	void		*mlx;
+	void		*win;
+	char		*temp;
+	char		*map_file;
+	char 		*addr;
+	void		*img;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	char		**map;
+	int			start_point;
+	int			map_height;
+	int			map_width;
+	int			player_x;
+	int			player_y;
+	size_t		biggest_line;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	char		*floor_color;
+	char		*ceiling_color;
+	t_ray		*rays;
 	t_player	*player;
 }	t_data;
 

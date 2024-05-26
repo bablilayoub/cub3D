@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:21:54 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:22:01 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:19:47 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ void	print_colors(t_data *data)
 {
 	printf("Floor color: |%s|\n", data->floor_color);
 	printf("Ceiling color: |%s|\n", data->ceiling_color);
+	printf("\n");
+
+	printf("Map height: %d\n", data->map_height);
+	printf("Map width: %d\n", data->map_width);
+	printf("\n");
+	
+	printf("Player x: %d\n", data->player_x);
+	printf("Player y: %d\n", data->player_y);
 	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/24 18:21:13 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:42:05 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ int	count_commas(char *str)
 		i++;
 	}
 	return (count);
+}
+
+void	exit_game_clean(t_data *data)
+{
+	printf("Exit game\n");
+	free_data(data);
+	exit(0);
 }

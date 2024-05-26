@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:22:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/24 19:59:21 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:38:05 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	read_map_file(int fd, t_data *data)
 
 	temp = get_next_line(fd);
 	if (!temp)
-		exit_game("Map file can't be empty.", data, fd);
+		exit_game("Map file can't be empty.", data, fd, 1);
 	while (temp)
 	{
 		if (ft_strlen(temp) > data->biggest_line)
@@ -53,7 +53,7 @@ void	read_map_file(int fd, t_data *data)
 		if (!data->map_file)
 		{
 			free(temp);
-			exit_game("Failed to allocate map_file.", data, fd);
+			exit_game("Failed to allocate map_file.", data, fd, 1);
 		}
 		free(data->temp);
 		data->temp = NULL;
@@ -69,13 +69,13 @@ void	get_file_data(char *map_path, t_data *data)
 
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
-		exit_game("Couldn't find a map with this path.", data, -1);
+		exit_game("Couldn't find a map with this path.", data, -1, 1);
 	data->map_file = ft_strdup("");
 	if (!data->map_file)
-		exit_game("Failed to allocate map_file.", data, -1);
+		exit_game("Failed to allocate map_file.", data, -1, 1);
 	read_map_file(fd, data);
 	if (!data->map_file)
-		exit_game("Map can't be empty.", data, -1);
+		exit_game("Map can't be empty.", data, -1, 1);
 	convert_tabs(data);
 }
 
@@ -100,7 +100,7 @@ void	get_map(t_data *data)
 	(1) && (i = 0, k = 0);
 	data->map = malloc(sizeof(char *) * (ft_strlen(data->map_file) * 2 + 1));
 	if (!data->map)
-		exit_game("Failed to allocate map.", data, -1);
+		exit_game("Failed to allocate map.", data, -1, 1);
 	line = NULL;
 	get_first_line(data, &i, &line);
 	while (line)
@@ -111,7 +111,7 @@ void	get_map(t_data *data)
 			data->temp = data->map[k];
 			data->map[k] = expand_line(data->map[k], data->biggest_line);
 			if (!data->map[k])
-				exit_game("Failed to allocate map.", data, -1);
+				exit_game("Failed to allocate map.", data, -1, 1);
 			free(data->temp);
 		}
 		line = get_line(data->map_file, &i);

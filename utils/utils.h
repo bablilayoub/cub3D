@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:48:31 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/24 16:48:40 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:42:14 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "get_next_line/get_next_line.h"
 
 // Errors
-void	exit_game(char *message, t_data *data, int fd);
+void	exit_game(char *message, t_data *data, int fd, int is_error);
+void	exit_game_clean(t_data *data);
 
 // Free
 void	free_array(char **str);

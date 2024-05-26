@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:36 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:25:53 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:37:37 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_first_six_lines(t_data *data)
 	i = 0;
 	lines = ft_split(data->map_file, '\n');
 	if (!lines)
-		exit_game("Failed to split map file.", data, -1);
+		exit_game("Failed to split map file.", data, -1, 1);
 	while (lines[i] && i < 6)
 	{
 		if (ft_strncmp(lines[i], "NO ", 3)
@@ -31,7 +31,7 @@ void	check_first_six_lines(t_data *data)
 			&& ft_strncmp(lines[i], "C ", 2))
 		{
 			free_array(lines);
-			exit_game("Invalid map configuration.", data, -1);
+			exit_game("Invalid map configuration.", data, -1, 1);
 		}
 		i++;
 	}
@@ -46,7 +46,7 @@ void	check_border(char *line, t_data *data)
 	while (line[i])
 	{
 		if (line[i] != '1' && line[i] != ' ')
-			exit_game("Invalid border in map.", data, -1);
+			exit_game("Invalid border in map.", data, -1, 1);
 		i++;
 	}
 }
@@ -111,7 +111,7 @@ void	check_duplicated_keys(t_data *data)
 		if (data->map_file[i] == 'C' && data->map_file[i + 1] == ' ')
 			count++;
 		if (count > 6)
-			exit_game("Duplicated texture or color.", data, -1);
+			exit_game("Duplicated texture or color.", data, -1, 1);
 		i++;
 	}
 }

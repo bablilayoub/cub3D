@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:18:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:30:04 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:37:50 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	parsing(char *map_path, t_data *data)
 {
 	if (!map_path || !ft_strlen(map_path))
-		exit_game("Map name can't be empty.", data, -1);
+		exit_game("Map name can't be empty.", data, -1, 1);
 	if (ft_strncmp(map_path + (ft_strlen(map_path) - 4), ".cub", 4))
-		exit_game("Invalid map extension.", data, -1);
+		exit_game("Invalid map extension.", data, -1, 1);
 	get_file_data(map_path, data);
 	check_duplicated_keys(data);
 	check_first_six_lines(data);

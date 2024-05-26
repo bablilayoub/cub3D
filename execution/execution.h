@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/25 23:31:06 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:32:55 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int 		key_release(int keycode, t_data *data);
 int			update_player_pos(t_data *data, double newPlayerX, double newPlayerY);
 void		initialize_player(t_data *data);
 void		execute(t_data *data);
-void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color);
+void line(t_data *data, int x0, int y0, int x1, int y1);
 void update(t_data *data);
 void    castAllRays(t_data *data);
 #endif

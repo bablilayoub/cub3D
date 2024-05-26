@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/25 23:43:46 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:40:40 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@
 # define GAME_NAME "Cub3D"
 # define TILE_SIZE 32
 # define FOV 60
+# define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 0.045
 # define PLAYER_SPEED 3
-# define PI 3.1415926535
-
 
 # define ESCP	53
 

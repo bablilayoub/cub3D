@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/25 21:53:00 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:41:40 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	initialize_player(t_data *data)
 	data->player->turn_direction = 0;
 	data->player->walk_direction = 0;
 	data->player->movement = 0;
-	data->player->rotation_angle = PI / 2;
+	data->player->rotation_angle = M_PI / 2;
 	data->player->move_speed = 0.06;
-	data->player->rotation_speed = 6 * (PI / 180);
+	data->player->rotation_speed = 6 * (M_PI / 180);
 }
 
 int key_press(int keycode, t_data *data)

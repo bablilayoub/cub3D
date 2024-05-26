@@ -6,11 +6,12 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:50:20 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 11:02:37 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
 
 int	main(int total, char **args)
 {

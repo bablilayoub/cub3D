@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 10:48:52 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 11:07:51 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,23 @@ void render_player(t_data *data, int color)
 	}
 }
 
-int	draw(void *param) 
+void update(t_data *data)
 {
-	t_data	*data;
 	double	newPlayerX;
 	double	newPlayerY;
 
 	newPlayerX = 0;
 	newPlayerY = 0;
+	update_player_pos(data, newPlayerX, newPlayerY);
+}
+int	draw(void *param) 
+{
+	t_data	*data;
+
 	data = (t_data *)param;
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	render_map(data);
-	update_player_pos(data, newPlayerX, newPlayerY);
 	render_player(data, 0x00FF0000);
 	return (0);
 }

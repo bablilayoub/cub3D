@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 11:11:06 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:17:07 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void render_player(t_data *data, int color)
 	}
 }
 
-void update(t_data *data)
+void updateall(t_data *data)
 {
 	double	newPlayerX;
 	double	newPlayerY;
@@ -120,7 +120,7 @@ int	draw(void *param)
 	data = (t_data *)param;
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
-	update(data);
+	updateall(data);
 	render_map(data);
 	// render_rays(data);
 	render_player(data, 0x00FF0000);

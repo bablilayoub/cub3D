@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:54:01 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/26 11:13:01 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define PLAYER_SPEED 3
 
 # define ESCP	53
-
 # define KEY_A	0
 # define KEY_S	1
 # define KEY_D	2

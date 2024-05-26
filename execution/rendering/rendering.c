@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 10:48:52 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/26 10:58:30 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
     int sx = (x0 < x1) ? 1 : -1;
     int sy = (y0 < y1) ? 1 : -1;
     int err = dx - dy;
+	 int e2;
 
     while (1)
     {
@@ -67,15 +68,12 @@ void line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
 
         if (x0 == x1 && y0 == y1)
             break;
-
-        int e2 = err * 2;
-
+        e2 = err * 2;
         if (e2 > -dy)
         {
             err -= dy;
             x0 += sx;
         }
-
         if (e2 < dx)
         {
             err += dx;
@@ -109,16 +107,13 @@ void render_player(t_data *data, int color)
 int	draw(void *param) 
 {
 	t_data	*data;
-	double	newPlayerX;
-	double	newPlayerY;
-
-	newPlayerX = 0;
-	newPlayerY = 0;
+	
 	data = (t_data *)param;
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
+	update(data);
 	render_map(data);
-	update_player_pos(data, newPlayerX, newPlayerY);
+	// render_rays(data);
 	render_player(data, 0x00FF0000);
 	return (0);
 }

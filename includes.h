@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/25 19:14:36 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:43:46 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,15 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	ray_angle;
-	double	wall_hit_x;
-	double	wall_hit_y;
-	double	distance;
-	int		was_hit_vertical;
-	int		is_ray_facing_down;
-	int		is_ray_facing_up;
-	int		is_ray_facing_right;
-	int		is_ray_facing_left;
-	int		wall_hit_content;
+	double			ray_angle;
+	double			wallHitX;
+	double			wallHitY;
+	int 			wasHitVertical;
+	double			distance;
+	int				isRayFacingDown;
+	int				isRayFacingUp;
+	int				isRayFacingRight;
+	int				isRayFacingLeft;
 }	t_ray;
 
 typedef struct s_data
@@ -92,6 +91,7 @@ typedef struct s_data
 	char	*east_texture;
 	char	*floor_color;
 	char	*ceiling_color;
+	t_ray	*ray;
 	t_player	*player;
 }	t_data;
 

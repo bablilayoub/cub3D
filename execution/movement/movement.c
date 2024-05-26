@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/25 19:16:55 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/25 23:40:13 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	}
 	return (0);
 }
-
 int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 {
 	if (data->player->turn_direction == 1)
@@ -61,4 +60,15 @@ int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 	}
 	player_movment(data, newPlayerX, newPlayerY);
 	return (0);
+}
+
+void update(t_data *data)
+{
+	double newPlayerX;
+	double newPlayerY;
+
+	newPlayerX = 0;
+	newPlayerY = 0;
+	update_player_pos(data, newPlayerX, newPlayerY);
+	// castAllRays(data); 
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:50:20 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/28 21:34:13 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int total, char **args)
 	data.player = malloc(sizeof(t_player));
 	if (!data.player)
 		exit_game("Failed to allocate memory for player.", &data, -1, 1);
+	data.rays = malloc(sizeof(t_ray));
 	execute(&data);
 	free_data(&data);
 }

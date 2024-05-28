@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 11:13:01 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:12:47 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define TILE_SIZE 32
 # define FOV 60
 # define FOV_ANGLE (FOV * (M_PI / 180))
-# define ROTATION_SPEED 0.045
-# define PLAYER_SPEED 3
+# define ROTATION_SPEED 6
+# define MOVE_SPEED 2.0
+# define RADIUS 3
 
 # define ESCP	53
 # define KEY_A	0
@@ -58,15 +59,23 @@ typedef struct s_player
 
 typedef struct s_ray
 {
+	double	wallHitX;
+	double	wallHitY;
+	double	xintercept;
+	double	yintercept;
+	double	xstep;
+	double	ystep;
 	double			ray_angle;
-	double			wallHitX;
-	double			wallHitY;
 	int 			wasHitVertical;
+	int 			wasHitHorizontal;
 	double			distance;
 	int				isRayFacingDown;
 	int				isRayFacingUp;
 	int				isRayFacingRight;
 	int				isRayFacingLeft;
+	int horzWallContent;
+	int vertWallContent;
+	int wallHitContent;
 }	t_ray;
 
 typedef struct s_data
@@ -77,6 +86,7 @@ typedef struct s_data
 	char		*map_file;
 	char 		*addr;
 	void		*img;
+	int 		flag;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -93,6 +103,9 @@ typedef struct s_data
 	char		*east_texture;
 	char		*floor_color;
 	char		*ceiling_color;
+	double		newPlayerX;
+	double		newPlayerY;
+	double 		rayAngle;
 	t_ray		*rays;
 	t_player	*player;
 }	t_data;

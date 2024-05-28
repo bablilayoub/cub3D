@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 14:50:57 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/28 22:33:49 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	int indexX;
 	int indexY;
 
+	if (newPlayerX == 0 && newPlayerY == 0)
+		return (1);
 	newX = data->player->posX + newPlayerX;
 	newY = data->player->posY + newPlayerY;
-	indexX = floor(newX);
-	indexY = floor(newY);
-	if (indexX < 0 || indexX >= data->map_width || indexY < 0 || indexY >= data->map_height)
+	indexX = floor(newX / TILE_SIZE);
+	indexY = floor(newY / TILE_SIZE);
+	if (indexX < 0 || indexX >= data->map_width * TILE_SIZE || indexY < 0 || indexY >= data->map_height * TILE_SIZE)
 		return (1);
 	if (data->map[indexY][indexX] != '1')
 	{
@@ -32,6 +34,7 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	}
 	return (0);
 }
+
 int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 {
 	if (data->player->turn_direction == 1)
@@ -40,7 +43,7 @@ int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 		data->player->rotation_angle -= data->player->rotation_speed;
 	if (data->player->movement == 1)
 	{
-		newPlayerX = -sin(data->player->rotation_angle) * data->player->move_speed;
+		newPlayerX = -sin(data->player->rotation_angle) * data->player->move_speed;	
 		newPlayerY = cos(data->player->rotation_angle) * data->player->move_speed;
 	}
 	else if (data->player->movement == -1)
@@ -62,13 +65,3 @@ int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 	return (0);
 }
 
-void update(t_data *data)
-{
-	double newPlayerX;
-	double newPlayerY;
-
-	newPlayerX = 0;
-	newPlayerY = 0;
-	update_player_pos(data, newPlayerX, newPlayerY);
-	// castAllRays(data); 
-}

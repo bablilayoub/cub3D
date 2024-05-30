@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/28 21:12:47 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:29:09 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,44 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	wallHitX;
-	double	wallHitY;
+	int		isRayFacingDown;
+	int		isRayFacingUp;
+	int		isRayFacingRight;
+	int		isRayFacingLeft;
 	double	xintercept;
 	double	yintercept;
 	double	xstep;
 	double	ystep;
-	double			ray_angle;
-	int 			wasHitVertical;
-	int 			wasHitHorizontal;
-	double			distance;
-	int				isRayFacingDown;
-	int				isRayFacingUp;
-	int				isRayFacingRight;
-	int				isRayFacingLeft;
+
+	int foundHorzWallHit;
+	double horzWallHitX;
+	double horzWallHitY;
 	int horzWallContent;
+	double nextHorzTouchX;
+	double nextHorzTouchY;
+
+
+	int foundVertWallHit;
+	double vertWallHitX;
+	double vertWallHitY;
 	int vertWallContent;
-	int wallHitContent;
+	double nextVertTouchX;
+	double nextVertTouchY;
+
+	double xToCheck;
+	double yToCheck;
+
+
+
+	double horzHitDistance;
+	double vertHitDistance;
+	double distance;
+	double wallHitX;
+	double wallHitY;
+
+
+	double wasHitVertical;
+	double wallHitContent;
 }	t_ray;
 
 typedef struct s_data

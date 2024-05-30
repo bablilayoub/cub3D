@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 14:47:38 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:51:22 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,12 @@ void draw_map_sqaures(t_data *data, int x, int y, int color)
 	int j;
 
 	i = -1;
-	while (++i < TILE_SIZE - 1)
+	while (++i < TILE_SIZE)
 	{
 		j = -1;
-		while (++j < TILE_SIZE - 1)
+		while (++j < TILE_SIZE)
 			*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + j) * (data->bits_per_pixel / 8)) ) = color;
-		*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + TILE_SIZE - 1) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 	}
-	i = -1;
-	while (++i < TILE_SIZE - 1)
-		*(unsigned int *)(data->addr + ((y + TILE_SIZE - 1) * data->line_length + (x + i) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 }
 
 void render_map(t_data *data)

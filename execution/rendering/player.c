@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/28 22:42:15 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:51:16 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,15 @@ void	initialize_player(t_data *data)
 	data->newPlayerY = 0;
 	data->player->radius = RADIUS;
 	data->player->move_speed = MOVE_SPEED;
-	data->player->rotation_angle = M_PI / 2;
-	data->player->rotation_speed = ROTATION_SPEED * (M_PI / 180);
+	if (data->map[data->player_y][data->player_x] == 'N')
+		data->player->rotation_angle = 3 * (M_PI / 2);
+	else if (data->map[data->player_y][data->player_x] == 'S')
+		data->player->rotation_angle = M_PI / 2;
+	else if (data->map[data->player_y][data->player_x] == 'E')
+		data->player->rotation_angle = 0;
+	else if (data->map[data->player_y][data->player_x] == 'W')
+		data->player->rotation_angle = M_PI;
+	data->player->rotation_speed = 2 * (M_PI / 180);
 }
 
 int key_press(int keycode, t_data *data)

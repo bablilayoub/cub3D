@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/26 11:14:19 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/28 22:42:15 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	initialize_player(t_data *data)
 {
-	data->player->posX = data->player_x;
-	data->player->posY = data->player_y;
-	data->player->radius = 3;
+	data->player->posX = data->player_x * TILE_SIZE + TILE_SIZE / 2;
+	data->player->posY = data->player_y * TILE_SIZE + TILE_SIZE / 2;
 	data->player->turn_direction = 0;
 	data->player->walk_direction = 0;
 	data->player->movement = 0;
+	data->newPlayerX = 0;
+	data->newPlayerY = 0;
+	data->player->radius = RADIUS;
+	data->player->move_speed = MOVE_SPEED;
 	data->player->rotation_angle = M_PI / 2;
-	data->player->move_speed = 0.06;
-	data->player->rotation_speed = 6 * (M_PI / 180);
+	data->player->rotation_speed = ROTATION_SPEED * (M_PI / 180);
 }
 
 int key_press(int keycode, t_data *data)

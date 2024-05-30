@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/30 12:29:09 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:47:05 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ typedef struct s_data
 	double		newPlayerX;
 	double		newPlayerY;
 	double 		rayAngle;
-	t_ray		*rays;
 	t_player	*player;
+	t_ray		*rays;
 }	t_data;
 
 #endif

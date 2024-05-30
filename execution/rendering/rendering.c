@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 15:18:43 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:22:45 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../execution.h"
-
 
 void draw_map_sqaures(t_data *data, int x, int y, int color)
 {

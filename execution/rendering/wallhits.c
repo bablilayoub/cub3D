@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 14:30:32 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:42:29 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,21 @@ void findVerticalWallHit(t_data *data, t_ray *ray)
 			ray->nextVertTouchY += ray->ystep;
 		}
 	}
+}
+
+int has_wall_at(t_data *data, double x, double y)
+{
+	int mapGridIndexX;
+	int mapGridIndexY;
+
+	mapGridIndexX = floor(x) / TILE_SIZE;
+	mapGridIndexY = floor(y) / TILE_SIZE;
+	if (mapGridIndexX < 0 || mapGridIndexX >= data->map_width || mapGridIndexY < 0 || mapGridIndexY >= data->map_height)
+		return (1);
+	return (data->map[mapGridIndexY][mapGridIndexX] == '1');
+}
+
+double distance_between_points(double x1, double y1, double x2, double y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }

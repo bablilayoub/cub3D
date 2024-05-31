@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 14:51:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/31 10:09:17 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	newY = data->player->posY + newPlayerY;
 	indexX = floor(newX / TILE_SIZE);
 	indexY = floor(newY / TILE_SIZE);
-	if (indexX < 0 || indexX >= data->map_width * TILE_SIZE || indexY < 0 || indexY >= data->map_height * TILE_SIZE)
+	if (indexX < 0 || indexX >= data->W_Width || indexY < 0 || indexY >= data->W_Height)
 		return (1);
 	if (data->map[indexY][indexX] == '1')
 		return (1);
@@ -53,28 +53,28 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 int update_player_pos(t_data *data, double newPlayerX, double newPlayerY)
 {
 	if (data->player->turn_direction == 1)
-		data->player->rotation_angle += data->player->rotation_speed;
+		data->player->facing_angle += data->player->rotation_speed;
 	else if (data->player->turn_direction == -1)
-		data->player->rotation_angle -= data->player->rotation_speed;
+		data->player->facing_angle -= data->player->rotation_speed;
 	if (data->player->walk_direction == 1)
 	{
-		newPlayerX = cos(data->player->rotation_angle) * data->player->move_speed;
-		newPlayerY = sin(data->player->rotation_angle) * data->player->move_speed;
+		newPlayerX = cos(data->player->facing_angle) * data->player->move_speed;
+		newPlayerY = sin(data->player->facing_angle) * data->player->move_speed;
 	}
 	else if (data->player->walk_direction == -1)
 	{
-		newPlayerX = -cos(data->player->rotation_angle) * data->player->move_speed;
-		newPlayerY = -sin(data->player->rotation_angle) * data->player->move_speed;
+		newPlayerX = -cos(data->player->facing_angle) * data->player->move_speed;
+		newPlayerY = -sin(data->player->facing_angle) * data->player->move_speed;
 	}
 	if (data->player->movement == 1)
 	{
-		newPlayerX = -sin(data->player->rotation_angle) * data->player->move_speed;
-		newPlayerY = cos(data->player->rotation_angle) * data->player->move_speed;
+		newPlayerX = -sin(data->player->facing_angle) * data->player->move_speed;
+		newPlayerY = cos(data->player->facing_angle) * data->player->move_speed;
 	}
 	else if (data->player->movement == -1)
 	{
-		newPlayerX = sin(data->player->rotation_angle) * data->player->move_speed;
-		newPlayerY = -cos(data->player->rotation_angle) * data->player->move_speed;
+		newPlayerX = sin(data->player->facing_angle) * data->player->move_speed;
+		newPlayerY = -cos(data->player->facing_angle) * data->player->move_speed;
 	}
 	player_movment(data, newPlayerX, newPlayerY);
 	return (0);

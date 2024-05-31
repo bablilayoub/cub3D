@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 14:51:16 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/31 15:58:31 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,25 @@ void	initialize_player(t_data *data)
 {
 	data->player->posX = data->player_x * TILE_SIZE + TILE_SIZE / 2;
 	data->player->posY = data->player_y * TILE_SIZE + TILE_SIZE / 2;
+	data->W_Width = data->map_width * TILE_SIZE;
+	data->W_Height = data->map_height * TILE_SIZE;
+	data->player->radius = RADIUS;
+	data->player->move_speed = MOVE_SPEED;
 	data->player->turn_direction = 0;
 	data->player->walk_direction = 0;
 	data->player->movement = 0;
 	data->newPlayerX = 0;
 	data->newPlayerY = 0;
-	data->player->radius = RADIUS;
-	data->player->move_speed = MOVE_SPEED;
 	if (data->map[data->player_y][data->player_x] == 'N')
-		data->player->rotation_angle = 3 * (M_PI / 2);
+		data->player->facing_angle = M_PI + M_PI_2;
 	else if (data->map[data->player_y][data->player_x] == 'S')
-		data->player->rotation_angle = M_PI / 2;
+		data->player->facing_angle = M_PI_2;
 	else if (data->map[data->player_y][data->player_x] == 'E')
-		data->player->rotation_angle = 0;
+		data->player->facing_angle = 0;
 	else if (data->map[data->player_y][data->player_x] == 'W')
-		data->player->rotation_angle = M_PI;
+		data->player->facing_angle = M_PI;
 	data->player->rotation_speed = 2 * (M_PI / 180);
+	data->rays = malloc(sizeof(t_ray));
 }
 
 int key_press(int keycode, t_data *data)

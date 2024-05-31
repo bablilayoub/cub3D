@@ -29,7 +29,7 @@ PARSING = parsing.c checking.c coverting.c map.c more_checking.c print.c reading
 
 # EXECUTION
 EXEC_HEADER = execution/execution.h
-RENDERING = rendering.c raycasting.c wallhits.c draw.c 
+RENDERING = rendering.c raycasting.c wallhits.c draw.c renderwall.c
 MOVEMENT = movement.c player.c
 UTILS_EXEC = utils.c
 EXEC = execution.c $(addprefix rendering/, $(RENDERING)) $(addprefix movement/, $(MOVEMENT)) $(addprefix utils/, $(UTILS_EXEC))

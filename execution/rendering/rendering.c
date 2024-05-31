@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 15:18:43 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:55:24 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@ void draw_map_sqaures(t_data *data, int x, int y, int color)
 {
 	int i;
 	int j;
+    int scaleFactor;
 
+    scaleFactor = MINIMAP_SCALE_FACTOR * TILE_SIZE;
 	i = -1;
-	while (++i < TILE_SIZE - 1)
+	while (++i <= scaleFactor)
 	{
 		j = -1;
-		while (++j < TILE_SIZE - 1)
+		while (++j <= scaleFactor)
 			*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + j) * (data->bits_per_pixel / 8)) ) = color;
-		*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + TILE_SIZE - 1) * (data->bits_per_pixel / 8)) ) = 0x00000000;
+
+        // *(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + scaleFactor) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 	}
-	i = -1;
-	while (++i < TILE_SIZE - 1)
-		*(unsigned int *)(data->addr + ((y + TILE_SIZE - 1) * data->line_length + (x + i) * (data->bits_per_pixel / 8)) ) = 0x00000000;
+	// i = -1;
+	// while (++i < scaleFactor)
+	// 	*(unsigned int *)(data->addr + ((y + scaleFactor) * data->line_length + (x + i) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 }
 
 void render_map(t_data *data)
@@ -44,37 +47,33 @@ void render_map(t_data *data)
         j = -1;
         while (data->map[i][++j])
         {
-            tileX = j * TILE_SIZE;
-            tileY = i * TILE_SIZE;
+            tileX = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
+            tileY = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
             if (data->map[i][j] == '1')
-                draw_map_sqaures(data, tileX, tileY, 0x00FFFFFF);
+                draw_map_sqaures(data,  tileX,   tileY, 0x00FFFFFF);
             else
-                draw_map_sqaures(data, tileX, tileY, 0x00000000);
+                draw_map_sqaures(data,  tileX,   tileY, 0x00000000);
         }
     }
 }
 
 void render_player(t_data *data, int color)
 {
+	// add  MINIMAP_SCALE_FACTOR 
+
+	int playerX;
+	int playerY;
 	int i;
 	int j;
-	int x;
-	int y;
-	int radius = 3;
 
-	i = -radius;
-	while (++i < radius)
+	playerX = data->player->posX * MINIMAP_SCALE_FACTOR;
+	playerY = data->player->posY * MINIMAP_SCALE_FACTOR;
+	j = -1;
+	while (++j < data->player->radius)
 	{
-		j = -radius;
-		while (++j < radius)
-		{
-			if (i * i + j * j <= radius * radius)
-			{
-				x = data->player->posX + i;
-				y = data->player->posY + j;
-				*(unsigned int *)(data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8))) = color;
-			}
-		}
+		i = -1;
+		while (++i < data->player->radius)
+			*(unsigned int *)(data->addr + ((playerY + i) * data->line_length + (playerX + j) * (data->bits_per_pixel / 8)) ) = color;
 	}
 }
 
@@ -89,7 +88,7 @@ void line(t_data *data, int x0, int y0, int x1, int y1)
 
     while (1)
     {
-		if (x0 < 0 || x0 >= data->map_width * TILE_SIZE || y0 < 0 || y0 >= data->map_height * TILE_SIZE)
+		if (x0 < 0 || x0 >= data->W_Width || y0 < 0 || y0 >= data->W_Height)
 			return ;
 		*(unsigned int *)(data->addr + (y0 * data->line_length + x0 * (data->bits_per_pixel / 8))) =  0x1439f5;
         if (x0 == x1 && y0 == y1)
@@ -108,17 +107,16 @@ void line(t_data *data, int x0, int y0, int x1, int y1)
     }
 }
 
-void add_line_toplayer(t_data *data, double rayAngle)
-{
-	int lineStartX;
-	int lineStartY;
-	int linendX = 0;
-	int linendY = 0;
+// void add_line_toplayer(t_data *data, double rayAngle)
+// {
+// 	int lineStartX;
+// 	int lineStartY;
+// 	int linendX = 0;
+// 	int linendY = 0;
 
 	
-	lineStartX = (data->player->posX) + TILE_SIZE ;
-	lineStartY = (data->player->posY) + TILE_SIZE ;
-	linendX = lineStartX + cos(rayAngle);
-	linendY = lineStartY + sin(rayAngle);
-	line(data, lineStartX, lineStartY, linendX, linendY);
-}
+// 	lineStartX = (data->player->posX) + TILE_SIZE ;
+// 	lineStartY = (data->player->posY) + TILE_SIZE ;
+// 	linendX = lineStartX + cos(rayAngle);
+// 	linendY = lineStartY + sin(rayAngle);
+// }

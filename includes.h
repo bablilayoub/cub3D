@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/30 14:50:46 by abablil          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:44:33 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ROTATION_SPEED 6
 # define MOVE_SPEED 2.0
 # define RADIUS 3
+# define MINIMAP_SCALE_FACTOR 0.2
 
 # define ESCP	53
 # define KEY_A	0
@@ -51,7 +52,7 @@ typedef struct s_player
 	int		movement;
 	double	posX;
 	double	posY;
-	double	rotation_angle;
+	double	facing_angle;
 	double	move_speed;
 	double	rotation_speed;
 	double	radius;
@@ -68,35 +69,30 @@ typedef struct s_ray
 	double	xstep;
 	double	ystep;
 
-	int foundHorzWallHit;
+	// horizontal
+	int horzWallContent;
 	double horzWallHitX;
 	double horzWallHitY;
-	int horzWallContent;
 	double nextHorzTouchX;
 	double nextHorzTouchY;
+	double wasHitHorizontal;
+	double horzHitDistance;
 
-
-	int foundVertWallHit;
+	// vertical
+	int vertWallContent;
 	double vertWallHitX;
 	double vertWallHitY;
-	int vertWallContent;
 	double nextVertTouchX;
 	double nextVertTouchY;
-
-	double xToCheck;
-	double yToCheck;
-
-
-
-	double horzHitDistance;
+	double wasHitVertical;
 	double vertHitDistance;
+
+	
 	double distance;
 	double wallHitX;
 	double wallHitY;
-
-
-	double wasHitVertical;
 	double wallHitContent;
+	double rayAngle;
 }	t_ray;
 
 typedef struct s_data
@@ -127,6 +123,8 @@ typedef struct s_data
 	double		newPlayerX;
 	double		newPlayerY;
 	double 		rayAngle;
+	int			W_Width;
+	int			W_Height;
 	t_player	*player;
 	t_ray		*rays;
 }	t_data;

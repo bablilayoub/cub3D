@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 14:42:29 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/30 22:07:47 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,15 @@ void findHorizWallHit(t_data *data, t_ray *ray)
 	while ( ray->nextHorzTouchX >= 0 &&  ray->nextHorzTouchX <= (data->map_width * TILE_SIZE)
 		&& ray->nextHorzTouchY >= 0 && ray->nextHorzTouchY <= (data->map_height * TILE_SIZE))
 	{
-
-		ray->xToCheck =  ray->nextHorzTouchX;
-		if (ray->isRayFacingUp)
-			ray->yToCheck = ray->nextHorzTouchY - 1;
-		else
-			ray->yToCheck = ray->nextHorzTouchY;
-        if (has_wall_at(data, ray->xToCheck, ray->yToCheck)) {
+        if (has_wall_at(data, ray->nextHorzTouchX, ray->nextHorzTouchY)) {
+            ray->wasHitHorizontal = true;
             ray->horzWallHitX =  ray->nextHorzTouchX;
             ray->horzWallHitY = ray->nextHorzTouchY;
             // ray->horzWallContent = (int)data->map[(int)floor(ray->yToCheck / TILE_SIZE)][(int)floor(ray->xToCheck / TILE_SIZE)];
-            ray->foundHorzWallHit = true;
             break;
         } else {
              ray->nextHorzTouchX += ray->xstep;
-            ray->nextHorzTouchY += ray->ystep;
+             ray->nextHorzTouchY += ray->ystep;
         }
 	}
 }
@@ -39,19 +33,13 @@ void findHorizWallHit(t_data *data, t_ray *ray)
 void findVerticalWallHit(t_data *data, t_ray *ray)
 {
 	while (ray->nextVertTouchX >= 0 && ray->nextVertTouchX <= (data->map_width * TILE_SIZE)
-		&& ray->nextVertTouchY >= 0 && ray->nextVertTouchY <= (data->map_height * TILE_SIZE)) {
-		
-		ray->yToCheck = ray->nextVertTouchY;
-		if (ray->isRayFacingLeft)
-			ray->xToCheck = ray->nextVertTouchX - 1;
-		else
-			ray->xToCheck = ray->nextVertTouchX;
-		
-		if (has_wall_at(data, ray->xToCheck, ray->yToCheck)) {
+		&& ray->nextVertTouchY >= 0 && ray->nextVertTouchY <= (data->map_height * TILE_SIZE)) 
+	{
+		if (has_wall_at(data, ray->nextVertTouchX, ray->nextVertTouchY)) {
+			ray->wasHitVertical = true;
 			ray->vertWallHitX = ray->nextVertTouchX;
 			ray->vertWallHitY = ray->nextVertTouchY;
 			// ray->vertWallContent = (int)data->map[(int)floor(ray->yToCheck / TILE_SIZE)][(int)floor(ray->xToCheck / TILE_SIZE)];
-			ray->foundVertWallHit = true;
 			break;
 		} else {
 			ray->nextVertTouchX += ray->xstep;
@@ -72,7 +60,7 @@ int has_wall_at(t_data *data, double x, double y)
 	return (data->map[mapGridIndexY][mapGridIndexX] == '1');
 }
 
-double distance_between_points(double x1, double y1, double x2, double y2)
+double vector_lenght(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }

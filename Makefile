@@ -4,14 +4,14 @@
 NAME = cub3D
 
 # HEADERS
-HEADER = cub3D.h
+MAIN_HEADERS = cub3D.h includes.h
 
 CFLAGS = -Wall -Wextra -Werror -g
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 # LIBRARIES
-LIBFT = ./utils/libft/libft.a
-GNL = ./utils/get_next_line/get_next_line.c ./utils/get_next_line/get_next_line_utils.c
+LIBFT = utils/libft/libft.a
+GNL = utils/get_next_line/get_next_line.c utils/get_next_line/get_next_line_utils.c
 
 #mlx
 MLX = -lmlx -framework OpenGL -framework AppKit
@@ -20,11 +20,11 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 MAIN = main.c
 
 # UTILS
-UTILS_HEADER = ./utils/utils.h
+UTILS_HEADERS = utils/utils.h utils/get_next_line/get_next_line.h
 UTILS = errors.c free.c tools.c
 
 # PARSING
-PARSING_HEADER = ./parsing/parsing.h
+PARSING_HEADER = parsing/parsing.h
 PARSING = parsing.c checking.c coverting.c map.c more_checking.c print.c reading.c textures.c
 
 # EXECUTION
@@ -47,32 +47,30 @@ UTILS_OBJS = $(UTILS_SRCS:.c=.o)
 GNL_OBJS = $(GNL:.c=.o)
 
 # HEADER
-HEADERS = $(HEADER) $(PARSING_HEADER) $(UTILS_HEADER)
+HEADERS = $(MAIN_HEADERS) $(EXEC_HEADER) $(PARSING_HEADER) $(UTILS_HEADERS)
  
 $(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(EXEC_OBJS)
 	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) $(MLX) $(EXEC_OBJS) -o $(NAME)
 	@echo "cub3D is ready"
 
-
 all: $(NAME)
 
-
 prepare_libft:
-	@cd ./utils/libft && make
+	@cd utils/libft && make
 	@echo "cub3D is ready"
 
-%.o: %.c $(HEADER) $(EXEC_HEADER)
+%.o: %.c $(HEADERS)
 	@echo "compiling $<"
 	@cc $(CFLAGS) -Imlx -c -c $< -o $@
 
 clean:
-	@cd ./utils/libft && make clean
+	@cd utils/libft && make clean
 	@rm -f $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(EXEC_OBJS)
 	@echo "cub3D is clean"
 
 fclean: clean
 	@rm -f $(NAME)
-	@cd ./utils/libft && make fclean
+	@cd utils/libft && make fclean
 	@echo "cub3D is fully clean"
 
 re: fclean all

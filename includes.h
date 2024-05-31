@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/31 19:24:19 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:27:00 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,17 @@ typedef struct s_ray
 	double rayAngle;
 }	t_ray;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_texture;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -128,6 +139,7 @@ typedef struct s_data
 	int			W_Height;
 	t_player	*player;
 	t_ray		*rays;
+	t_texture	texture[5];
 }	t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 23:37:59 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 16:13:53 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:06:42 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void horizontalRay(t_data *data, t_ray *ray, double rayAngle)
 
     ray->nextHorzTouchX = ray->xintercept;
     ray->nextHorzTouchY = ray->yintercept;
-	if (ray->isRayFacingUp)
-		ray->nextHorzTouchY -= 1;
     findHorizWallHit(data, ray);
 }
 
@@ -65,8 +63,6 @@ void verticalRay(t_data *data, t_ray *ray, double rayAngle)
 
 	ray->nextVertTouchX = ray->xintercept;
 	ray->nextVertTouchY = ray->yintercept;
-	if (ray->isRayFacingLeft)
-			ray->nextVertTouchX -= 1;
 	findVerticalWallHit(data, ray);
 }
 
@@ -112,8 +108,8 @@ void castRay(t_data *data, double rayAngle)
     horizontalRay(data, ray, rayAngle);
 	verticalRay(data, ray, rayAngle);
 	distance(data, ray);
-	line(data, data->player->posX * MINIMAP_SCALE_FACTOR,
-			   data->player->posY * MINIMAP_SCALE_FACTOR,
-			        ray->wallHitX * MINIMAP_SCALE_FACTOR,
-					ray->wallHitY * MINIMAP_SCALE_FACTOR);
+	// line(data, data->player->posX * MINIMAP_SCALE_FACTOR,
+	// 		   data->player->posY * MINIMAP_SCALE_FACTOR,
+	// 		        ray->wallHitX * MINIMAP_SCALE_FACTOR,
+	// 				ray->wallHitY * MINIMAP_SCALE_FACTOR);
 }

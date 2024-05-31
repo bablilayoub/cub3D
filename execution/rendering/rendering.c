@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 14:55:24 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:06:17 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void draw_map_sqaures(t_data *data, int x, int y, int color)
 	int j;
     int scaleFactor;
 
-    scaleFactor = MINIMAP_SCALE_FACTOR * TILE_SIZE;
+    scaleFactor = MINIMAP_SCALE_FACTOR * TILE_SIZE + 1;
 	i = -1;
-	while (++i <= scaleFactor)
+	while (++i < scaleFactor)
 	{
 		j = -1;
-		while (++j <= scaleFactor)
+		while (++j < scaleFactor)
 			*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + j) * (data->bits_per_pixel / 8)) ) = color;
 
         // *(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + scaleFactor) * (data->bits_per_pixel / 8)) ) = 0x00000000;
@@ -59,7 +59,6 @@ void render_map(t_data *data)
 
 void render_player(t_data *data, int color)
 {
-	// add  MINIMAP_SCALE_FACTOR 
 
 	int playerX;
 	int playerY;

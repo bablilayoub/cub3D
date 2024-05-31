@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:06:33 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 16:17:38 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:18:14 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void render_column(t_data *data, int rayId, double rayAngle, double distance)
 	double projPlaneDistance;
 	int wallHeight;
     double perpendicularDistance;
+    int color;
 
 
     perpendicularDistance = distance * cos(rayAngle - data->player->facing_angle);
@@ -39,5 +40,9 @@ void render_column(t_data *data, int rayId, double rayAngle, double distance)
         wallHeight = data->W_Height;
     if (wallHeight < 0)
         wallHeight = 0;
-    renderWall(data, rayId, ((data->W_Height / 2) - (wallHeight / 2)), wallHeight, 0x00FF);
+    if (data->rays->wasHitVertical)
+        color = 0x00FF0000;
+    else
+        color = 0x0000FF00;
+    renderWall(data, rayId, (data->W_Height / 2) - (wallHeight / 2), wallHeight, color);
 }   

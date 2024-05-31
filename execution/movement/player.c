@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 15:58:31 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:25:23 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	initialize_player(t_data *data)
 	else if (data->map[data->player_y][data->player_x] == 'W')
 		data->player->facing_angle = M_PI;
 	data->player->rotation_speed = 2 * (M_PI / 180);
-	data->rays = malloc(sizeof(t_ray));
 }
 
 int key_press(int keycode, t_data *data)

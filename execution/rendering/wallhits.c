@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/30 22:07:47 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:06:24 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void findHorizWallHit(t_data *data, t_ray *ray)
 	while ( ray->nextHorzTouchX >= 0 &&  ray->nextHorzTouchX <= (data->map_width * TILE_SIZE)
 		&& ray->nextHorzTouchY >= 0 && ray->nextHorzTouchY <= (data->map_height * TILE_SIZE))
 	{
-        if (has_wall_at(data, ray->nextHorzTouchX, ray->nextHorzTouchY)) {
+        if (has_wall_at(data, ray->nextHorzTouchX, ray->nextHorzTouchY - (ray->isRayFacingUp == 1)))
+		{
             ray->wasHitHorizontal = true;
             ray->horzWallHitX =  ray->nextHorzTouchX;
             ray->horzWallHitY = ray->nextHorzTouchY;
-            // ray->horzWallContent = (int)data->map[(int)floor(ray->yToCheck / TILE_SIZE)][(int)floor(ray->xToCheck / TILE_SIZE)];
             break;
         } else {
              ray->nextHorzTouchX += ray->xstep;
@@ -35,11 +35,10 @@ void findVerticalWallHit(t_data *data, t_ray *ray)
 	while (ray->nextVertTouchX >= 0 && ray->nextVertTouchX <= (data->map_width * TILE_SIZE)
 		&& ray->nextVertTouchY >= 0 && ray->nextVertTouchY <= (data->map_height * TILE_SIZE)) 
 	{
-		if (has_wall_at(data, ray->nextVertTouchX, ray->nextVertTouchY)) {
+		if (has_wall_at(data, ray->nextVertTouchX - (ray->isRayFacingLeft == 1), ray->nextVertTouchY)) {
 			ray->wasHitVertical = true;
 			ray->vertWallHitX = ray->nextVertTouchX;
 			ray->vertWallHitY = ray->nextVertTouchY;
-			// ray->vertWallContent = (int)data->map[(int)floor(ray->yToCheck / TILE_SIZE)][(int)floor(ray->xToCheck / TILE_SIZE)];
 			break;
 		} else {
 			ray->nextVertTouchX += ray->xstep;

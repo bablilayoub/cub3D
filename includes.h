@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/31 14:44:33 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:07:33 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,16 @@
 # define FOV 60
 # define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 6
-# define MOVE_SPEED 2.0
-# define RADIUS 3
-# define MINIMAP_SCALE_FACTOR 0.2
+# define MOVE_SPEED 4.0
+# define RADIUS 2
+# define MINIMAP_SCALE_FACTOR 0.15
 
 # define ESCP	53
 # define KEY_A	0
 # define KEY_S	1
 # define KEY_D	2
 # define KEY_W	13
+
 
 # define KEY_LEFT	123
 # define KEY_RIGHT	124

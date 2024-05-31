@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/31 19:07:33 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:24:19 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/types.h>
 
 # define GAME_NAME "Cub3D"
-# define TILE_SIZE 32
+# define TILE_SIZE 50
 # define FOV 60
 # define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 6

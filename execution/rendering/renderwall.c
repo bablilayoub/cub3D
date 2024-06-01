@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderwall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:06:33 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 11:54:06 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 20:41:09 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void renderWall(t_data *data, int rayId, int y, int wallHeight, int color)
 {
     int i;
     int j;
+
+    if (data->map[(int)data->rays->wallHitY / TILE_SIZE][(int)data->rays->wallHitX / TILE_SIZE] == 'D')
+    color = 0x00FF00;
 
     i = -1;
     while (++i < wallHeight)

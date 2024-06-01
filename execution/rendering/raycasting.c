@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 23:37:59 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 19:06:42 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:06:37 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,24 @@ void distance(t_data *data, t_ray *ray)
 		ray->vertHitDistance = vector_lenght(data->player->posX, data->player->posY, ray->vertWallHitX, ray->vertWallHitY);
 	else
 		ray->vertHitDistance = INT_MAX;
-    if (ray->vertHitDistance < ray->horzHitDistance) 
+    if (ray->vertHitDistance < ray->horzHitDistance)
 	{
         ray->distance = ray->vertHitDistance;
 		ray->wallHitX = ray->vertWallHitX;
 		ray->wallHitY = ray->vertWallHitY;
-		ray->wallHitContent = ray->vertWallContent;
+		// ray->wallHitContent = ray->vertWallContent;
 		ray->wasHitVertical = true;
-
     } 
 	else 
 	{
 		ray->distance = ray->horzHitDistance;
 		ray->wallHitX = ray->horzWallHitX;
 		ray->wallHitY = ray->horzWallHitY;
-		ray->wallHitContent = ray->horzWallContent;
+		// ray->wallHitContent = ray->horzWallContent;
 		ray->wasHitVertical = false;
 	}
 }
-void castRay(t_data *data, double rayAngle)
+void castRay(t_data *data, double rayAngle, int rayId)
 {	
 	t_ray *ray;
 
@@ -108,6 +107,7 @@ void castRay(t_data *data, double rayAngle)
     horizontalRay(data, ray, rayAngle);
 	verticalRay(data, ray, rayAngle);
 	distance(data, ray);
+	render_column(data, rayId, rayAngle, data->rays->distance);
 	// line(data, data->player->posX * MINIMAP_SCALE_FACTOR,
 	// 		   data->player->posY * MINIMAP_SCALE_FACTOR,
 	// 		        ray->wallHitX * MINIMAP_SCALE_FACTOR,

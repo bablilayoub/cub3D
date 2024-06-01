@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 12:35:15 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:06:29 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void castAllRays(t_data *data)
 	rayId = -1;
 	while (++rayId < data->W_Width)
 	{
-		castRay(data, rayAngle);
-		render_column(data, rayId, rayAngle, data->rays->distance);
+		castRay(data, rayAngle, rayId);
+		// render_column(data, rayId, rayAngle, data->rays->distance);
 		rayAngle += FOV_ANGLE / data->W_Width;
 	}
 }

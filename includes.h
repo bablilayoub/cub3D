@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 10:34:54 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 20:23:38 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <sys/types.h>
 
 # define GAME_NAME "Cub3D"
-# define TILE_SIZE 50
-# define FOV 60
+# define TILE_SIZE 32
+# define FOV 90
 # define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 6
 # define MOVE_SPEED 4.0
@@ -39,6 +39,7 @@
 # define KEY_S	1
 # define KEY_D	2
 # define KEY_W	13
+# define DOOR_OPENED 49
 
 
 # define KEY_LEFT	123
@@ -57,6 +58,7 @@ typedef struct s_player
 	double	move_speed;
 	double	rotation_speed;
 	double	radius;
+	int 	doorIsOpen;
 }	t_player;
 
 typedef struct s_ray

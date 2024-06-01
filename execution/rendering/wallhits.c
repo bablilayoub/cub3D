@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 19:06:24 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:53:20 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int has_wall_at(t_data *data, double x, double y)
 	int mapGridIndexX;
 	int mapGridIndexY;
 
-	mapGridIndexX = floor(x) / TILE_SIZE;
-	mapGridIndexY = floor(y) / TILE_SIZE;
+	mapGridIndexX = floor(x / TILE_SIZE);
+	mapGridIndexY = floor(y / TILE_SIZE);
 	if (mapGridIndexX < 0 || mapGridIndexX >= data->map_width || mapGridIndexY < 0 || mapGridIndexY >= data->map_height)
 		return (1);
-	return (data->map[mapGridIndexY][mapGridIndexX] == '1');
+	return (data->map[mapGridIndexY][mapGridIndexX] == '1' || data->map[mapGridIndexY][mapGridIndexX] == 'D');
 }
 
 double vector_lenght(double x1, double y1, double x2, double y2)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 11:41:38 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:06:53 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	initialize_player(t_data *data);
 
 // Cast rays
 void	castAllRays(t_data *data);
-void	castRay(t_data *data, double rayAngle);
+void	castRay(t_data *data, double rayAngle, int stripId);
 void	findHorizWallHit(t_data *data, t_ray *ray);
 void	findVerticalWallHit(t_data *data, t_ray *ray);
 void	line(t_data *data, int x0, int y0, int x1, int y1);

@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 23:37:59 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 19:06:37 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:12:42 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void distance(t_data *data, t_ray *ray)
 		ray->wasHitVertical = false;
 	}
 }
-void castRay(t_data *data, double rayAngle, int rayId)
+void castRay(t_data *data, double rayAngle)
 {	
 	t_ray *ray;
 
@@ -107,7 +107,6 @@ void castRay(t_data *data, double rayAngle, int rayId)
     horizontalRay(data, ray, rayAngle);
 	verticalRay(data, ray, rayAngle);
 	distance(data, ray);
-	render_column(data, rayId, rayAngle, data->rays->distance);
 	// line(data, data->player->posX * MINIMAP_SCALE_FACTOR,
 	// 		   data->player->posY * MINIMAP_SCALE_FACTOR,
 	// 		        ray->wallHitX * MINIMAP_SCALE_FACTOR,

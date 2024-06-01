@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 19:06:53 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:12:51 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	initialize_player(t_data *data);
 
 // Cast rays
 void	castAllRays(t_data *data);
-void	castRay(t_data *data, double rayAngle, int stripId);
+void	castRay(t_data *data, double rayAngle);
 void	findHorizWallHit(t_data *data, t_ray *ray);
 void	findVerticalWallHit(t_data *data, t_ray *ray);
 void	line(t_data *data, int x0, int y0, int x1, int y1);
@@ -44,7 +44,7 @@ int     draw(void *param);
 int		draw(void *param);
 void	render_map(t_data *data);
 void	render_player(t_data *data, int color);
-void  	render_column(t_data *data, int rayId, double rayAngle, double distance);
+// void  	render_column(t_data *data, int rayId, double rayAngle, double distance);
 
 // main
 void	execute(t_data *data);

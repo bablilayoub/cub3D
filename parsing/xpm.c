@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 12:09:08 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 15:23:49 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,21 @@ void	get_torch(t_data *data)
 // Get texture from the walls
 void	get_xpms(t_data *data)
 {
-	// data->texture[0].img = mlx_xpm_file_to_image(data->mlx, data->north_texture, &data->texture[0].width, &data->texture[0].height);
-	// data->texture[1].img = mlx_xpm_file_to_image(data->mlx, data->south_texture, &data->texture[1].width, &data->texture[1].height);
-	// data->texture[2].img = mlx_xpm_file_to_image(data->mlx, data->west_texture, &data->texture[2].width, &data->texture[2].height);
-	// data->texture[3].img = mlx_xpm_file_to_image(data->mlx, data->east_texture, &data->texture[3].width, &data->texture[3].height);
-	// if (!data->texture[0].img || !data->texture[1].img || !data->texture[2].img || !data->texture[3].img || !data->texture[4].img)
-	// 	exit_game("Texture not found", data, -1, 1);
-	// data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, &data->texture[0].bits_per_pixel, &data->texture[0].line_length, &data->texture[0].endian);
-	// data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, &data->texture[1].bits_per_pixel, &data->texture[1].line_length, &data->texture[1].endian);
-	// data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, &data->texture[2].bits_per_pixel, &data->texture[2].line_length, &data->texture[2].endian);
-	// data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, &data->texture[3].bits_per_pixel, &data->texture[3].line_length, &data->texture[3].endian);
+	data->north_texture_struct = malloc(sizeof(t_texture));
+	data->south_texture_struct = malloc(sizeof(t_texture));
+	data->west_texture_struct = malloc(sizeof(t_texture));
+	data->east_texture_struct = malloc(sizeof(t_texture));
+	if (!data->north_texture_struct || !data->south_texture_struct || !data->west_texture_struct || !data->east_texture_struct)
+		exit_game("Malloc failed", data, -1, 1);
+	data->north_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->north_texture, &data->north_texture_struct->width, &data->north_texture_struct->height);
+	data->south_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->south_texture, &data->south_texture_struct->width, &data->south_texture_struct->height);
+	data->west_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->west_texture, &data->west_texture_struct->width, &data->west_texture_struct->height);
+	data->east_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->east_texture, &data->east_texture_struct->width, &data->east_texture_struct->height);
+	if (!data->north_texture_struct->img || !data->south_texture_struct->img || !data->west_texture_struct->img || !data->east_texture_struct->img)
+		exit_game("Texture not found", data, -1, 1);
+	data->north_texture_struct->addr = mlx_get_data_addr(data->north_texture_struct->img, &data->north_texture_struct->bits_per_pixel, &data->north_texture_struct->line_length, &data->north_texture_struct->endian);
+	data->south_texture_struct->addr = mlx_get_data_addr(data->south_texture_struct->img, &data->south_texture_struct->bits_per_pixel, &data->south_texture_struct->line_length, &data->south_texture_struct->endian);
+	data->west_texture_struct->addr = mlx_get_data_addr(data->west_texture_struct->img, &data->west_texture_struct->bits_per_pixel, &data->west_texture_struct->line_length, &data->west_texture_struct->endian);
+	data->east_texture_struct->addr = mlx_get_data_addr(data->east_texture_struct->img, &data->east_texture_struct->bits_per_pixel, &data->east_texture_struct->line_length, &data->east_texture_struct->endian);
 	get_torch(data);
 }

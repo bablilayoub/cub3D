@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 16:53:20 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:11:38 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void findHorizWallHit(t_data *data, t_ray *ray)
             ray->horzWallHitY = ray->nextHorzTouchY;
             break;
         } else {
-             ray->nextHorzTouchX += ray->xstep;
-             ray->nextHorzTouchY += ray->ystep;
+            ray->nextHorzTouchX += ray->xstep;
+            ray->nextHorzTouchY += ray->ystep;
         }
 	}
 }

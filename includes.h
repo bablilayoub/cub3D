@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/31 19:27:00 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 10:34:54 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,16 @@ typedef struct s_data
 	char		*east_texture;
 	char		*floor_color;
 	char		*ceiling_color;
+	t_texture	*torch_1_texture;
+	t_texture	*torch_2_texture;
+	t_texture	*torch_3_texture;
+	t_texture	*torch_4_texture;
+	t_texture	*torch_5_texture;
+	t_texture	*torch_6_texture;
+	t_texture	*torch_7_texture;
+	t_texture	*torch_8_texture;
+	int			torch_width;
+	int			torch_height;
 	double		newPlayerX;
 	double		newPlayerY;
 	double 		rayAngle;

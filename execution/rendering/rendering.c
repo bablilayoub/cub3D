@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 19:26:57 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 11:52:22 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void render_map(t_data *data)
 
 void render_player(t_data *data, int color)
 {
-
 	int playerX;
 	int playerY;
 	int i;
@@ -73,6 +72,14 @@ void render_player(t_data *data, int color)
 		while (++i < data->player->radius)
 			*(unsigned int *)(data->addr + ((playerY + i) * data->line_length + (playerX + j) * (data->bits_per_pixel / 8)) ) = color;
 	}
+    // draw crosshair in the middle of the screen
+    i = -1;
+    while (++i < 3)
+    {
+        j = -1;
+        while (++j < 3)
+            *(unsigned int *)(data->addr + ((data->W_Height / 2 + i) * data->line_length + (data->W_Width / 2 + j) * (data->bits_per_pixel / 8)) ) = 0x00FF0000;
+    }
 }
 
 void line(t_data *data, int x0, int y0, int x1, int y1)

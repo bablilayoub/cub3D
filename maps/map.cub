@@ -1,9 +1,9 @@
 EA ./textures/path_to_the_east_texture.xpm
-WE ./textures/path_to_the_north_texture.xpm
+WE ./textures/path_to_the_east_texture.xpm
+SO ./textures/path_to_the_east_texture.xpm
+NO ./textures/path_to_the_east_texture.xpm
 C 225,30,0
 F 225,30,0
-SO ./textures/path_to_the_north_texture.xpm
-NO ./textures/path_to_the_east_texture.xpm
 
 		1111111111111111111111111
 		1000000000110000000000001

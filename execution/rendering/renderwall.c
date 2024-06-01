@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderwall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:06:33 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 19:58:27 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:54:06 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void render_column(t_data *data, int rayId, double rayAngle, double distance)
     else
         color = 0xf5ebeb;
     renderWall(data, rayId, (data->W_Height / 2) - (wallHeight / 2), wallHeight, color);
-    renderCeiling(data, rayId, (data->W_Height / 2) - (wallHeight / 2), 0xADD8E6);
-    renderFloor(data, rayId, (data->W_Height / 2) + (wallHeight / 2), 0xdb4d4d);
+    renderCeiling(data, rayId, (data->W_Height / 2) - (wallHeight / 2), 0x000000);
+    renderFloor(data, rayId, (data->W_Height / 2) + (wallHeight / 2), 0x000000);
 }   

@@ -6,8 +6,8 @@ NAME = cub3D
 # HEADERS
 MAIN_HEADERS = cub3D.h includes.h
 
-CFLAGS = -Wall -Wextra -Werror -g
-MLX = -lmlx -framework OpenGL -framework AppKit
+# FLAGS
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 # LIBRARIES
 LIBFT = utils/libft/libft.a
@@ -25,7 +25,7 @@ UTILS = errors.c free.c tools.c
 
 # PARSING
 PARSING_HEADER = parsing/parsing.h
-PARSING = parsing.c checking.c coverting.c map.c more_checking.c print.c reading.c textures.c
+PARSING = parsing.c checking.c converting.c map.c more_checking.c print.c reading.c textures.c xpm.c
 
 # EXECUTION
 EXEC_HEADER = execution/execution.h
@@ -57,7 +57,7 @@ all: $(NAME)
 
 prepare_libft:
 	@cd utils/libft && make
-	@echo "cub3D is ready"
+	@echo "libft is ready"
 
 %.o: %.c $(HEADERS)
 	@echo "compiling $<"

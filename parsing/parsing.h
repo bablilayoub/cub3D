@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:17:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/23 21:33:02 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 10:41:49 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	get_map(t_data *data);
 // Textures
 char	*get_texture(t_data *data, int *i, char *texture_data);
 void	get_textures(t_data *data);
+void	get_xpms(t_data *data);
 
 #endif

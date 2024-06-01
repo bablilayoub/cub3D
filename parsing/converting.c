@@ -1,28 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   converting.c                                       :+:      :+:    :+:   */
+/*   coverting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/30 16:39:29 by abablil          ###   ########.fr       */
+/*   Created: 2024/05/23 21:23:24 by abablil           #+#    #+#             */
+/*   Updated: 2024/05/26 10:37:21 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-// Get texture from the walls
-void	get_texture(t_data *data)
+char	*expand_line(char *line, size_t size)
 {
-	data->texture[0].img = mlx_xpm_file_to_image(data->mlx, data->north_texture, &data->texture[0].width, &data->texture[0].height);
-	data->texture[1].img = mlx_xpm_file_to_image(data->mlx, data->south_texture, &data->texture[1].width, &data->texture[1].height);
-	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, data->west_texture, &data->texture[2].width, &data->texture[2].height);
-	data->texture[3].img = mlx_xpm_file_to_image(data->mlx, data->east_texture, &data->texture[3].width, &data->texture[3].height);
-	if (!data->texture[0].img || !data->texture[1].img || !data->texture[2].img || !data->texture[3].img || !data->texture[4].img)
-		exit_game("Error\nTexture not found", data, -1, 0);
-	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, &data->texture[0].bits_per_pixel, &data->texture[0].line_length, &data->texture[0].endian);
-	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, &data->texture[1].bits_per_pixel, &data->texture[1].line_length, &data->texture[1].endian);
-	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, &data->texture[2].bits_per_pixel, &data->texture[2].line_length, &data->texture[2].endian);
-	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, &data->texture[3].bits_per_pixel, &data->texture[3].line_length, &data->texture[3].endian);
+	char	*new_line;
+	size_t	i;
+
+	new_line = malloc(sizeof(char) * (size + 1));
+	if (!new_line)
+		return (NULL);
+	i = 0;
+	while (line[i])
+	{
+		new_line[i] = line[i];
+		i++;
+	}
+	while (i < size)
+	{
+		new_line[i] = ' ';
+		i++;
+	}
+	new_line[i] = '\0';
+	return (new_line);
+}
+
+void	convert_tabs(t_data *data)
+{
+	char	*new_map;
+	int		i;
+	int		j;
+	
+	(1) && (i = -1, j = 0);
+	new_map = ft_calloc(ft_strlen(data->map_file) * 2 + 1, sizeof(char *));
+	if (!new_map)
+		exit_game("Failed to allocate temp_map.", data, -1, 1);
+	while (data->map_file[++i])
+	{
+		if (data->map_file[i] == '\t')
+		{
+			new_map[j++] = ' ';
+			new_map[j++] = ' ';
+			new_map[j++] = ' ';
+			new_map[j++] = ' ';
+		}
+		else
+			new_map[j++] = data->map_file[i];
+	}
+	new_map[j] = '\0';
+	free(data->map_file);
+	data->map_file = new_map;
 }

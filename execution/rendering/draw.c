@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 11:16:38 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:35:15 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,28 @@ void render_torch(t_data *data)
 	middle_x = data->W_Width / 1.4 - torch_width / 2;
 	bottom_y = data->W_Height - torch_height;
 	x = -1;
-	if (data->flag == 8)
+	if (data->flag >= 80)
 		data->flag = 1;
 	while (++x < torch_width)
 	{
 		y = -1;
 		while (++y < torch_height)
 		{
-			if (data->flag == 1)
+			if (data->flag >= 1 && data->flag <= 9)
 				color = get_pixel(data->torch_1_texture, x, y);
-			if (data->flag == 2)
+			else if (data->flag >= 10 && data->flag <= 19)
 				color = get_pixel(data->torch_2_texture, x, y);
-			if (data->flag == 3)
+			else if (data->flag >= 20 && data->flag <= 29)
 				color = get_pixel(data->torch_3_texture, x, y);
-			if (data->flag == 4)
+			else if (data->flag >= 30 && data->flag <= 39)
 				color = get_pixel(data->torch_4_texture, x, y);
-			if (data->flag == 5)
+			else if (data->flag >= 40 && data->flag <= 49)
 				color = get_pixel(data->torch_5_texture, x, y);
-			if (data->flag == 6)
+			else if (data->flag >= 50 && data->flag <= 59)
 				color = get_pixel(data->torch_6_texture, x, y);
-			if (data->flag == 7)
+			else if (data->flag >= 60 && data->flag <= 69)
 				color = get_pixel(data->torch_7_texture, x, y);
-			if (data->flag == 8)
+			else if (data->flag >= 70 && data->flag <= 79)
 				color = get_pixel(data->torch_8_texture, x, y);
 			if (color != 0)
 				my_mlx_pixel_put(data, middle_x + x, bottom_y + y, color);

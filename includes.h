@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 10:34:54 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 17:56:05 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/types.h>
 
 # define GAME_NAME "Cub3D"
-# define TILE_SIZE 50
+# define TILE_SIZE 40
 # define FOV 60
 # define FOV_ANGLE (FOV * (M_PI / 180))
 # define ROTATION_SPEED 6
@@ -39,7 +39,6 @@
 # define KEY_S	1
 # define KEY_D	2
 # define KEY_W	13
-
 
 # define KEY_LEFT	123
 # define KEY_RIGHT	124
@@ -149,7 +148,10 @@ typedef struct s_data
 	int			W_Height;
 	t_player	*player;
 	t_ray		*rays;
-	t_texture	texture[5];
+	t_texture	*north_texture_struct;
+	t_texture	*south_texture_struct;
+	t_texture	*west_texture_struct;
+	t_texture	*east_texture_struct;
 }	t_data;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wallhits.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/05/31 19:06:24 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:58:05 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void findHorizWallHit(t_data *data, t_ray *ray)
             ray->horzWallHitY = ray->nextHorzTouchY;
             break;
         } else {
-             ray->nextHorzTouchX += ray->xstep;
-             ray->nextHorzTouchY += ray->ystep;
+            ray->nextHorzTouchX += ray->xstep;
+            ray->nextHorzTouchY += ray->ystep;
         }
 	}
 }

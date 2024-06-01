@@ -1,12 +1,12 @@
-EA ./textures/path_to_the_east_texture.xpm
-WE ./textures/path_to_the_east_texture.xpm
-SO ./textures/path_to_the_east_texture.xpm
-NO ./textures/path_to_the_east_texture.xpm
+EA ./textures/zellige.xpm
+WE ./textures/zellige.xpm
+SO ./textures/zellige.xpm
+NO ./textures/zellige.xpm
 C 225,30,0
 F 225,30,0
 
 		1111111111111111111111111
-		1000000000110000000000001
+		1000000000110000000D00001
 		101100000111000000S000001
 		1001000000000000000000001
 111111111011000001110000000000001

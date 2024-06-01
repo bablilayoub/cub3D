@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 11:41:38 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 16:52:08 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int     draw(void *param);
 int		draw(void *param);
 void	render_map(t_data *data);
 void	render_player(t_data *data, int color);
-void  	render_column(t_data *data, int rayId, double rayAngle, double distance);
+// void  	render_column(t_data *data, int rayId, double rayAngle, double distance);
 
 // main
 void	execute(t_data *data);

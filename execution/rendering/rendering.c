@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 11:52:22 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 20:39:04 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,35 +82,35 @@ void render_player(t_data *data, int color)
     }
 }
 
-void line(t_data *data, int x0, int y0, int x1, int y1)
-{
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = (x0 < x1) ? 1 : -1;
-    int sy = (y0 < y1) ? 1 : -1;
-    int err = dx - dy;
-	int e2;
+// void line(t_data *data, int x0, int y0, int x1, int y1)
+// {
+//     int dx = abs(x1 - x0);
+//     int dy = abs(y1 - y0);
+//     int sx = (x0 < x1) ? 1 : -1;
+//     int sy = (y0 < y1) ? 1 : -1;
+//     int err = dx - dy;
+// 	int e2;
 
-    while (1)
-    {
-		if (x0 < 0 || x0 >= data->W_Width || y0 < 0 || y0 >= data->W_Height)
-			return ;
-		*(unsigned int *)(data->addr + (y0 * data->line_length + x0 * (data->bits_per_pixel / 8))) =  0x1439f5;
-        if (x0 == x1 && y0 == y1)
-            break;
-        e2 = err * 2;
-        if (e2 > -dy)
-        {
-            err -= dy;
-            x0 += sx;
-        }
-        if (e2 < dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
-}
+//     while (1)
+//     {
+// 		if (x0 < 0 || x0 >= data->W_Width || y0 < 0 || y0 >= data->W_Height)
+// 			return ;
+// 		*(unsigned int *)(data->addr + (y0 * data->line_length + x0 * (data->bits_per_pixel / 8))) =  0x1439f5;
+//         if (x0 == x1 && y0 == y1)
+//             break;
+//         e2 = err * 2;
+//         if (e2 > -dy)
+//         {
+//             err -= dy;
+//             x0 += sx;
+//         }
+//         if (e2 < dx)
+//         {
+//             err += dx;
+//             y0 += sy;
+//         }
+//     }
+// }
 
 // void add_line_toplayer(t_data *data, double rayAngle)
 // {

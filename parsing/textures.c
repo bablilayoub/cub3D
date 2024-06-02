@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:21:43 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:38:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:37:29 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_texture(t_data *data, int *i, char *texture_data)
 	if (texture_data)
 		exit_game("Duplicate texture.", data, -1, 1);
 	while (data->map_file[*i] && data->map_file[*i] != ' '
-			&& data->map_file[*i] != '\n')
+		&& data->map_file[*i] != '\n')
 		(*i)++;
 	while (data->map_file[*i] && data->map_file[*i] == ' ')
 		(*i)++;
@@ -41,8 +41,8 @@ char	*get_texture(t_data *data, int *i, char *texture_data)
 
 void	get_textures(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (data->map_file[i])
 	{

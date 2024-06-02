@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:36 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 15:28:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:36:44 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_first_six_lines(t_data *data)
 {
 	char	**lines;
 	int		i;
-	
+
 	i = 0;
 	lines = ft_split(data->map_file, '\n');
 	if (!lines)
@@ -41,7 +41,7 @@ void	check_first_six_lines(t_data *data)
 void	check_border(char *line, t_data *data)
 {
 	int	i;
-	
+
 	i = 0;
 	while (line[i])
 	{
@@ -94,27 +94,26 @@ void	check_duplicated_keys(t_data *data)
 	int	i;
 	int	count;
 
-	i = 0;
-	count = 0;
-	while (data->map_file[i])
+	(1) && (i = -1, count = 0);
+	while (data->map_file[++i])
 	{
-		if (data->map_file[i] == 'N' && data->map_file[i + 1] == 'O' && data->map_file[i + 2] == ' ')
+		if (data->map_file[i] == 'N' && data->map_file[i + 1] == 'O'
+			&& data->map_file[i + 2] == ' ')
 			count++;
-		else if (data->map_file[i] == 'S' && data->map_file[i + 1] == 'O' && data->map_file[i + 2] == ' ')
+		else if (data->map_file[i] == 'S' && data->map_file[i + 1] == 'O'
+			&& data->map_file[i + 2] == ' ')
 			count++;
-		else if (data->map_file[i] == 'W' && data->map_file[i + 1] == 'E' && data->map_file[i + 2] == ' ')
+		else if (data->map_file[i] == 'W' && data->map_file[i + 1] == 'E'
+			&& data->map_file[i + 2] == ' ')
 			count++;
-		else if (data->map_file[i] == 'E' && data->map_file[i + 1] == 'A' && data->map_file[i + 2] == ' ')
+		else if (data->map_file[i] == 'E' && data->map_file[i + 1] == 'A'
+			&& data->map_file[i + 2] == ' ')
 			count++;
 		else if (data->map_file[i] == 'F' && data->map_file[i + 1] == ' ')
 			count++;
 		else if (data->map_file[i] == 'C' && data->map_file[i + 1] == ' ')
 			count++;
 		if (count > 6)
-		{
-			printf("count = %d\n", count);
 			exit_game("Duplicated texture or color.", data, -1, 1);
-		}
-		i++;
 	}
 }

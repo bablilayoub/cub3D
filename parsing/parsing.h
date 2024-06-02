@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:17:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 10:41:49 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:36:57 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ int		check_line(char *line);
 int		check_player(t_data *data);
 void	check_duplicated_keys(t_data *data);
 
-// Print
-void	print_map(char **map);
-void	print_textures(t_data *data);
-void	print_colors(t_data *data);
-
 // Reading
 char	*get_line(char *str, int *i);
 void	read_map_file(int fd, t_data *data);
@@ -60,5 +55,11 @@ void	get_map(t_data *data);
 char	*get_texture(t_data *data, int *i, char *texture_data);
 void	get_textures(t_data *data);
 void	get_xpms(t_data *data);
+
+// Colors
+void	check_rgb(char *color, t_data *data);
+int		*create_rgb(int r, int g, int b);
+void	set_colors(t_data *data);
+void	check_colors_format(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 15:32:42 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:49:59 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void findDoors(t_data *data)
 	}
 	data->doors = head;
 }
+
 int	main(int total, char **args)
 {
 	t_data	data;
@@ -54,6 +55,7 @@ int	main(int total, char **args)
 	data.player = malloc(sizeof(t_player));
 	if (!data.player)
 		exit_game("Failed to allocate memory for player.", &data, -1, 1);
+	ft_memset(data.player, 0, sizeof(t_player));
 	data.rays = malloc(sizeof(t_ray));
 	findDoors(&data);
 	if (!data.rays)

@@ -21,11 +21,11 @@ MAIN = main.c
 
 # UTILS
 UTILS_HEADERS = utils/utils.h utils/get_next_line/get_next_line.h
-UTILS = errors.c free.c tools.c
+UTILS = errors.c free.c tools.c more_free.c
 
 # PARSING
 PARSING_HEADER = parsing/parsing.h
-PARSING = parsing.c checking.c converting.c map.c more_checking.c print.c reading.c textures.c xpm.c
+PARSING = parsing.c checking.c converting.c map.c more_checking.c reading.c textures.c xpm.c colors.c
 
 # EXECUTION
 EXEC_HEADER = execution/execution.h

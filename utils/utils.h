@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:48:31 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:42:14 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:07:03 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	exit_game_clean(t_data *data);
 // Free
 void	free_array(char **str);
 void	free_data(t_data *data);
+void	destory_texture(t_data *data, t_texture *texture);
+void	free_torch(t_data *data);
+void	free_doors(t_data *data);
 
 // Tools
 int		array_len(char **str);

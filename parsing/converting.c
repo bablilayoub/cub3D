@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coverting.c                                        :+:      :+:    :+:   */
+/*   converting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:23:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:37:21 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 16:35:04 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	convert_tabs(t_data *data)
 	char	*new_map;
 	int		i;
 	int		j;
-	
+
 	(1) && (i = -1, j = 0);
 	new_map = ft_calloc(ft_strlen(data->map_file) * 2 + 1, sizeof(char *));
 	if (!new_map)

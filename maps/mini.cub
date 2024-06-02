@@ -1,10 +1,11 @@
-EA ./textures/MiConv.com__BRICK_3B.xpm
-WE ./textures/MiConv.com__BRICK_6D.xpm
-SO ./textures/MiConv.com__BRICK_2B.xpm
-NO ./textures/MiConv.com__BRICK_1A.xpm
+EA ./textures/east_texture.xpm
+WE ./textures/west_texture.xpm
+NO ./textures/north_texture.xpm
+SO ./textures/south_texture.xpm
 
 C 117, 2, 0
 F 33, 26, 26
+
 
 111111111111111111111111111111111111111111
 100001100001100001100001100001100001100001

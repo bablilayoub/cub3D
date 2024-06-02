@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 23:37:59 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 19:29:05 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:56:07 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	horizontalray(t_data *data, t_ray *ray, double rayAngle)
 	ray->washithorizontal = false;
 	ray->horzwallhitx = 0;
 	ray->horzwallhity = 0;
-	ray->horzwallcontent = 0;
 	ray->yintercept = floor((data->player->pos_y / TILE_SIZE)) * TILE_SIZE;
 	if (ray->israyfacingdown)
 		ray->yintercept += TILE_SIZE;
@@ -43,7 +42,6 @@ void	verticalray(t_data *data, t_ray *ray, double rayAngle)
 	ray->washitvertical = false;
 	ray->vertwallhitx = 0;
 	ray->vertwallhity = 0;
-	ray->vertwallcontent = 0;
 	ray->xintercept = floor(data->player->pos_x / TILE_SIZE) * TILE_SIZE;
 	if (ray->israyfacingright)
 		ray->xintercept += TILE_SIZE;

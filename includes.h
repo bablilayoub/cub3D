@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 00:03:01 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/03 00:05:41 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define GAME_NAME "Cub3D"
 # define TILE_SIZE 40
 # define FOV 60
-# define FOV_ANGLE (FOV * (M_PI / 180))
+# define FOV_ANGLE 1.0471975511965976
 # define ROTATION_SPEED 6
 # define MOVE_SPEED 4.0
 # define RADIUS 2
@@ -80,7 +80,6 @@ typedef struct s_ray
 	double	ystep;
 
 	// horizontal
-	int		horzwallcontent;
 	double	horzwallhitx;
 	double	horzwallhity;
 	double	nexthorztouchx;
@@ -89,7 +88,6 @@ typedef struct s_ray
 	double	horzhitdistance;
 
 	// vertical
-	int		vertwallcontent;
 	double	vertwallhitx;
 	double	vertwallhity;
 	double	nextverttouchx;
@@ -101,7 +99,6 @@ typedef struct s_ray
 	double	wallhitx;
 	double	wallhity;
 	double	wallhitcontent;
-	double	rayangle;
 }	t_ray;
 
 typedef struct s_texture
@@ -162,7 +159,6 @@ typedef struct s_data
 	int			torch_height;
 	double		newplayerx;
 	double		newplayery;
-	double		rayangle;
 	int			w_width;
 	int			w_height;
 	t_player	*player;

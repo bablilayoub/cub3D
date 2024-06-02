@@ -31,7 +31,7 @@ PARSING = parsing.c checking.c converting.c map.c more_checking.c print.c readin
 EXEC_HEADER = execution/execution.h
 RENDERING = rendering.c raycasting.c wallhits.c draw.c renderwall.c
 MOVEMENT = movement.c player.c
-UTILS_EXEC = utils.c
+UTILS_EXEC = utils.c doors.c
 EXEC = execution.c $(addprefix rendering/, $(RENDERING)) $(addprefix movement/, $(MOVEMENT)) $(addprefix utils/, $(UTILS_EXEC))
 
 # SOURCES

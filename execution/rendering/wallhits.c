@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 21:11:38 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:10:17 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void findHorizWallHit(t_data *data, t_ray *ray)
 	while ( ray->nextHorzTouchX >= 0 &&  ray->nextHorzTouchX <= (data->map_width * TILE_SIZE)
 		&& ray->nextHorzTouchY >= 0 && ray->nextHorzTouchY <= (data->map_height * TILE_SIZE))
 	{
-        if (has_wall_at(data, ray->nextHorzTouchX, ray->nextHorzTouchY - (ray->isRayFacingUp == 1)))
+        if (has_wall_at(data, ray->nextHorzTouchX, ray->nextHorzTouchY))
 		{
             ray->wasHitHorizontal = true;
             ray->horzWallHitX =  ray->nextHorzTouchX;
@@ -35,7 +35,7 @@ void findVerticalWallHit(t_data *data, t_ray *ray)
 	while (ray->nextVertTouchX >= 0 && ray->nextVertTouchX <= (data->map_width * TILE_SIZE)
 		&& ray->nextVertTouchY >= 0 && ray->nextVertTouchY <= (data->map_height * TILE_SIZE)) 
 	{
-		if (has_wall_at(data, ray->nextVertTouchX - (ray->isRayFacingLeft == 1), ray->nextVertTouchY)) {
+		if (has_wall_at(data, ray->nextVertTouchX, ray->nextVertTouchY)) {
 			ray->wasHitVertical = true;
 			ray->vertWallHitX = ray->nextVertTouchX;
 			ray->vertWallHitY = ray->nextVertTouchY;
@@ -56,7 +56,7 @@ int has_wall_at(t_data *data, double x, double y)
 	mapGridIndexY = floor(y / TILE_SIZE);
 	if (mapGridIndexX < 0 || mapGridIndexX >= data->map_width || mapGridIndexY < 0 || mapGridIndexY >= data->map_height)
 		return (1);
-	return (data->map[mapGridIndexY][mapGridIndexX] == '1' || data->map[mapGridIndexY][mapGridIndexX] == 'D');
+	return (data->map[mapGridIndexY][mapGridIndexX] == '1' || (data->map[mapGridIndexY][mapGridIndexX] == 'D' && get_door(data, mapGridIndexX, mapGridIndexY)->current_cell == 'D'));
 }
 
 double vector_lenght(double x1, double y1, double x2, double y2)

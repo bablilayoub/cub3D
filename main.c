@@ -3,15 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:21:59 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 10:50:26 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 15:06:43 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+void findDoors(t_data *data)
+{
+	int x;
+	int y;
+	t_doors *head;
+	t_doors *newDoor;
+
+	head = NULL;
+	y = -1;
+	while (data->map[++y])
+	{
+		x = -1;
+		while (data->map[y][++x])
+		{
+			if (data->map[y][x] == 'D')
+			{
+				if (!head)
+					head = addNew(y, x);
+				else
+				{
+					newDoor = addNew(y, x);
+					addBack(&head, newDoor);
+				}
+			}
+		}
+	}
+	data->doors = head;
+}
 int	main(int total, char **args)
 {
 	t_data	data;
@@ -26,7 +54,8 @@ int	main(int total, char **args)
 	data.player = malloc(sizeof(t_player));
 	if (!data.player)
 		exit_game("Failed to allocate memory for player.", &data, -1, 1);
-	data.rays = malloc(sizeof(t_ray) * data.map_width * TILE_SIZE);
+	data.rays = malloc(sizeof(t_ray));
+	findDoors(&data);
 	if (!data.rays)
 		exit_game("Failed to allocate memory for rays.", &data, -1, 1);
 	data.flag = 1;

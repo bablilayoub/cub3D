@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 21:13:15 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:14:19 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ void render_column(t_data *data, int rayId, double rayAngle, double distance)
 		else if (i > wallTopPixel && i < wallBottomPixel)
 		{
 			textureOffsetY = (int)(i - wallTopPixel) * ((float)TILE_SIZE / wallStripHeight);
-			textureColor = get_texture_color(data, textureOffsetX, textureOffsetY, rayAngle);
+			if (data->map[(int)data->rays->wallHitY / TILE_SIZE][(int)data->rays->wallHitX / TILE_SIZE] == 'D')
+				textureColor = 0x00FF00;
+			else
+				textureColor = get_texture_color(data, textureOffsetX, textureOffsetY, rayAngle);
 			my_mlx_pixel_put(data, rayId, i, textureColor);
 		}
 		else
@@ -165,9 +168,9 @@ int	draw(void *param)
 	create_image(data);
 	update_player_pos(data, data->newPlayerX, data->newPlayerY);
 	castAllRays(data);
+	render_torch(data);
 	render_map(data);
 	render_player(data, 0xFF0000);
-	render_torch(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

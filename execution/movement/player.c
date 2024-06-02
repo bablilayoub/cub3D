@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 18:27:44 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:13:27 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	initialize_player(t_data *data)
 	data->player->movement = 0;
 	data->newPlayerX = 0;
 	data->newPlayerY = 0;
-	data->player->doorIsOpen = 0;
 	if (data->map[data->player_y][data->player_x] == 'N')
 		data->player->facing_angle = M_PI + M_PI_2;
 	else if (data->map[data->player_y][data->player_x] == 'S')
@@ -34,31 +33,41 @@ void	initialize_player(t_data *data)
 		data->player->facing_angle = 0;
 	else if (data->map[data->player_y][data->player_x] == 'W')
 		data->player->facing_angle = M_PI;
-	data->player->rotation_speed = 2 * (M_PI / 180);
+	data->player->rotation_speed = 4 * (M_PI / 180);
 }
 void opendDoor(t_data *data)
 {
 	int indexX;
 	int indexY;
-	static int	pressed = 0;
+	int i;
+	t_doors *head;
 
+	i = 0;
+	head = data->doors;
 	indexX = floor(data->player->posX / TILE_SIZE);
 	indexY = floor(data->player->posY / TILE_SIZE);
-	if (data->map[indexY + 1][indexX] == 'D'
-		|| data->map[indexY - 1][indexX] == 'D'
-		|| data->map[indexY][indexX + 1] == 'D'
-		|| data->map[indexY][indexX - 1] == 'D')
+	if (data->map[indexY + 1][indexX] == 'D' || data->map[indexY - 1][indexX] == 'D'
+		|| data->map[indexY][indexX + 1] == 'D' || data->map[indexY][indexX - 1] == 'D')
 	{
-		if (pressed == 0)
+		while (data->doors)
 		{
-			data->player->doorIsOpen = 1;
-			pressed = 1;
+			if ((data->doors->doorX == indexX && data->doors->doorY == indexY + 1) || (data->doors->doorX == indexX && data->doors->doorY == indexY - 1)
+				|| (data->doors->doorX == indexX + 1 && data->doors->doorY == indexY) || (data->doors->doorX == indexX - 1 && data->doors->doorY == indexY))
+			{
+				if (data->doors->isOpen == 0)
+				{
+					data->doors->isOpen = 1;
+					data->doors->current_cell = 'O';
+				}
+				else
+				{
+					data->doors->isOpen = 0;
+					data->doors->current_cell = 'D';
+				}
+			}
+			data->doors = data->doors->next;
 		}
-		else
-		{
-			data->player->doorIsOpen = 0;
-			pressed = 0;
-		}
+		data->doors = head;
 	}
 }
 int key_press(int keycode, t_data *data)

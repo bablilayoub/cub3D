@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 21:11:09 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:41:26 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,16 @@ typedef struct s_player
 	double	move_speed;
 	double	rotation_speed;
 	double	radius;
-	int 	doorIsOpen;
 }	t_player;
+
+typedef struct s_doors
+{
+	int		isOpen;
+	int		doorX;
+	int		doorY;
+	char	current_cell;
+	struct s_doors	*next;
+}	t_doors;
 
 typedef struct s_ray
 {
@@ -150,6 +158,7 @@ typedef struct s_data
 	int			W_Height;
 	t_player	*player;
 	t_ray		*rays;
+	t_doors		*doors;
 	t_texture	*north_texture_struct;
 	t_texture	*south_texture_struct;
 	t_texture	*west_texture_struct;

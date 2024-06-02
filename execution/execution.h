@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 21:12:51 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:01:48 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ void	render_player(t_data *data, int color);
 
 // main
 void	execute(t_data *data);
+
+// door
+t_doors	*getLast(t_doors *doors);
+void	addBack(t_doors **doors, t_doors *newDoor);
+t_doors	*addNew(int y, int x);
+t_doors *get_door(t_data *data, int indexX, int indexY);
 
 #endif

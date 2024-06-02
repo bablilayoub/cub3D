@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 21:11:23 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:18:29 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ int checkDioagonal_Collision(t_data *data, int indexX, int indexY)
     }
 	return 0;
 }
+
+t_doors *get_door(t_data *data, int indexX, int indexY)
+{
+	t_doors *head;
+
+	head = data->doors;
+	while (head)
+	{
+		if (head->doorX == indexX && head->doorY == indexY)
+			return (head);
+		head = head->next;
+	}
+	return (NULL);
+}
+
 int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 {
 	double newX;
@@ -41,7 +56,7 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	indexY = floor(newY / TILE_SIZE);
 	if (indexX < 0 || indexX >= data->W_Width || indexY < 0 || indexY >= data->W_Height)
 		return (1);
-	if (data->map[indexY][indexX] == '1' || (data->map[indexY][indexX] == 'D' && data->player->doorIsOpen == 0))
+	if (data->map[indexY][indexX] == '1' || (data->map[indexY][indexX] == 'D' && get_door(data, indexX, indexY)->isOpen == 0))
 		return (1);
 	if (checkDioagonal_Collision(data, indexX, indexY))
 		return (1);

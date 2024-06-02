@@ -13,9 +13,9 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "includes.h"
-#include "utils/utils.h"
-#include "parsing/parsing.h"
-#include "execution/execution.h"
+# include "includes.h"
+# include "utils/utils.h"
+# include "parsing/parsing.h"
+# include "execution/execution.h"
 
 #endif

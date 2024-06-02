@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 12:14:12 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 15:18:09 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,9 +188,9 @@ int	draw(void *param)
 	create_image(data);
 	update_player_pos(data, data->newPlayerX, data->newPlayerY);
 	castAllRays(data);
+	render_torch(data);
 	render_map(data);
 	render_player(data, 0xFF0000);
-	render_torch(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

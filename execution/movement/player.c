@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 23:34:39 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 15:23:40 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,43 @@ void	initialize_player(t_data *data)
 		data->player->facing_angle = 0;
 	else if (data->map[data->player_y][data->player_x] == 'W')
 		data->player->facing_angle = M_PI;
-	data->player->rotation_speed = 2 * (M_PI / 180);
+	data->player->rotation_speed = 4 * (M_PI / 180);
 }
+void opendDoor(t_data *data)
+{
+	int indexX;
+	int indexY;
+	int i;
+	t_doors *head;
 
+	i = 0;
+	head = data->doors;
+	indexX = floor(data->player->posX / TILE_SIZE);
+	indexY = floor(data->player->posY / TILE_SIZE);
+	if (data->map[indexY + 1][indexX] == 'D' || data->map[indexY - 1][indexX] == 'D'
+		|| data->map[indexY][indexX + 1] == 'D' || data->map[indexY][indexX - 1] == 'D')
+	{
+		while (data->doors)
+		{
+			if ((data->doors->doorX == indexX && data->doors->doorY == indexY + 1) || (data->doors->doorX == indexX && data->doors->doorY == indexY - 1)
+				|| (data->doors->doorX == indexX + 1 && data->doors->doorY == indexY) || (data->doors->doorX == indexX - 1 && data->doors->doorY == indexY))
+			{
+				if (data->doors->isOpen == 0)
+				{
+					data->doors->isOpen = 1;
+					data->doors->current_cell = 'O';
+				}
+				else
+				{
+					data->doors->isOpen = 0;
+					data->doors->current_cell = 'D';
+				}
+			}
+			data->doors = data->doors->next;
+		}
+		data->doors = head;
+	}
+}
 int key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCP)
@@ -52,6 +86,8 @@ int key_press(int keycode, t_data *data)
 		data->player->movement = -1;
 	else if (keycode == KEY_D)
 		data->player->movement = 1;
+	else if (keycode == DOOR_OPENED)
+		opendDoor(data);
 	return 0;
 }
 

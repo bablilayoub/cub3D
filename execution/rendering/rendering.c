@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 20:39:04 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:37:50 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,14 @@ void draw_map_sqaures(t_data *data, int x, int y, int color)
 	int j;
     int scaleFactor;
 
-    scaleFactor = MINIMAP_SCALE_FACTOR * TILE_SIZE + 1;
+    scaleFactor = MINIMAP_SCALE_FACTOR * TILE_SIZE;
 	i = -1;
 	while (++i < scaleFactor)
 	{
 		j = -1;
 		while (++j < scaleFactor)
 			*(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + j) * (data->bits_per_pixel / 8)) ) = color;
-
-        // *(unsigned int *)(data->addr + ((y + i) * data->line_length + (x + scaleFactor) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 	}
-	// i = -1;
-	// while (++i < scaleFactor)
-	// 	*(unsigned int *)(data->addr + ((y + scaleFactor) * data->line_length + (x + i) * (data->bits_per_pixel / 8)) ) = 0x00000000;
 }
 
 void render_map(t_data *data)
@@ -49,7 +44,7 @@ void render_map(t_data *data)
             tileX = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
             tileY = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
             if (data->map[i][j] == '1')
-                draw_map_sqaures(data,  tileX,   tileY, 0x00FFFFFF);
+                draw_map_sqaures(data,  tileX,   tileY, 0x003F3F3F);
             else
                 draw_map_sqaures(data,  tileX,   tileY, 0x00000000);
         }

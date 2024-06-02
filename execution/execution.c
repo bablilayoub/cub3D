@@ -3,34 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 23:34:49 by abablil          ###   ########.fr       */
+/*   Created: 2024/06/02 16:28:06 by alaalalm          #+#    #+#             */
+/*   Updated: 2024/06/02 23:37:09 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-int	mouse_move(int x, int y, t_data *data)
+void	initialize_player(t_data *data)
 {
-	(void)y;
-	int	temp_width;
-
-	temp_width = data->W_Width / 3;
-	if (x > 2 * temp_width && x < data->W_Width)
-		data->player->turn_direction = 1;
-	else if (x < temp_width && x > 0)
-		data->player->turn_direction = -1;
-	else
-		data->player->turn_direction = 0;
-	return (0);
+	data->player->pos_x = data->player_x * TILE_SIZE + TILE_SIZE / 2;
+	data->player->pos_y = data->player_y * TILE_SIZE + TILE_SIZE / 2;
+	data->w_width = data->map_width * TILE_SIZE;
+	data->w_height = data->map_height * TILE_SIZE;
+	data->player->radius = RADIUS;
+	data->player->speed = MOVE_SPEED;
+	data->player->turn_direction = 0;
+	data->player->walk_direction = 0;
+	data->player->movement = 0;
+	data->newplayerx = 0;
+	data->newplayery = 0;
+	if (data->map[data->player_y][data->player_x] == 'N')
+		data->player->angle = M_PI + M_PI_2;
+	else if (data->map[data->player_y][data->player_x] == 'S')
+		data->player->angle = M_PI_2;
+	else if (data->map[data->player_y][data->player_x] == 'E')
+		data->player->angle = 0;
+	else if (data->map[data->player_y][data->player_x] == 'W')
+		data->player->angle = M_PI;
+	data->player->rotation_speed = 4 * (M_PI / 180);
 }
 
-void set_up_window(t_data *data, int  W_Width, int W_Height)
+void	set_up_window(t_data *data, int w_width, int w_height)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, W_Width, W_Height, "cub3D");
+	data->win = mlx_new_window(data->mlx, w_width, w_height, "cub3D");
 	get_xpms(data);
 	mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
@@ -43,5 +52,5 @@ void set_up_window(t_data *data, int  W_Width, int W_Height)
 void	execute(t_data *data)
 {
 	initialize_player(data);
-	set_up_window(data, data->W_Width, data->W_Height);
+	set_up_window(data, data->w_width, data->w_height);
 }

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 15:17:27 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 23:42:44 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INCLUDES_H
-#define INCLUDES_H
+# define INCLUDES_H
 
 # include <string.h>
 # include <stdlib.h>
@@ -51,58 +51,57 @@ typedef struct s_player
 	int		turn_direction;
 	int		walk_direction;
 	int		movement;
-	double	posX;
-	double	posY;
-	double	facing_angle;
-	double	move_speed;
+	double	pos_x;
+	double	pos_y;
+	double	angle;
+	double	speed;
 	double	rotation_speed;
 	double	radius;
 }	t_player;
 
 typedef struct s_doors
 {
-	int		isOpen;
-	int		doorX;
-	int		doorY;
-	char	current_cell;
+	int				isopen;
+	int				doorx;
+	int				doory;
+	char			current_cell;
 	struct s_doors	*next;
 }	t_doors;
 
 typedef struct s_ray
 {
-	int		isRayFacingDown;
-	int		isRayFacingUp;
-	int		isRayFacingRight;
-	int		isRayFacingLeft;
+	int		israyfacingdown;
+	int		israyfacingup;
+	int		israyfacingright;
+	int		israyfacingleft;
 	double	xintercept;
 	double	yintercept;
 	double	xstep;
 	double	ystep;
 
 	// horizontal
-	int horzWallContent;
-	double horzWallHitX;
-	double horzWallHitY;
-	double nextHorzTouchX;
-	double nextHorzTouchY;
-	double wasHitHorizontal;
-	double horzHitDistance;
+	int		horzwallcontent;
+	double	horzwallhitx;
+	double	horzwallhity;
+	double	nexthorztouchx;
+	double	nexthorztouchy;
+	double	washithorizontal;
+	double	horzhitdistance;
 
 	// vertical
-	int vertWallContent;
-	double vertWallHitX;
-	double vertWallHitY;
-	double nextVertTouchX;
-	double nextVertTouchY;
-	double wasHitVertical;
-	double vertHitDistance;
+	int		vertwallcontent;
+	double	vertwallhitx;
+	double	vertwallhity;
+	double	nextverttouchx;
+	double	nextverttouchy;
+	double	washitvertical;
+	double	verthitdistance;
 
-	
-	double distance;
-	double wallHitX;
-	double wallHitY;
-	double wallHitContent;
-	double rayAngle;
+	double	distance;
+	double	wallhitx;
+	double	wallhity;
+	double	wallhitcontent;
+	double	rayangle;
 }	t_ray;
 
 typedef struct s_texture
@@ -116,15 +115,23 @@ typedef struct s_texture
 	int		height;
 }	t_texture;
 
+typedef struct s_torch
+{
+	int		torch_width;
+	int		torch_height;
+	int		middle_x;
+	int		bottom_y;
+}	t_torch;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
 	char		*temp;
 	char		*map_file;
-	char 		*addr;
+	char		*addr;
 	void		*img;
-	int 		flag;
+	int			flag;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -134,6 +141,14 @@ typedef struct s_data
 	int			map_width;
 	int			player_x;
 	int			player_y;
+	int			wallstrip_height;
+	int			walltop_pixel;
+	int			wallbottom_pixel;
+	int			texture_offsetx;
+	int			texture_offsety;
+	int			texture_color;
+	int			distance_proj_plane;
+	double		correct_distance;
 	size_t		biggest_line;
 	char		*north_texture;
 	char		*south_texture;
@@ -143,6 +158,22 @@ typedef struct s_data
 	int			*floor_color_rgb;
 	char		*ceiling_color;
 	int			*ceiling_color_rgb;
+	int			torch_width;
+	int			torch_height;
+	double		newplayerx;
+	double		newplayery;
+	double		rayangle;
+	int			w_width;
+	int			w_height;
+	t_player	*player;
+	t_ray		*rays;
+	t_doors		*doors;
+	t_torch		torch;
+	t_texture	*north_texture_struct;
+	t_texture	*south_texture_struct;
+	t_texture	*west_texture_struct;
+	t_texture	*east_texture_struct;
+	t_texture	*door_texture;
 	t_texture	*torch_1_texture;
 	t_texture	*torch_2_texture;
 	t_texture	*torch_3_texture;
@@ -151,21 +182,6 @@ typedef struct s_data
 	t_texture	*torch_6_texture;
 	t_texture	*torch_7_texture;
 	t_texture	*torch_8_texture;
-	int			torch_width;
-	int			torch_height;
-	double		newPlayerX;
-	double		newPlayerY;
-	double 		rayAngle;
-	int			W_Width;
-	int			W_Height;
-	t_player	*player;
-	t_ray		*rays;
-	t_doors		*doors;
-	t_texture	*north_texture_struct;
-	t_texture	*south_texture_struct;
-	t_texture	*west_texture_struct;
-	t_texture	*east_texture_struct;
-	t_texture	*door_texture;
 }	t_data;
 
 #endif

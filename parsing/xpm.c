@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 15:23:49 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 22:12:42 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,20 @@ void	get_xpms(t_data *data)
 	data->south_texture_struct = malloc(sizeof(t_texture));
 	data->west_texture_struct = malloc(sizeof(t_texture));
 	data->east_texture_struct = malloc(sizeof(t_texture));
+	data->door_texture = malloc(sizeof(t_texture));
 	if (!data->north_texture_struct || !data->south_texture_struct || !data->west_texture_struct || !data->east_texture_struct)
 		exit_game("Malloc failed", data, -1, 1);
 	data->north_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->north_texture, &data->north_texture_struct->width, &data->north_texture_struct->height);
 	data->south_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->south_texture, &data->south_texture_struct->width, &data->south_texture_struct->height);
 	data->west_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->west_texture, &data->west_texture_struct->width, &data->west_texture_struct->height);
 	data->east_texture_struct->img = mlx_xpm_file_to_image(data->mlx, data->east_texture, &data->east_texture_struct->width, &data->east_texture_struct->height);
+	data->door_texture->img = mlx_xpm_file_to_image(data->mlx, "./textures/MiConv.com__DOOR_1C.xpm", &data->door_texture->width, &data->door_texture->height);
 	if (!data->north_texture_struct->img || !data->south_texture_struct->img || !data->west_texture_struct->img || !data->east_texture_struct->img)
 		exit_game("Texture not found", data, -1, 1);
 	data->north_texture_struct->addr = mlx_get_data_addr(data->north_texture_struct->img, &data->north_texture_struct->bits_per_pixel, &data->north_texture_struct->line_length, &data->north_texture_struct->endian);
 	data->south_texture_struct->addr = mlx_get_data_addr(data->south_texture_struct->img, &data->south_texture_struct->bits_per_pixel, &data->south_texture_struct->line_length, &data->south_texture_struct->endian);
 	data->west_texture_struct->addr = mlx_get_data_addr(data->west_texture_struct->img, &data->west_texture_struct->bits_per_pixel, &data->west_texture_struct->line_length, &data->west_texture_struct->endian);
 	data->east_texture_struct->addr = mlx_get_data_addr(data->east_texture_struct->img, &data->east_texture_struct->bits_per_pixel, &data->east_texture_struct->line_length, &data->east_texture_struct->endian);
+	data->door_texture->addr = mlx_get_data_addr(data->door_texture->img, &data->door_texture->bits_per_pixel, &data->door_texture->line_length, &data->door_texture->endian);
 	get_torch(data);
 }

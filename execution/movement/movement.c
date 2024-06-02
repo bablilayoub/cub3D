@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 17:59:30 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 23:01:00 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	indexY = floor(newY / TILE_SIZE);
 	if (indexX < 0 || indexX >= data->W_Width || indexY < 0 || indexY >= data->W_Height)
 		return (1);
-	if (data->map[indexY][indexX] == '1')
+	if (data->map[indexY][indexX] == '1' || data->map[indexY][indexX] == 'D')
 		return (1);
 	if (checkDioagonal_Collision(data, indexX, indexY))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 15:47:12 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 23:34:49 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ int	mouse_move(int x, int y, t_data *data)
 	return (0);
 }
 
-// int	mouse_press(int button, int x, int y, t_data *data)
-// {
-// 	(void)x;
-// 	(void)y;
-// 	(void)data;
-// 	if (button == 1)
-// 		mlx_mouse_hide();
-// 	else if (button == 2)
-// 		mlx_mouse_show();
-// 	return (0);
-// }
-
 void set_up_window(t_data *data, int  W_Width, int W_Height)
 {
 	data->mlx = mlx_init();
@@ -48,7 +36,6 @@ void set_up_window(t_data *data, int  W_Width, int W_Height)
 	mlx_hook(data->win, 3, 1L << 1, key_release, data);
 	mlx_hook(data->win, 17, 1L << 17, (void *)exit_game_clean, data);
 	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
-	// mlx_mouse_hook(data->win, mouse_press, data);
 	mlx_loop_hook(data->mlx, draw, data);
 	mlx_loop(data->mlx);
 }

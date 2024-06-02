@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:04 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 15:08:46 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:28:17 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,31 @@ void	check_rgb(char *color, t_data *data)
 	free_array(rgb);
 }
 
+int	*create_rgb(int r, int g, int b)
+{
+	int	*rgb;
+
+	rgb = malloc(sizeof(int) * 3);
+	if (!rgb)
+		return (NULL);
+	rgb[0] = r;
+	rgb[1] = g;
+	rgb[2] = b;
+	return (rgb);
+}
+
+void	set_colors(t_data *data)
+{
+	char	**rgb;
+
+	rgb = ft_split(data->floor_color, ',');
+	data->floor_color_rgb = create_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	free_array(rgb);
+	rgb = ft_split(data->ceiling_color, ',');
+	data->ceiling_color_rgb = create_rgb(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+	free_array(rgb);
+}
+
 void	check_colors_format(t_data *data)
 {
 	if (!ft_strchr(data->floor_color, ',') || count_commas(data->floor_color) != 2)
@@ -69,6 +94,7 @@ void	check_colors_format(t_data *data)
 		exit_game("Invalid ceiling color format.", data, -1, 1);
 	check_rgb(data->floor_color, data);
 	check_rgb(data->ceiling_color, data);
+	set_colors(data);
 }
 
 void	check_textures(t_data *data)

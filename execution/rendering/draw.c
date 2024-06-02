@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/01 20:37:52 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/02 12:14:12 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,39 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 
-int get_texture_color(t_data *data, int textureOffsetX, int textureOffsetY, double rayAngle)
+int get_texture_color(t_data *data, int textureOffsetX, int textureOffsetY)
 {
-	(void)rayAngle;
 	int		color;
 	
 	color = 0;
-	color = get_pixel(data->north_texture_struct, textureOffsetX * data->north_texture_struct->width / TILE_SIZE, textureOffsetY * data->north_texture_struct->height / TILE_SIZE);
+	// if door
+	if (data->map[(int)data->rays->wallHitY / TILE_SIZE][(int)data->rays->wallHitX / TILE_SIZE] == 'D')
+		color = get_pixel(data->door_texture, textureOffsetX * data->door_texture->width / TILE_SIZE, textureOffsetY * data->door_texture->height / TILE_SIZE);
+	else
+	{
+		if (data->rays->wasHitVertical && data->rays->isRayFacingLeft)
+			color = get_pixel(data->north_texture_struct, textureOffsetX * data->north_texture_struct->width / TILE_SIZE, textureOffsetY * data->north_texture_struct->height / TILE_SIZE);
+		else if (data->rays->wasHitVertical && !data->rays->isRayFacingLeft)
+			color = get_pixel(data->south_texture_struct, textureOffsetX * data->south_texture_struct->width / TILE_SIZE, textureOffsetY * data->south_texture_struct->height / TILE_SIZE);
+		else if (!data->rays->wasHitVertical && data->rays->isRayFacingUp)
+			color = get_pixel(data->west_texture_struct, textureOffsetX * data->west_texture_struct->width / TILE_SIZE, textureOffsetY * data->west_texture_struct->height / TILE_SIZE);
+		else if (!data->rays->wasHitVertical && !data->rays->isRayFacingUp)
+			color = get_pixel(data->east_texture_struct, textureOffsetX * data->east_texture_struct->width / TILE_SIZE, textureOffsetY * data->east_texture_struct->height / TILE_SIZE);
+	}
 	return (color);
 }
 
-void render_column(t_data *data, int rayId, double rayAngle, double distance)
+int rgb_to_int(int *rgb)
+{
+	int		color;
+
+	color = 0;
+	color = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+	return (color);
+}
+
+
+void render_column(t_data *data, int rayId, double distance)
 {
 	int		wallStripHeight;
 	int		wallTopPixel;
@@ -77,17 +99,18 @@ void render_column(t_data *data, int rayId, double rayAngle, double distance)
 	while (++i < data->W_Height)
 	{
 		if (i < wallTopPixel)
-			my_mlx_pixel_put(data, rayId, i, 0x000000);
+			my_mlx_pixel_put(data, rayId, i, rgb_to_int(data->ceiling_color_rgb));
 		else if (i > wallTopPixel && i < wallBottomPixel)
 		{
 			textureOffsetY = (int)(i - wallTopPixel) * ((float)TILE_SIZE / wallStripHeight);
-			textureColor = get_texture_color(data, textureOffsetX, textureOffsetY, rayAngle);
+			textureColor = get_texture_color(data, textureOffsetX, textureOffsetY);
 			my_mlx_pixel_put(data, rayId, i, textureColor);
 		}
 		else
-			my_mlx_pixel_put(data, rayId, i, 0x000000);
+			my_mlx_pixel_put(data, rayId, i, rgb_to_int(data->floor_color_rgb));
 	}
 }
+
 
 void castAllRays(t_data *data)
 {
@@ -98,7 +121,7 @@ void castAllRays(t_data *data)
 	while (++rayId < data->W_Width)
 	{
 		castRay(data, rayAngle);
-		render_column(data, rayId, rayAngle, data->rays->distance);
+		render_column(data, rayId, data->rays->distance);
 		rayAngle += FOV_ANGLE / data->W_Width;
 	}
 }
@@ -126,28 +149,28 @@ void render_torch(t_data *data)
 	middle_x = data->W_Width / 1.4 - torch_width / 2;
 	bottom_y = data->W_Height - torch_height;
 	x = -1;
-	if (data->flag >= 80)
+	if (data->flag >= 40)
 		data->flag = 1;
 	while (++x < torch_width)
 	{
 		y = -1;
 		while (++y < torch_height)
 		{
-			if (data->flag >= 1 && data->flag <= 9)
+			if (data->flag >= 1 && data->flag <= 4)
 				color = get_pixel(data->torch_1_texture, x, y);
-			else if (data->flag >= 10 && data->flag <= 19)
+			else if (data->flag >= 5 && data->flag <= 9)
 				color = get_pixel(data->torch_2_texture, x, y);
-			else if (data->flag >= 20 && data->flag <= 29)
+			else if (data->flag >= 10 && data->flag <= 14)
 				color = get_pixel(data->torch_3_texture, x, y);
-			else if (data->flag >= 30 && data->flag <= 39)
+			else if (data->flag >= 15 && data->flag <= 19)
 				color = get_pixel(data->torch_4_texture, x, y);
-			else if (data->flag >= 40 && data->flag <= 49)
+			else if (data->flag >= 20 && data->flag <= 24)
 				color = get_pixel(data->torch_5_texture, x, y);
-			else if (data->flag >= 50 && data->flag <= 59)
+			else if (data->flag >= 25 && data->flag <= 29)
 				color = get_pixel(data->torch_6_texture, x, y);
-			else if (data->flag >= 60 && data->flag <= 69)
+			else if (data->flag >= 30 && data->flag <= 34)
 				color = get_pixel(data->torch_7_texture, x, y);
-			else if (data->flag >= 70 && data->flag <= 79)
+			else if (data->flag >= 35 && data->flag <= 39)
 				color = get_pixel(data->torch_8_texture, x, y);
 			if (color != 0)
 				my_mlx_pixel_put(data, middle_x + x, bottom_y + y, color);

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/01 17:56:05 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 22:11:59 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,9 @@ typedef struct s_data
 	char		*west_texture;
 	char		*east_texture;
 	char		*floor_color;
+	int			*floor_color_rgb;
 	char		*ceiling_color;
+	int			*ceiling_color_rgb;
 	t_texture	*torch_1_texture;
 	t_texture	*torch_2_texture;
 	t_texture	*torch_3_texture;
@@ -152,6 +154,7 @@ typedef struct s_data
 	t_texture	*south_texture_struct;
 	t_texture	*west_texture_struct;
 	t_texture	*east_texture_struct;
+	t_texture	*door_texture;
 }	t_data;
 
 #endif

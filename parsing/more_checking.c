@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:36 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:37:37 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:58:31 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,23 @@ void	check_duplicated_keys(t_data *data)
 	count = 0;
 	while (data->map_file[i])
 	{
-		if (data->map_file[i] == 'N' && data->map_file[i + 1] == 'O')
+		if (data->map_file[i] == 'N' && data->map_file[i + 1] == 'O' && data->map_file[i + 2] == ' ')
 			count++;
-		if (data->map_file[i] == 'S' && data->map_file[i + 1] == 'O')
+		else if (data->map_file[i] == 'S' && data->map_file[i + 1] == 'O' && data->map_file[i + 2] == ' ')
 			count++;
-		if (data->map_file[i] == 'W' && data->map_file[i + 1] == 'E')
+		else if (data->map_file[i] == 'W' && data->map_file[i + 1] == 'E' && data->map_file[i + 2] == ' ')
 			count++;
-		if (data->map_file[i] == 'E' && data->map_file[i + 1] == 'A')
+		else if (data->map_file[i] == 'E' && data->map_file[i + 1] == 'A' && data->map_file[i + 2] == ' ')
 			count++;
-		if (data->map_file[i] == 'F' && data->map_file[i + 1] == ' ')
+		else if (data->map_file[i] == 'F' && data->map_file[i + 1] == ' ')
 			count++;
-		if (data->map_file[i] == 'C' && data->map_file[i + 1] == ' ')
+		else if (data->map_file[i] == 'C' && data->map_file[i + 1] == ' ')
 			count++;
 		if (count > 6)
+		{
+			printf("count = %d\n", count);
 			exit_game("Duplicated texture or color.", data, -1, 1);
+		}
 		i++;
 	}
 }

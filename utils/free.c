@@ -6,12 +6,13 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:08:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/05/26 10:35:03 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/01 21:19:08 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../cub3D.h"
+
 
 void	free_data(t_data *data)
 {
@@ -35,6 +36,8 @@ void	free_data(t_data *data)
 		free_array(data->map);
 	if (data->player)
 		free(data->player);
+	if (data->rays)
+		free(data->rays);
 }
 
 void	free_array(char **str)

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:17:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 16:36:57 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 00:37:42 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	check_invalid_chars(t_data *data);
 // Converting
 char	*expand_line(char *line, size_t size);
 void	convert_tabs(t_data *data);
+int		get_biggest_line(char **map);
 
 // Map
 int		map_start(t_data *data);

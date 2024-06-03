@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:20:51 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 16:35:22 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 00:37:09 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,5 @@ void	polish_map(t_data *data)
 		j = -1;
 	}
 	data->map_height = array_len(data->map);
-	data->map_width = ft_strlen(data->map[0]);
+	data->map_width = get_biggest_line(data->map);
 }

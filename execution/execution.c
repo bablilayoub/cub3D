@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:28:06 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 23:37:09 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 00:40:09 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ void	initialize_player(t_data *data)
 void	set_up_window(t_data *data, int w_width, int w_height)
 {
 	data->mlx = mlx_init();
+	if (!data->mlx)
+		exit_game("Failed to initialize mlx", data, -1, 1);
 	data->win = mlx_new_window(data->mlx, w_width, w_height, "cub3D");
+	if (!data->win)
+		exit_game("Failed to create window", data, -1, 1);
 	get_xpms(data);
-	mlx_hook(data->win, 2, 1L << 0, key_press, data);
-	mlx_hook(data->win, 3, 1L << 1, key_release, data);
-	mlx_hook(data->win, 17, 1L << 17, (void *)exit_game_clean, data);
-	mlx_hook(data->win, 6, 1L << 6, mouse_move, data);
+	mlx_hook(data->win, 2, 0, key_press, data);
+	mlx_hook(data->win, 3, 0, key_release, data);
+	mlx_hook(data->win, 17, 0, (void *)exit_game_clean, data);
+	mlx_hook(data->win, 6, 0, mouse_move, data);
 	mlx_loop_hook(data->mlx, draw, data);
 	mlx_loop(data->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:23:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 16:35:04 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 00:37:30 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,25 @@ void	convert_tabs(t_data *data)
 	new_map[j] = '\0';
 	free(data->map_file);
 	data->map_file = new_map;
+}
+
+int	get_biggest_line(char **map)
+{
+	int	i;
+	int	j;
+	int	biggest;
+
+	i = 0;
+	j = 0;
+	biggest = 0;
+	while (map[i])
+	{
+		while (map[i][j])
+			j++;
+		if (j > biggest)
+			biggest = j;
+		j = 0;
+		i++;
+	}
+	return (biggest);
 }

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 16:41:59 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 16:12:09 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ void	get_xpms(t_data *data)
 	data->west_texture_struct = init_texture(data);
 	data->east_texture_struct = init_texture(data);
 	data->door_texture = init_texture(data);
+	data->ghost_texture = init_texture(data);
 	set_texture(data, data->north_texture, data->north_texture_struct);
 	set_texture(data, data->south_texture, data->south_texture_struct);
 	set_texture(data, data->west_texture, data->west_texture_struct);
 	set_texture(data, data->east_texture, data->east_texture_struct);
 	set_texture(data, "./textures/door.xpm", data->door_texture);
+	set_texture(data, "./textures/ghost.xpm", data->ghost_texture);
 	get_torch(data);
 }

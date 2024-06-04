@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 12:46:04 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 19:35:05 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:16:33 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ void	upadte_values(t_data *data)
 {
 	if (data->doors->isopen == 0)
 	{
+		if (access("./sounds/open_door.mp3", F_OK) != -1)
+			system("afplay ./sounds/open_door.mp3 &");
 		data->doors->isopen = 1;
 		data->doors->current_cell = 'O';
 	}
 	else
 	{
+		if (access("./sounds/close_door.mp3", F_OK) != -1)
+			system("afplay ./sounds/close_door.mp3 &");
 		data->doors->isopen = 0;
 		data->doors->current_cell = 'D';
 	}

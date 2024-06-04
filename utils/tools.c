@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 00:00:20 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:27:06 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	count_commas(char *str)
 void	exit_game_clean(t_data *data)
 {
 	printf("Exit game\n");
+	system("killall afplay");
 	free_data(data);
 	exit(0);
 }

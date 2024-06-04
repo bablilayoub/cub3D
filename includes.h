@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 18:07:30 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 16:28:18 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ typedef struct s_data
 	int			map_width;
 	int			player_x;
 	int			player_y;
+	int			jumpscare;
+	int			jumpscare_timer;
 	int			wallstrip_height;
 	int			walltop_pixel;
 	int			wallbottom_pixel;
@@ -170,6 +172,7 @@ typedef struct s_data
 	t_texture	*west_texture_struct;
 	t_texture	*east_texture_struct;
 	t_texture	*door_texture;
+	t_texture	*ghost_texture;
 	t_texture	*torch_1_texture;
 	t_texture	*torch_2_texture;
 	t_texture	*torch_3_texture;

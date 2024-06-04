@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:28:06 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 17:01:05 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:07:47 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	set_up_window(t_data *data, int w_width, int w_height)
 	if (!data->win)
 		exit_game("Failed to create window", data, -1, 1);
 	get_xpms(data);
+	if (access("./sounds/background.mp3", F_OK) != -1)
+		system("afplay ./sounds/background.mp3 &");
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 17, 0, (void *)exit_game_clean, data);

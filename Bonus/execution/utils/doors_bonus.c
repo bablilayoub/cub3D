@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 12:46:04 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 20:45:57 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:07:34 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ int	check_closest_door(t_data *data, int index_x, int index_y)
 	if (data->map[index_y + 1][index_x] == 'D'
 		|| data->map[index_y - 1][index_x] == 'D'
 		|| data->map[index_y][index_x + 1] == 'D'
-		|| data->map[index_y][index_x - 1] == 'D'
-		|| data->map[index_y + 2][index_x] == 'D'
-		|| data->map[index_y - 2][index_x] == 'D'
-		|| data->map[index_y][index_x + 2] == 'D'
-		|| data->map[index_y][index_x - 2] == 'D')
+		|| data->map[index_y][index_x - 1] == 'D')
 		return (1);
 	return (0);
 }
@@ -49,11 +45,7 @@ int	check_if_compatibles(t_data *data, int index_x, int index_y)
 	if ((data->doors->doorx == index_x && data->doors->doory == index_y + 1)
 		|| (data->doors->doorx == index_x && data->doors->doory == index_y - 1)
 		|| (data->doors->doorx == index_x + 1 && data->doors->doory == index_y)
-		|| (data->doors->doorx == index_x - 1 && data->doors->doory == index_y)
-		|| (data->doors->doorx == index_x && data->doors->doory == index_y + 2)
-		|| (data->doors->doorx == index_x && data->doors->doory == index_y - 2)
-		|| (data->doors->doorx == index_x + 2 && data->doors->doory == index_y)
-		|| (data->doors->doorx == index_x - 2 && data->doors->doory == index_y))
+		|| (data->doors->doorx == index_x - 1 && data->doors->doory == index_y))
 		return (1);
 	return (0);
 }

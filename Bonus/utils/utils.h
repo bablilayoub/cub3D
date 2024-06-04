@@ -6,16 +6,16 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 18:48:31 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 22:08:47 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:11:53 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "../includes.h"
-# include "../utils/libft/libft.h"
-# include "../utils/get_next_line/get_next_line.h"
+# include "../../includes.h"
+# include "../../libs/libft/libft.h"
+# include "../../libs/get_next_line/get_next_line.h"
 
 // Errors
 void	exit_game(char *message, t_data *data, int fd, int is_error);

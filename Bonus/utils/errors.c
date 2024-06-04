@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:32:23 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 17:04:53 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 22:53:31 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	exit_game(char *message, t_data *data, int fd, int is_error)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:04 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/02 16:09:47 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 22:50:21 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_invalid_chars(t_data *data)
 	}
 	while (data->map_file[i])
 	{
-		if (!ft_strchr(" 01NSEWD\n", data->map_file[i]))
+		if (!ft_strchr(" 01NSEW\n", data->map_file[i]))
 			exit_game("Invalid character in map.", data, -1, 1);
 		i++;
 	}

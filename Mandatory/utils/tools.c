@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 21:28:23 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 23:14:06 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 int	array_len(char **str)
 {
@@ -63,7 +63,6 @@ int	count_commas(char *str)
 void	exit_game_clean(t_data *data)
 {
 	printf("Exit game\n");
-	system("killall afplay");
 	free_data(data);
 	exit(0);
 }

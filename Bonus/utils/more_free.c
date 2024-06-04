@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   more_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:05:28 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 18:07:07 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 22:53:20 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	free_torch(t_data *data)
 {

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:08:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 19:04:10 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 22:53:24 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	destory_texture(t_data *data, t_texture *texture)
 {

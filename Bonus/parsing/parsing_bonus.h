@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:17:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 21:47:31 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:57:30 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSING_BONUS_H
 
 # include "../../includes.h"
-# include "../../utils/utils.h"
+# include "../utils/utils.h"
 
 // Parsing
 void	parsing(char *map_path, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 19:00:15 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:18:00 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	random_jumpscare(t_data *data)
 		draw_ghost(data);
 		data->jumpscare = 1;
 	}
-	else if (data->jumpscare == 1 && data->jumpscare_timer < 5)
+	else if (data->jumpscare == 1 && data->jumpscare_timer < 8)
 	{
 		draw_ghost(data);
 		data->jumpscare_timer++;
 	}
-	if (data->jumpscare_timer == 5)
+	if (data->jumpscare_timer == 8)
 	{
 		data->jumpscare = 0;
 		data->jumpscare_timer = 0;

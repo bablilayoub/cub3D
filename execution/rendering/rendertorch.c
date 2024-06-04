@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendertorch.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:49:08 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 23:37:10 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:41:24 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,22 @@ void	render_it(t_data *data, int x, int y)
 	int	color;
 
 	color = 0;
-	if (data->flag < 10)
+	if (data->flag < 5)
 		color = get_pixel(data->torch_1_texture, x, y);
-	else if (data->flag >= 10 && data->flag < 20)
+	else if (data->flag >= 5 && data->flag < 10)
 		color = get_pixel(data->torch_2_texture, x, y);
-	else if (data->flag >= 20 && data->flag < 30)
+	else if (data->flag >= 10 && data->flag < 15)
 		color = get_pixel(data->torch_3_texture, x, y);
-	else if (data->flag >= 30 && data->flag < 40)
+	else if (data->flag >= 15 && data->flag < 20)
 		color = get_pixel(data->torch_4_texture, x, y);
+	else if (data->flag >= 20 && data->flag < 25)
+		color = get_pixel(data->torch_5_texture, x, y);
+	else if (data->flag >= 25 && data->flag < 30)
+		color = get_pixel(data->torch_6_texture, x, y);
+	else if (data->flag >= 30 && data->flag < 35)
+		color = get_pixel(data->torch_7_texture, x, y);
+	else if (data->flag >= 35 && data->flag < 40)
+		color = get_pixel(data->torch_8_texture, x, y);
 	if (color != 0)
 		my_mlx_pixel_put(data, data->torch.middle_x + x,
 			data->torch.bottom_y + y, color);

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:05:28 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 00:00:17 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 16:12:38 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_torch(t_data *data)
 	destory_texture(data, data->torch_6_texture);
 	destory_texture(data, data->torch_7_texture);
 	destory_texture(data, data->torch_8_texture);
+	destory_texture(data, data->ghost_texture);
 }
 
 void	free_doors(t_data *data)

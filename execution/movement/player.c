@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 23:37:10 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:27:40 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	opend_door(t_data *data)
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCP)
+	{
+		system("killall afplay");
 		exit_game("Exit game", data, -1, 0);
+	}
 	else if (keycode == KEY_W)
 		data->player->walk_direction = 1;
 	else if (keycode == KEY_S)

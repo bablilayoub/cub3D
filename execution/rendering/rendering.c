@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 23:37:10 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:00:24 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	render_map(t_data *data)
 			tile_y = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
 			if (data->map[i][j] == '1')
 				draw_map_sqaures(data, tile_x, tile_y, 0x003F3F3F);
+			else if (data->map[i][j] == 'D')
+				draw_map_sqaures(data, tile_x, tile_y, 0x2565fa);
 			else
 				draw_map_sqaures(data, tile_x, tile_y, 0x00000000);
 		}

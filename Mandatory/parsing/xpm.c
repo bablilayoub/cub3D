@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 22:49:23 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:36:08 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	set_texture(t_data *data, char *path, t_texture *texture)
 	if (!texture->addr)
 		exit_game("Texture not found", data, -1, 1);
 }
-
 
 // Get texture from the walls
 void	get_xpms(t_data *data)

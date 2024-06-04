@@ -6,12 +6,12 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 23:11:21 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:36:49 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_BONUS_H
-# define INCLUDES_BONUS_H
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
 # include <string.h>
 # include <stdlib.h>
@@ -86,7 +86,7 @@ typedef struct s_ray
 	double	nexthorztouchy;
 	double	washithorizontal;
 	double	horzhitdistance;
-	
+
 	// vertical
 	double	vertwallhitx;
 	double	vertwallhity;

@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 17:07:43 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:35:53 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ int	key_release(int keycode, t_data *data)
 		data->player->movement = 0;
 	return (0);
 }
-

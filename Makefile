@@ -3,11 +3,20 @@
 # NAME
 NAME = cub3D
 
+# GCC
+CC = cc
+
 # HEADERS
 MAIN_HEADERS = cub3D.h includes.h
+MANDATORY_HEADERS = Mandatory/parsing/parsing.h Mandatory/execution/execution.h
+BONUS_HEADERS = Bonus/execution/execution_bonus.h Bonus/parsing/parsing_bonus.h
+UTILS_HEADERS = utils/utils.h utils/get_next_line/get_next_line.h
+
+M_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(MANDATORY_HEADERS)
+B_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(BONUS_HEADERS)
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 
 # LIBRARIES
 LIBFT = utils/libft/libft.a
@@ -16,60 +25,77 @@ GNL = utils/get_next_line/get_next_line.c utils/get_next_line/get_next_line_util
 #mlx
 MLX = -lmlx -framework OpenGL -framework AppKit
 
-# GENERAL
-MAIN = main.c
+#******************** MANDATORY ********************
 
-# UTILS
-UTILS_HEADERS = utils/utils.h utils/get_next_line/get_next_line.h
-UTILS = errors.c free.c tools.c more_free.c
+# HEADERS
 
-# PARSING
-PARSING_HEADER = parsing/parsing.h
-PARSING = parsing.c checking.c converting.c map.c more_checking.c reading.c textures.c xpm.c colors.c
-
-# EXECUTION
-EXEC_HEADER = execution/execution.h
-RENDERING = rendering.c raycasting.c wallhits.c draw.c renderwall.c rendertorch.c pixels.c
-MOVEMENT = movement.c player.c
-UTILS_EXEC = utils.c doors.c doors_list.c
-EXEC = execution.c $(addprefix rendering/, $(RENDERING)) $(addprefix movement/, $(MOVEMENT)) $(addprefix utils/, $(UTILS_EXEC))
 
 # SOURCES
-PARSING_SRCS = $(addprefix parsing/, $(PARSING))
-EXEC_SRCS = $(addprefix execution/, $(EXEC))
-UTILS_SRCS =  $(addprefix utils/, $(UTILS))
+RENDERING = renderwall.c
+MOVEMENT = movement.c player.c
+DRAW = draw.c pixels.c
+RAYCASTING = raycasting.c wallhits.c
+UTILS_EXEC = utils.c
+PARSING = parsing.c checking.c converting.c map.c more_checking.c reading.c textures.c xpm.c colors.c
+EXEC = execution.c $(addprefix rendering/, $(RENDERING)) $(addprefix movement/, $(MOVEMENT)) $(addprefix utils/, $(UTILS_EXEC)) $(addprefix draw/, $(DRAW)) $(addprefix raycasting/, $(RAYCASTING))
+MANDATORY = main.c $(addprefix parsing/, $(PARSING)) $(addprefix execution/, $(EXEC))
+
+
+#********************* BONUS **********************
+
+# HEADERS
+
+
+# SOURCES
+RENDERING_BONUS = renderwall_bonus.c
+MOVEMENT_BONUS = movement_bonus.c player_bonus.c
+DRAW_BONUS = draw_bonus.c pixels_bonus.c
+RAYCASTING_BONUS = raycasting_bonus.c wallhits_bonus.c
+UTILS_EXEC_BONUS = utils_bonus.c
+PARSING_BONUS = checking_bonus.c converting_bonus.c map_bonus.c more_checking_bonus.c reading_bonus.c textures_bonus.c xpm_bonus.c colors_bonus.c
+EXEC_BONUS = execution_bonus.c $(addprefix rendering/, $(RENDERING_BONUS)) $(addprefix movement/, $(MOVEMENT_BONUS)) $(addprefix utils/, $(UTILS_EXEC_BONUS)) $(addprefix draw/, $(DRAW_BONUS)) $(addprefix raycasting/, $(RAYCASTING_BONUS))
+BONUS = main_bonus.c $(addprefix parsing/, $(PARSING_BONUS)) $(addprefix execution/, $(EXEC_BONUS))
+
+
+# UTILS SOURCES
+UTILS = errors.c free.c tools.c more_free.c
+
+# SOURCES
+MANDATORY_SRCS = $(addprefix Mandatory/, $(MANDATORY))
+BONUS_SRCS = $(addprefix Bonus/, $(BONUS))
+UTILS_SRCS = $(addprefix utils/, $(UTILS))
 
 # OBJECTS
-PARSING_OBJS = $(PARSING_SRCS:.c=.o)
-EXEC_OBJS = $(EXEC_SRCS:.c=.o)
-MAIN_OBJS = $(MAIN:.c=.o)
+MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 UTILS_OBJS = $(UTILS_SRCS:.c=.o)
 GNL_OBJS = $(GNL:.c=.o)
-
-# HEADER
-HEADERS = $(MAIN_HEADERS) $(EXEC_HEADER) $(PARSING_HEADER) $(UTILS_HEADERS)
  
-$(NAME): prepare_libft $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(EXEC_OBJS)
-	@cc $(CFLAGS) $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) $(MLX) $(EXEC_OBJS) -o $(NAME)
+all: $(NAME)
+
+$(NAME): prepare_libft $(MANDATORY_OBJS) $(UTILS_OBJS) $(GNL_OBJS)
+	@$(CC) $(CFLAGS) $(MANDATORY_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) $(MLX) -o $(NAME)
 	@echo "cub3D is ready"
 
-all: $(NAME)
+bonus: prepare_libft $(BONUS_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(B_HEADERS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(LIBFT) $(MLX) -o cub3D_bonus
+	@echo "cub3D_bonus is ready"
 
 prepare_libft:
 	@cd utils/libft && make
 	@echo "libft is ready"
 
-%.o: %.c $(HEADERS)
+%.o: %.c $(M_HEADERS)
 	@echo "compiling $<"
-	@cc $(CFLAGS) -Imlx -c -c $< -o $@
+	@$(CC) $(CFLAGS) -Imlx -c -c $< -o $@
 
 clean:
 	@cd utils/libft && make clean
-	@rm -f $(PARSING_OBJS) $(MAIN_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(EXEC_OBJS)
+	@rm -f $(MANDATORY_OBJS) $(UTILS_OBJS) $(GNL_OBJS) $(BONUS_OBJS)
 	@echo "cub3D is clean"
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) cub3D_bonus
 	@cd utils/libft && make fclean
 	@echo "cub3D is fully clean"
 

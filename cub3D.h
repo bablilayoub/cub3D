@@ -15,7 +15,8 @@
 
 # include "includes.h"
 # include "utils/utils.h"
-# include "parsing/parsing.h"
-# include "execution/execution.h"
-
+# include "Mandatory/parsing/parsing.h"
+# include "Mandatory/execution/execution.h"
+# include "Bonus/execution/execution_bonus.h"
+# include "Bonus/parsing/parsing_bonus.h"
 #endif

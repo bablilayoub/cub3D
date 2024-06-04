@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 18:07:30 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 21:49:42 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#ifndef INCLUDES_BONUS_H
+# define INCLUDES_BONUS_H
 
 # include <string.h>
 # include <stdlib.h>
@@ -86,7 +86,7 @@ typedef struct s_ray
 	double	nexthorztouchy;
 	double	washithorizontal;
 	double	horzhitdistance;
-
+	
 	// vertical
 	double	vertwallhitx;
 	double	vertwallhity;

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 17:08:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/03 17:05:16 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/04 19:04:10 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	more_free(t_data *data)
 	destory_texture(data, data->east_texture_struct);
 	if (data->door_texture)
 		destory_texture(data, data->door_texture);
+	if (data->ghost_texture)
+		destory_texture(data, data->ghost_texture);
 	if (data->floor_color_rgb)
 		free(data->floor_color_rgb);
 	if (data->ceiling_color_rgb)
 		free(data->ceiling_color_rgb);
-	if (data->img)
-		mlx_destroy_image(data->mlx, data->img);
 	if (data->mlx && data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-		free(data->mlx);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
 }
 
 void	free_data(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/02 23:50:37 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:48:37 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTION_H
 
 # include "../cub3D.h"
+
 // set up
 void	set_up_window(t_data *data, int w_height, int w_width);
 // movement

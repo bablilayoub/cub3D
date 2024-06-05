@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:06:33 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 19:01:04 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:43:40 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,14 @@ void	render_column(t_data *data, int rayId,
 	data->walltop_pixel = (data->w_height / 2) - (data->wallstrip_height / 2);
 	if (data->walltop_pixel < 0)
 		data->walltop_pixel = 0;
-	else
-		data->walltop_pixel = data->walltop_pixel;
 	data->wallbottom_pixel = (data->w_height / 2)
 		+ (data->wallstrip_height / 2);
 	if (data->wallbottom_pixel > data->w_height)
 		data->wallbottom_pixel = data->w_height;
-	else
-		data->wallbottom_pixel = data->wallbottom_pixel;
 	data->texture_offsetx = (int)data->rays->wallhitx % TILE_SIZE;
 	data->texture_offsety = (int)data->rays->wallhity % TILE_SIZE;
 	if (data->rays->washitvertical)
 		data->texture_offsetx = (int)data->rays->wallhity % TILE_SIZE;
-	else
-		data->texture_offsetx = (int)data->rays->wallhitx % TILE_SIZE;
 	if (data->wallstrip_height >= data->w_height)
 		data->walltop_pixel -= (data->wallstrip_height - data->w_height) / 2;
 	render_textures(data, rayId);

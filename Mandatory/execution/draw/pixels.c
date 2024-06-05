@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 23:47:02 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 16:20:43 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/05 16:47:11 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ int	get_texture_color(t_data *data, int textureOffsetX, int textureOffsetY)
 	int		color;
 
 	color = 0;
-	if (data->map[(int)data->rays->wallhity / TILE_SIZE]
-		[(int)data->rays->wallhitx / TILE_SIZE] == 'D')
-		color = get_pixel(data->door_texture, textureOffsetX
-				* data->door_texture->width / TILE_SIZE, textureOffsetY
-				* data->door_texture->height / TILE_SIZE);
-	else
-		get_cl(data, textureOffsetX, textureOffsetY, &color);
+	get_cl(data, textureOffsetX, textureOffsetY, &color);
 	return (color);
 }
 

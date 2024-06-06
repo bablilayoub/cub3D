@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 20:06:01 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/06 21:25:46 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_background(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < data->w_width / 2 - data->ghost_texture->width / 2)
 	{

@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:30:22 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 21:20:12 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/06 21:25:59 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	findverticalwallhit(t_data *data, t_ray *ray)
 
 int	has_wall_at(t_data *data, double x, double y)
 {
-	int	gridindex_x;
-	int	gridindex_y;
+	int		gridindex_x;
+	int		gridindex_y;
 	t_doors	*door;
 
 	if (x < 0 || x > data->map_width * TILE_SIZE
@@ -73,7 +73,7 @@ int	has_wall_at(t_data *data, double x, double y)
 		return (1);
 	return (data->map[gridindex_y][gridindex_x] == '1'
 		|| (data->map[gridindex_y][gridindex_x] == 'D'
-		&& door &&  door->current_cell == 'D'));
+		&& door && door->current_cell == 'D'));
 }
 
 double	vector_lenght(double x1, double y1, double x2, double y2)

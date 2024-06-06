@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:28:06 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 23:35:35 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:18:46 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	initialize_player(t_data *data)
 {
 	data->player->pos_x = data->player_x * TILE_SIZE + TILE_SIZE / 2;
 	data->player->pos_y = data->player_y * TILE_SIZE + TILE_SIZE / 2;
-	data->w_width = data->map_width * TILE_SIZE;
-	data->w_height = data->map_height * TILE_SIZE;
 	data->player->radius = RADIUS;
 	data->player->speed = MOVE_SPEED;
 	data->player->turn_direction = 0;
@@ -36,12 +34,12 @@ void	initialize_player(t_data *data)
 	data->player->rotation_speed = 4 * (M_PI / 180);
 }
 
-void	set_up_window(t_data *data, int w_width, int w_height)
+void	set_up_window(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit_game("Failed to initialize mlx", data, -1, 1);
-	data->win = mlx_new_window(data->mlx, w_width, w_height, "cub3D");
+	data->win = mlx_new_window(data->mlx, S_WIDTH, S_HEIGHT, "cub3D");
 	if (!data->win)
 		exit_game("Failed to create window", data, -1, 1);
 	get_xpms(data);
@@ -55,5 +53,5 @@ void	set_up_window(t_data *data, int w_width, int w_height)
 void	execute(t_data *data)
 {
 	initialize_player(data);
-	set_up_window(data, data->w_width, data->w_height);
+	set_up_window(data);
 }

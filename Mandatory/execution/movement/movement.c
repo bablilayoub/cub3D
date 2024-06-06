@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:04:48 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 17:11:43 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:09:46 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	player_movment(t_data *data, double newPlayerX, double newPlayerY)
 	new_y = data->player->pos_y + newPlayerY;
 	index_x = floor(new_x / TILE_SIZE);
 	index_y = floor(new_y / TILE_SIZE);
-	if (index_x < 0 || index_x >= data->w_width
-		|| index_y < 0 || index_y >= data->w_height)
+	if (index_x < 0 || index_x >= S_WIDTH
+		|| index_y < 0 || index_y >= S_HEIGHT)
 		return (1);
 	if (data->map[index_y][index_x] == '1')
 		return (1);

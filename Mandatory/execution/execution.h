@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 09:42:25 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 20:15:56 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:41:09 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../../cub3D.h"
 // set up
-void	set_up_window(t_data *data, int w_height, int w_width);
+void	set_up_window(t_data *data);
 // movement
 void	initialize_player(t_data *data);
 int		key_press(int keycode, t_data *data);

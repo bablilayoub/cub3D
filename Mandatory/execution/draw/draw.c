@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 23:14:26 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:56:16 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	castallrays(t_data *data)
 
 	ray_angle = normalize_angle(data->player->angle - (FOV_ANGLE / 2));
 	ray_id = -1;
-	while (++ray_id < data->w_width)
+	while (++ray_id < S_WIDTH)
 	{
 		castray(data, ray_angle);
 		render_column(data, ray_id, data->rays->distance, ray_angle);
-		ray_angle += FOV_ANGLE / data->w_width;
+		ray_angle += FOV_ANGLE / S_WIDTH;
 	}
 }
 

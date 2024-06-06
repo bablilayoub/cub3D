@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 23:36:49 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:38:38 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@
 # include <sys/types.h>
 
 # define GAME_NAME "Cub3D"
+# define MINIMAP_SCALE_FACTOR 0.15
+# define GRID_SIZE 5
 # define TILE_SIZE 40
 # define FOV 60
 # define FOV_ANGLE 1.0471975511965976
 # define ROTATION_SPEED 6
 # define MOVE_SPEED 4.0
 # define RADIUS 2
-# define MINIMAP_SCALE_FACTOR 0.15
 
 # define ESCP	53
 # define KEY_A	0
@@ -45,6 +46,9 @@
 # define KEY_RIGHT	124
 # define KEY_DOWN	125
 # define KEY_UP		126
+
+# define S_WIDTH 1280 
+# define S_HEIGHT 720
 
 typedef struct s_player
 {

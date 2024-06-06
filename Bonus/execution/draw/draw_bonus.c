@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 23:18:00 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:46:48 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,35 @@ void	castallrays(t_data *data)
 		castray(data, ray_angle);
 		render_column(data, ray_id, data->rays->distance, ray_angle);
 		ray_angle += FOV_ANGLE / data->w_width;
+	}
+}
+
+void	draw_background(t_data *data)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < data->w_width / 2 - data->ghost_texture->width / 2)
+	{
+		j = 0;
+		while (j < data->w_height)
+		{
+			my_mlx_pixel_put(data, i, j, 0x000000);
+			j++;
+		}
+		i++;
+	}
+	i = data->w_width / 2 + data->ghost_texture->width / 2;
+	while (i < data->w_width)
+	{
+		j = 0;
+		while (j < data->w_height)
+		{
+			my_mlx_pixel_put(data, i, j, 0x000000);
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -52,6 +81,7 @@ void	draw_ghost(t_data *data)
 		}
 		i++;
 	}
+	draw_background(data);
 }
 
 void	random_jumpscare(t_data *data)
@@ -66,12 +96,12 @@ void	random_jumpscare(t_data *data)
 		draw_ghost(data);
 		data->jumpscare = 1;
 	}
-	else if (data->jumpscare == 1 && data->jumpscare_timer < 8)
+	else if (data->jumpscare == 1 && data->jumpscare_timer < 15)
 	{
 		draw_ghost(data);
 		data->jumpscare_timer++;
 	}
-	if (data->jumpscare_timer == 8)
+	if (data->jumpscare_timer == 15)
 	{
 		data->jumpscare = 0;
 		data->jumpscare_timer = 0;
@@ -88,7 +118,6 @@ int	draw(void *param)
 	castallrays(data);
 	render_torch(data);
 	render_map(data);
-	render_player(data, 0xFF0000);
 	random_jumpscare(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);

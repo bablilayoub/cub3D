@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 22:07:18 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:50:10 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,55 +29,46 @@ void	draw_map_sqaures(t_data *data, int x, int y, int color)
 	}
 }
 
+
 void	render_map(t_data *data)
 {
-	int	i;
-	int	j;
-	int	tile_x;
-	int	tile_y;
+	int	player_x;
+	int	player_y;
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+	int	x;
+	int	y;
+	int	color;
 
-	i = -1;
-	while (data->map[++i])
+	player_x = data->player->pos_x / TILE_SIZE;
+	player_y = data->player->pos_y / TILE_SIZE;
+
+	start_x = (player_x > 10) ? player_x - 10 : 0;
+	start_y = (player_y > 10) ? player_y - 10 : 0;
+	end_x = (player_x + 10 < data->map_width) ? player_x + 10 : data->map_width - 1;
+	end_y = (player_y + 10 < data->map_height) ? player_y + 10 : data->map_height - 1;
+
+	for (y = start_y; y <= end_y; y++)
 	{
-		j = -1;
-		while (data->map[i][++j])
+		for (x = start_x; x <= end_x; x++)
 		{
-			tile_x = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			tile_y = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			if (data->map[i][j] == '1')
-				draw_map_sqaures(data, tile_x, tile_y, 0x003F3F3F);
-			else if (data->map[i][j] == 'D')
-				draw_map_sqaures(data, tile_x, tile_y, 0x2565fa);
+			if (x >= (int)ft_strlen(data->map[y]))
+				break;
+			if (x == player_x && y == player_y)
+				color = 0xa817e6;
+			else if (data->map[y][x] == '1')
+				color = 0x00FFFFFF;
+			else if (data->map[y][x] == '0')
+				color = 0x00000000;
+			else if (data->map[y][x] == 'D')
+				color = 0xe6173d;
 			else
-				draw_map_sqaures(data, tile_x, tile_y, 0x00000000);
+				color = 0x00000000;
+			draw_map_sqaures(data, (x - player_x + 10) * MINIMAP_SCALE_FACTOR * 35,
+				(y - player_y + 10) * MINIMAP_SCALE_FACTOR * 35, color);
 		}
 	}
 }
 
-void	render_player(t_data *data, int color)
-{
-	int	player_x;
-	int	player_y;
-	int	i;
-	int	j;
-
-	player_x = data->player->pos_x * MINIMAP_SCALE_FACTOR;
-	player_y = data->player->pos_y * MINIMAP_SCALE_FACTOR;
-	j = -1;
-	while (++j < data->player->radius)
-	{
-		i = -1;
-		while (++i < data->player->radius)
-			*(unsigned int *)(data->addr + ((player_y + i) * data->line_length
-						+ (player_x + j) * (data->bits_per_pixel / 8))) = color;
-	}
-	i = -1;
-	while (++i < 3)
-	{
-		j = -1;
-		while (++j < 3)
-			*(unsigned int *)(data->addr + ((data->w_height / 2 + i)
-						* data->line_length + (data->w_width / 2 + j)
-						* (data->bits_per_pixel / 8))) = 0x00FF0000;
-	}
-}

@@ -16,7 +16,7 @@ M_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(MANDATORY_HEADERS)
 B_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(BONUS_HEADERS)
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 # LIBRARIES
 LIBFT = libs/libft/libft.a

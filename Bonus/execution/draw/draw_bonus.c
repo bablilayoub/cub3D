@@ -6,7 +6,7 @@
 /*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 20:03:30 by abablil          ###   ########.fr       */
+/*   Updated: 2024/06/06 20:06:01 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	draw_ghost(t_data *data)
 	int	j;
 	int	color;
 
-	x = data->w_width / 2 - data->ghost_texture->width / 2;
-	y = data->w_height / 2 - data->ghost_texture->height / 2;
+	x = S_WIDTH / 2 - data->ghost_texture->width / 2;
+	y = S_HEIGHT / 2 - data->ghost_texture->height / 2;
 	i = 0;
 	while (i < data->ghost_texture->width)
 	{

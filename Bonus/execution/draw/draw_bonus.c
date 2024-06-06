@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 20:02:28 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:14:46 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,35 @@ void	castallrays(t_data *data)
 	}
 }
 
+void	draw_background(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->w_width / 2 - data->ghost_texture->width / 2)
+	{
+		j = 0;
+		while (j < data->w_height)
+		{
+			my_mlx_pixel_put(data, i, j, 0x000000);
+			j++;
+		}
+		i++;
+	}
+	i = data->w_width / 2 + data->ghost_texture->width / 2;
+	while (i < data->w_width)
+	{
+		j = 0;
+		while (j < data->w_height)
+		{
+			my_mlx_pixel_put(data, i, j, 0x000000);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_ghost(t_data *data)
 {
 	int	x;
@@ -35,8 +64,8 @@ void	draw_ghost(t_data *data)
 	int	j;
 	int	color;
 
-	x = data->w_width / 2 - data->ghost_texture->width / 2;
-	y = data->w_height / 2 - data->ghost_texture->height / 2;
+	x = S_WIDTH / 2 - data->ghost_texture->width / 2;
+	y = S_HEIGHT / 2 - data->ghost_texture->height / 2;
 	i = 0;
 	while (i < data->ghost_texture->width)
 	{
@@ -52,6 +81,7 @@ void	draw_ghost(t_data *data)
 		}
 		i++;
 	}
+	draw_background(data);
 }
 
 void	random_jumpscare(t_data *data)
@@ -66,12 +96,12 @@ void	random_jumpscare(t_data *data)
 		draw_ghost(data);
 		data->jumpscare = 1;
 	}
-	else if (data->jumpscare == 1 && data->jumpscare_timer < 8)
+	else if (data->jumpscare == 1 && data->jumpscare_timer < 15)
 	{
 		draw_ghost(data);
 		data->jumpscare_timer++;
 	}
-	if (data->jumpscare_timer == 8)
+	if (data->jumpscare_timer == 15)
 	{
 		data->jumpscare = 0;
 		data->jumpscare_timer = 0;
@@ -87,8 +117,7 @@ int	draw(void *param)
 	update_player_pos(data, data->newplayerx, data->newplayery);
 	castallrays(data);
 	render_torch(data);
-	// render_map(data);
-	render_player(data, 0xFF0000);
+	render_map(data);
 	random_jumpscare(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);

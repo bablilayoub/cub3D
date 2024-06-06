@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:20:51 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 20:29:50 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:09:20 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	check_if_map_closed(t_data *data, char *line, int i)
 	while (line[j])
 	{
 		if (line[j] == '0' || line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W')
+			|| line[j] == 'E' || line[j] == 'W' || line[j] == 'D')
 		{
 			if (line[j - 1] && line[j - 1] == ' ')
 				return (-1);

@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:12:20 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 16:38:17 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:35:59 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_map_sqaures(t_data *data, int x, int y, int color)
 	int	j;
 	int	scalefactor;
 
-	scalefactor = MINIMAP_SCALE_FACTOR * TILE_SIZE;
+	scalefactor = MINIMAP_SCALE * TILE_SIZE;
 	i = -1;
 	while (++i < scalefactor)
 	{
@@ -29,55 +29,54 @@ void	draw_map_sqaures(t_data *data, int x, int y, int color)
 	}
 }
 
-void	render_map(t_data *data)
+void	loop(t_data *data)
 {
-	int	i;
-	int	j;
-	int	tile_x;
-	int	tile_y;
+	int	x;
+	int	y;
 
-	i = -1;
-	while (data->map[++i])
+	y = data->start_y - 1;
+	while (++y <= data->end_y)
 	{
-		j = -1;
-		while (data->map[i][++j])
+		x = data->start_x - 1;
+		while (++x <= data->end_x)
 		{
-			tile_x = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			tile_y = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			if (data->map[i][j] == '1')
-				draw_map_sqaures(data, tile_x, tile_y, 0x003F3F3F);
-			else if (data->map[i][j] == 'D')
-				draw_map_sqaures(data, tile_x, tile_y, 0x2565fa);
+			if (x >= (int)ft_strlen(data->map[y]))
+				break ;
+			if (x == data->pl_x && y == data->pl_y)
+				data->color = 0xa817e6;
+			else if (data->map[y][x] == '1')
+				data->color = 0x00FFFFFF;
+			else if (data->map[y][x] == '0')
+				data->color = 0x00000000;
+			else if (data->map[y][x] == 'D')
+				data->color = 0xe6173d;
 			else
-				draw_map_sqaures(data, tile_x, tile_y, 0x00000000);
+				data->color = 0x00000000;
+			draw_map_sqaures(data, (x - data->pl_x + 10) * MINIMAP_SCALE * 35,
+				(y - data->pl_y + 10) * MINIMAP_SCALE * 35, data->color);
 		}
 	}
 }
 
-void	render_player(t_data *data, int color)
+void	render_map(t_data *data)
 {
-	int	player_x;
-	int	player_y;
-	int	i;
-	int	j;
-
-	player_x = data->player->pos_x * MINIMAP_SCALE_FACTOR;
-	player_y = data->player->pos_y * MINIMAP_SCALE_FACTOR;
-	j = -1;
-	while (++j < data->player->radius)
-	{
-		i = -1;
-		while (++i < data->player->radius)
-			*(unsigned int *)(data->addr + ((player_y + i) * data->line_length
-						+ (player_x + j) * (data->bits_per_pixel / 8))) = color;
-	}
-	i = -1;
-	while (++i < 3)
-	{
-		j = -1;
-		while (++j < 3)
-			*(unsigned int *)(data->addr + ((data->w_height / 2 + i)
-						* data->line_length + (data->w_width / 2 + j)
-						* (data->bits_per_pixel / 8))) = 0x00FF0000;
-	}
+	data->pl_x = data->player->pos_x / TILE_SIZE;
+	data->pl_y = data->player->pos_y / TILE_SIZE;
+	if (data->pl_x > 10)
+		data->start_x = data->pl_x - 10;
+	else
+		data->start_x = 0;
+	if (data->pl_y > 10)
+		data->start_y = data->pl_y - 10;
+	else
+		data->start_y = 0;
+	if (data->pl_x + 10 < data->map_width)
+		data->end_x = data->pl_x + 10;
+	else
+		data->end_x = data->map_width - 1;
+	if (data->pl_y + 10 < data->map_height)
+		data->end_y = data->pl_y + 10;
+	else
+		data->end_y = data->map_height - 1;
+	loop(data);
 }

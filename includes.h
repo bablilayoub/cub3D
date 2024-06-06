@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/06 16:38:38 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:35:48 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/types.h>
 
 # define GAME_NAME "Cub3D"
-# define MINIMAP_SCALE_FACTOR 0.15
+# define MINIMAP_SCALE 0.15
 # define GRID_SIZE 5
 # define TILE_SIZE 40
 # define FOV 60
@@ -142,6 +142,13 @@ typedef struct s_data
 	int			map_width;
 	int			player_x;
 	int			player_y;
+	int			pl_x;
+	int			pl_y;
+	int			start_x;
+	int			start_y;
+	int			end_x;
+	int			end_y;
+	int			color;
 	int			jumpscare;
 	int			jumpscare_timer;
 	int			wallstrip_height;

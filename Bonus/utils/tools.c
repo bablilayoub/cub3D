@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:27:55 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 22:53:11 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:54:12 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ int	array_len(char **str)
 int	is_number(char *str)
 {
 	int	i;
+	int	result;
 
 	i = 0;
+	result = 0;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != ' ')
+			return (0);
+		if (ft_isdigit(str[i]))
+			result = result * 10 + str[i] - '0';
+		if (result > 255)
 			return (0);
 		i++;
 	}

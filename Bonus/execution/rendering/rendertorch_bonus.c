@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:49:08 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 22:07:27 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:24:29 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	render_torch(t_data *data)
 
 	data->torch.torch_width = data->torch_1_texture->width;
 	data->torch.torch_height = data->torch_1_texture->height;
-	data->torch.middle_x = data->w_width / 1.4 - data->torch.torch_width / 2;
-	data->torch.bottom_y = data->w_height - data->torch.torch_height;
+	data->torch.middle_x = S_WIDTH / 1.4 - data->torch.torch_width / 2;
+	data->torch.bottom_y = S_HEIGHT - data->torch.torch_height;
 	x = -1;
 	if (data->flag >= 40)
 		data->flag = 1;

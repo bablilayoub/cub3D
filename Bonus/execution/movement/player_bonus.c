@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 18:28:49 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/04 22:07:08 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 21:54:37 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	mouse_move(int x, int y, t_data *data)
 	int	temp_width;
 
 	(void)y;
-	temp_width = data->w_width / 3;
-	if (x > 2 * temp_width && x < data->w_width)
+	temp_width = S_WIDTH / 3;
+	if (x > 2 * temp_width && x < S_WIDTH)
 		data->player->turn_direction = 1;
 	else if (x < temp_width && x > 0)
 		data->player->turn_direction = -1;

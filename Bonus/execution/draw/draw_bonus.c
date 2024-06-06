@@ -6,7 +6,7 @@
 /*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 16:38:31 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 20:02:28 by alaalalm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	draw(void *param)
 	update_player_pos(data, data->newplayerx, data->newplayery);
 	castallrays(data);
 	render_torch(data);
-	render_map(data);
+	// render_map(data);
 	render_player(data, 0xFF0000);
 	random_jumpscare(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

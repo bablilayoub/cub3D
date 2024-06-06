@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:32:27 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 23:36:08 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:56:35 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_texture	*init_texture(t_data *data)
 	return (texture);
 }
 
-// Set texture
 void	set_texture(t_data *data, char *path, t_texture *texture)
 {
 	int		fd;
@@ -48,7 +47,6 @@ void	set_texture(t_data *data, char *path, t_texture *texture)
 		exit_game("Texture not found", data, -1, 1);
 }
 
-// Get texture from the walls
 void	get_xpms(t_data *data)
 {
 	data->north_texture_struct = init_texture(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:25:04 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 22:50:21 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:48:06 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	check_textures(t_data *data)
 		exit_game("Missing textures.", data, -1, 1);
 	if (!data->floor_color || !data->ceiling_color)
 		exit_game("Missing colors.", data, -1, 1);
+	if (ft_strlen(data->north_texture) < 4
+		|| ft_strlen(data->south_texture) < 4
+		|| ft_strlen(data->west_texture) < 4
+		|| ft_strlen(data->east_texture) < 4)
+		exit_game("Invalid texture path.", data, -1, 1);
+	if (ft_strncmp(data->north_texture + ft_strlen(data->north_texture) - 4,
+			".xpm", 4) || ft_strncmp(data->south_texture
+			+ ft_strlen(data->south_texture) - 4, ".xpm", 4)
+		|| ft_strncmp(data->west_texture + ft_strlen(data->west_texture) - 4,
+			".xpm", 4) || ft_strncmp(data->east_texture
+			+ ft_strlen(data->east_texture) - 4, ".xpm", 4))
+		exit_game("Invalid texture format.", data, -1, 1);
 	check_textures_path(data);
 	check_colors_format(data);
 }

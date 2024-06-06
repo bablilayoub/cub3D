@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:01:40 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/06 20:35:48 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 23:48:59 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define GAME_NAME "Cub3D"
 # define MINIMAP_SCALE 0.15
 # define GRID_SIZE 5
-# define TILE_SIZE 40
+# define TILE_SIZE 64
 # define FOV 60
 # define FOV_ANGLE 1.0471975511965976
 # define ROTATION_SPEED 6
-# define MOVE_SPEED 4.0
+# define MOVE_SPEED 5.0
 # define RADIUS 2
 
 # define ESCP	53
@@ -47,7 +47,7 @@
 # define KEY_DOWN	125
 # define KEY_UP		126
 
-# define S_WIDTH 1280 
+# define S_WIDTH 1280
 # define S_HEIGHT 720
 
 typedef struct s_player

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:00:15 by alaalalm          #+#    #+#             */
-/*   Updated: 2024/06/06 21:29:27 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:01:04 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_background(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < data->w_width / 2 - data->ghost_texture->width / 2)
+	while (i < S_WIDTH / 2 - data->ghost_texture->width / 2)
 	{
 		j = 0;
 		while (j < data->w_height)
@@ -43,8 +43,8 @@ void	draw_background(t_data *data)
 		}
 		i++;
 	}
-	i = data->w_width / 2 + data->ghost_texture->width / 2;
-	while (i < data->w_width)
+	i = S_WIDTH / 2 + data->ghost_texture->width / 2;
+	while (i < S_WIDTH)
 	{
 		j = 0;
 		while (j < data->w_height)

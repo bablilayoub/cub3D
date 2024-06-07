@@ -3,20 +3,20 @@
 # NAME
 NAME = cub3D
 
-# GCC
+# CC
 CC = cc
 
 # HEADERS
 MAIN_HEADERS = cub3D.h includes.h
 MANDATORY_HEADERS = Mandatory/parsing/parsing.h Mandatory/execution/execution.h Mandatory/utils/utils.h 
 BONUS_HEADERS = Bonus/execution/execution_bonus.h Bonus/parsing/parsing_bonus.h Bonus/utils/utils.h
-UTILS_HEADERS = libs/get_next_line/get_next_line.h
+UTILS_HEADERS = libs/get_next_line/get_next_line.h libs/libft/libft.h
 
 M_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(MANDATORY_HEADERS)
 B_HEADERS = $(MAIN_HEADERS) $(UTILS_HEADERS) $(BONUS_HEADERS)
 
 # FLAGS
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 # LIBRARIES
 LIBFT = libs/libft/libft.a
@@ -96,5 +96,4 @@ fclean: clean
 
 re: fclean all
 
-# PHONY
-.PHONY: prepare_libft clean fclean 
+.PHONY: prepare_libft clean fclean

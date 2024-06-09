@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reading_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alaalalm <alaalalm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abablil <abablil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 21:22:24 by abablil           #+#    #+#             */
-/*   Updated: 2024/06/04 20:30:01 by alaalalm         ###   ########.fr       */
+/*   Updated: 2024/06/09 23:49:00 by abablil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	get_file_data(char *map_path, t_data *data)
 		exit_game("Couldn't find a map with this path.", data, -1, 1);
 	data->map_file = ft_strdup("");
 	if (!data->map_file)
-		exit_game("Failed to allocate map_file.", data, -1, 1);
+		exit_game("Failed to allocate map_file.", data, fd, 1);
 	read_map_file(fd, data);
 	if (!data->map_file)
 		exit_game("Map can't be empty.", data, -1, 1);

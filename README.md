@@ -24,14 +24,14 @@ make all bonus clean
 
 To run the game, you need to run the following command:
 
+#### Without bonus
 ```bash
 ./cub3D maps/map.cub
 ```
 
-You can also save a screenshot of the game by running the following command:
-
+#### With bonus
 ```bash
-./cub3D maps/map.cub --save
+./cub3D_bonus maps/map_bonus.cub
 ```
 
 ### Controls
@@ -48,7 +48,6 @@ The map is configured in a `.cub` file, which is a text file that contains all t
 Here is an example of a map configuration:
 
 ```map
-R 1920 1080
 NO ./textures/wall_n.xpm
 SO ./textures/wall_s.xpm
 WE ./textures/wall_w.xpm
@@ -74,9 +73,10 @@ C 0,100,220
 - `NO`, `SO`, `WE`, `EA` are the paths to the textures of the walls
 - `F` is the color of the floor
 - `C` is the color of the ceiling
-- The map is composed of numbers:
+- The map is composed of numbers and letters:
   - `1` is a wall
-  - `0` is an empty space
+  - `SPACE / TABS` are empty spaces
+  - `0` is an empty space (floor)
   - `N`, `S`, `W`, `E` are the player's starting position and orientation
   - `D` is a door
 
